@@ -145,16 +145,13 @@
         margin: 0 23px 0 0;
         font: 14px normal;
     }
-    .test{
-        background: sky;
-    }
 </style>
 <script>
     export default {
         name:'foot-list',
         data: function(){
             return {
-                showing:true,
+                showing:false,
                 currentSong:0,
                 playingType:0,
                 songsCount:0,

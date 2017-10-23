@@ -7,7 +7,7 @@ import Video from './components/home/video/video.vue'
 import Radio from './components/home/radio/radio.vue'
 
 export default[
-    {path:'/',redirect:'/home'},
+    {path:'/',redirect:'/list'},
     {
         path:'/home',
         component:Home,
