@@ -1,26 +1,30 @@
 <template>
     <div>
-        <a @click="showing=!showing" class="list-header" href="javascript:;">
-            <span :class="['flex-button', showing?'open':'close']">></span>
-            <div class="info">
-                <span>创建的歌单</span>
-                <span>({{count}})</span>
-            </div>
+        <a class="list-header" href="javascript:;">
+            <a @click="showing=!showing" href="javascript:;">
+                <span :class="['flex-button', showing?'open':'close']">></span>
+                <div class="info">
+                    <span>创建的歌单</span>
+                    <span>({{count}})</span>
+                </div>
+            </a>
             <span class="manage">+</span>
         </a>
         <ul v-show="showing">
             <li v-for="item in list">
-                <a href="javascript:;">
+                <a href="javascript:;" @click="item.clicked=true">
                     <span class="img" :style="{background:item.img}"></span>
-                    <div class="list-info">
-                        <span class="list-name">{{item.name}}</span>
-                        <div class="more-info">
-                            <span class="icon" v-show="item.clicked&&item.download!==null"></span>
-                            <span class="list-more-info">{{item.count}}首</span>
-                            <span class="download" v-show="item.clicked&&item.download!==0">已下载{{item.download}}首</span>
+                    <div class="container">
+                        <a @click="test()" class="manage-icon">...</a>
+                        <div class="list-info">
+                            <span class="list-name">{{item.name}}</span>
+                            <div class="more-info">
+                                <span class="icon" v-show="item.clicked&&item.download!==0"></span>
+                                <span class="list-more-info">{{item.count}}首</span>
+                                <span class="download" v-show="item.clicked&&item.download!==0">已下载{{item.download}}首</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="manage"></div>
                 </a>
             </li>
         </ul>
@@ -63,7 +67,7 @@
 
     ul li{
         width: 100%;
-        height: 50px;
+        height: 44px;
     }
     .img {
         float: left;
@@ -71,20 +75,41 @@
         height: 40px;
         margin: 3px 10px 3px 3px;
     }
-    .list-info{
+    .container{
+        margin: 7px 0 0 0;
         overflow: hidden;
         height: 100%;
         border-bottom: 1px solid rgba(0,0,0,0.1);
-        display: flex;
-        align-items: center;
+
     }
-    /*.name{*/
-        /*color: black;*/
-    /*}*/
-    /*.count{*/
-        /*font: 12px normal;*/
-        /*color: gray;*/
-    /*}*/
+    .list-name{
+        display: inline-block;
+        max-width: 50vw;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .more-info{
+        font: 10px normal;
+        color: gray;
+        max-width: 50vw;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .more-info .icon{
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 50% 50%;
+        border:1px solid deepskyblue;
+    }
+    .manage-icon{
+        float: right;
+        font: 18px normal;
+        transform: rotate(90deg);
+        margin: 11px 11px 0 0;
+    }
 </style>
 <script>
     export default{
@@ -137,6 +162,11 @@
                     clicked:false,
                     download:0
                 }]
+            }
+        },
+        methods:{
+            test:function () {
+                console.log('icon');
             }
         },
         created: function () {
