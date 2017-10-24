@@ -4,6 +4,7 @@
     <router-view></router-view>
     <foot></foot>
     <foot-list></foot-list>
+    <user-info></user-info>
   </div>
 </template>
 
@@ -12,6 +13,7 @@
     import home from './components/home/home.vue'
     import foot from './components/foot.vue'
     import FootList from './components/foot-list.vue'
+    import UserInfo from './components/user-info.vue'
 export default {
   name: 'app',
   data () {
@@ -23,7 +25,8 @@ export default {
       guide: guide,
         home:home,
         foot:foot,
-        'foot-list':FootList
+        'foot-list':FootList,
+        'user-info':UserInfo
     }
 }
 </script>

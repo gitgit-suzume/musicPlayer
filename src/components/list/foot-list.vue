@@ -53,7 +53,7 @@
         top: 0;
         left:0;
         width: 100%;
-        height: 100vh;
+        height: 100%;
         background: rgba(0,0,0,0.25);
         z-index: 1000;
     }
