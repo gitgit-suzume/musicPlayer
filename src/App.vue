@@ -5,15 +5,17 @@
     <foot></foot>
     <foot-list></foot-list>
     <user-info></user-info>
+    <!--<song-sheet></song-sheet>-->
   </div>
 </template>
 
 <script>
     import guide from './components/guide.vue'
     import home from './components/home/home.vue'
-    import foot from './components/foot.vue'
-    import FootList from './components/foot-list.vue'
-    import UserInfo from './components/user-info.vue'
+    import foot from './components/foot/foot.vue'
+    import FootList from './components/foot/foot-list.vue'
+    import UserInfo from './components/user-info/user-info.vue'
+    import SongSheet from './components/song-sheet/song-sheet.vue'
 export default {
   name: 'app',
   data () {
@@ -26,7 +28,8 @@ export default {
         home:home,
         foot:foot,
         'foot-list':FootList,
-        'user-info':UserInfo
+        'user-info':UserInfo,
+        'song-sheet':SongSheet
     }
 }
 </script>

@@ -198,7 +198,7 @@
         name:'user-info',
         data: function () {
             return {
-                showing:true,
+                showing:false,
                 register:false,
                 username:'夏夜丶萤火夏夜丶萤火夏夜丶萤火夏夜丶萤火',
                 lv:6

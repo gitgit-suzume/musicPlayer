@@ -15,9 +15,7 @@
         <li class="guide-search"><a href="javascript:;">5</a></li>
     </div>
 </template>
-<style>
-    @import '../assets/css/INIT.css';
-
+<style scoped>
     .guide{
         position: fixed;
         top:0;
@@ -43,21 +41,13 @@
         font:30px normal;
         line-height: 50px;
         text-align: center;
-    }
-    .guide li a {
         color: white;
-    }
-    .guide li{
-        width: 50px;
-        height: 50px;
-        display: inline-block;
     }
     .guide li a:hover{
         text-decoration: none;
     }
 </style>
 <script>
-    import home from './home/home.vue'
     export default {
         name: 'guide',
         data () {

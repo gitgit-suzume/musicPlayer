@@ -2,6 +2,7 @@
         <div>
             <ul>
                 <li v-for="item in list">
+                    <!--<router-link to="/list/detail"></router-link>-->
                     <a href="javascript:;">
                         <span class="img" :style="{background:item.img}"></span>
                         <div class="info">
@@ -11,6 +12,7 @@
                     </a>
                 </li>
             </ul>
+            <!--<router-view></router-view>-->
         </div>
 </template>
 <style scoped>
