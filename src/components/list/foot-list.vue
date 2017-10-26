@@ -1,9 +1,9 @@
 <template>
-    <div class="bg" @click="quit($event)" v-show="showing">
+    <div class="bg" @click="hide($event)" v-show="show">
         <div class="container">
             <ul>
                 <li >
-                    <a href="javascript:;"  @click="test()">
+                    <a href="javascript:;">
                         <span class="header-tile" :title="sheetName[fromNum%3]">{{sheetName[fromNum%3]}}</span>
                     </a>
                 </li>
@@ -101,20 +101,24 @@
         name:'foot-list',
         data: function(){
             return {
-                showing:false,
                 fromNum:0,
                 editable:true,
                 deleteable:true,
                 sheetName:['创建的歌单','收藏的歌单','歌单:'+'五色石楠叶']
             }
         },
+        computed:{
+            show:function () {
+                return this.$store.getters.showFootManage;
+            }
+        },
         methods:{
             test:function () {
                 ++this.fromNum;
             },
-            quit: function (event) {
+            hide: function (event) {
                 if(event.target == event.currentTarget){
-                    this.showing = false;
+                    this.$store.commit('hideFootManage');
                 }
             }
         },

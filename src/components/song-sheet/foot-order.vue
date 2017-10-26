@@ -1,5 +1,5 @@
 <template>
-    <div class="bg" @click="quit($event)" v-show="showing">
+    <div class="bg" @click="quit($event)" v-show="show">
         <div class="container">
             <ul>
                 <li class="header">
@@ -111,14 +111,14 @@
         name:'foot-list',
         data: function(){
             return {
-                showing:true,
                 song:'殿书',
                 singer:'奇然',
                 comment:5992
-//                fromNum:0,
-//                editable:true,
-//                deleteable:true,
-//                sheetName:['创建的歌单','收藏的歌单','歌单:'+'五色石楠叶']
+            }
+        },
+        computed:{
+            show:function () {
+                return this.$store.getters.showFootOrder;
             }
         },
         methods:{
@@ -127,7 +127,7 @@
             },
             quit: function (event) {
                 if(event.target == event.currentTarget){
-                    this.showing = false;
+                    this.$store.commit('hideFootOrder');
                 }
             }
         },

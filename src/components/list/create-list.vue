@@ -12,10 +12,10 @@
         </a>
         <ul v-show="showing">
             <li v-for="item in list">
-                <a href="javascript:;" @click="item.clicked=true">
+                <a href="javascript:;" @click="item.clicked=true, showSongSheet()">
                     <span class="img" :style="{background:item.img}"></span>
                     <div class="container">
-                        <a @click="test()" class="manage-icon">...</a>
+                        <a class="manage-icon" @click.stop="showFootManage()">...</a>
                         <div class="list-info">
                             <span class="list-name">{{item.name}}</span>
                             <div class="more-info">
@@ -165,8 +165,11 @@
             }
         },
         methods:{
-            test:function () {
-                console.log('icon');
+            showFootManage:function () {
+                this.$store.commit('showFootManage');
+            },
+            showSongSheet:function () {
+                this.$store.commit('showSongSheet');
             }
         },
         created: function () {

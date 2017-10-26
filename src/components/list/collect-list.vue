@@ -12,10 +12,10 @@
         </a>
         <ul v-show="showing">
             <li v-for="item in list">
-                <a href="javascript:;" @click="item.clicked=true">
+                <a href="javascript:;" @click.stop="item.clicked=true,showSongSheet()">
                     <span class="img" :style="{background:item.img}"></span>
                     <div class="container">
-                        <div class="manage-icon">...</div>
+                        <div class="manage-icon" @click="showFootManage()">...</div>
                         <div class="list-info">
                             <span class="list-name">{{item.name}}</span>
                             <div class="more-info">
@@ -171,8 +171,13 @@
                 }]
             }
         },
-        created: function () {
-            console.log('fromg list>create-list.')
+        methods:{
+            showFootManage:function () {
+                this.$store.commit('showFootManage');
+            },
+            showSongSheet: function () {
+                this.$store.commit('showSongSheet');
+            }
         }
     }
 </script>

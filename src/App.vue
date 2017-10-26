@@ -5,7 +5,7 @@
     <foot></foot>
     <foot-list></foot-list>
     <user-info></user-info>
-    <!--<song-sheet></song-sheet>-->
+    <song-sheet></song-sheet>
   </div>
 </template>
 
@@ -15,7 +15,8 @@
     import foot from './components/foot/foot.vue'
     import FootList from './components/foot/foot-list.vue'
     import UserInfo from './components/user-info/user-info.vue'
-    import SongSheet from './components/song-sheet/song-sheet.vue'
+    import SongSheet from './components/song-sheet/index.vue'
+    import {mapActions, mapGetters} from 'vuex'
 export default {
   name: 'app',
   data () {
@@ -30,7 +31,7 @@ export default {
         'foot-list':FootList,
         'user-info':UserInfo,
         'song-sheet':SongSheet
-    }
+    },
 }
 </script>
 

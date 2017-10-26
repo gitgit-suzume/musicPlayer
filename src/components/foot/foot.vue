@@ -5,7 +5,7 @@
             <span>{{song}}</span>
             <span>{{singer}}</span>
         </div>
-        <a href="javascript:;" type="button" class="list">|||</a>
+        <a href="javascript:;" type="button" class="list" @click="showPlayList()">|||</a>
         <a href="javascript:;"
            type="button"
            @click="playing=!playing"
@@ -20,6 +20,7 @@
         background:#fff;
         bottom: 0;
         padding:5px 0;
+        z-index: 4000;
     }
     .img{
         width: 40px;
@@ -88,8 +89,10 @@
                 playing:false
             }
         },
-        created:function () {
-            console.log('---------from footer---------');
+        methods:{
+            showPlayList:function () {
+                this.$store.commit('showPlayList');
+            }
         }
     }
 </script>

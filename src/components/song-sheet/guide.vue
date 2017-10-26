@@ -1,7 +1,7 @@
 <template>
     <div class="guide" :style="{background:bgColor}">
         <div class="left">
-            <a href="javascript:;" class="back">←</a>
+            <a href="javascript:;" class="back" @click="hide()">←</a>
             <span class="name">歌单</span>
         </div>
         <div class="right">
@@ -49,8 +49,10 @@
                 info:'from song-sheet header.'
             }
         },
-        created:function () {
-            console.log('from song-sheet header.')
-        }
+        methods:{
+            hide:function () {
+                this.$store.commit('hideSongSheet');
+            }
+        },
     }
 </script>

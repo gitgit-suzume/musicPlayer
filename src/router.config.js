@@ -1,7 +1,7 @@
 import Home from './components/home/home.vue'
 import List from './components/list/list.vue'
 import ListDetail from './components/list/detail/detail.vue'
-import SongSheet from './components/song-sheet/song-sheet.vue'
+import SongSheet from './components/song-sheet/index.vue'
 import Friends from './components/friends/friends.vue'
 
 import Music from './components/home/music/music.vue'
@@ -9,7 +9,8 @@ import Video from './components/home/video/video.vue'
 import Radio from './components/home/radio/radio.vue'
 
 export default[
-    {path:'/',redirect:'/song-sheet'},
+    {path:'/',redirect:'/home/music'},
+    {path:'/home',redirect:'/home/music'},
     {
         path:'/home',
         component:Home,

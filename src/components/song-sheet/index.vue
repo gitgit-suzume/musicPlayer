@@ -1,5 +1,5 @@
 <template>
-    <div class="song-sheet">
+    <div class="song-sheet" v-show="showing">
         <guide></guide>
         <intro></intro>
         <info></info>
@@ -10,6 +10,8 @@
 <style scoped>
     .song-sheet{
         position: absolute;
+        top: 0;
+        left: 0;
         z-index: 2000;
         height: 100%;
         background: #f2f2f2;
@@ -25,7 +27,13 @@
         name: 'song-sheet',
         data () {
             return {
+//                showing:true,
                 info:'from song sheet'
+            }
+        },
+        computed:{
+            showing:function () {
+                return this.$store.getters.showSongSheet;
             }
         },
         components:{
@@ -36,6 +44,7 @@
             'foot-order':FootOrder
         },
         created:function () {
+            console.log(this.$store);
             console.log('from song sheet');
         }
     }

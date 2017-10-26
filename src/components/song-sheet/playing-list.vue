@@ -26,7 +26,7 @@
                                 <span>{{item.singer}}-{{item.album}}</span>
                             </div>
                         </div>
-                        <a class="manage">
+                        <a class="manage" @click="show()">
                             ...
                         </a>
                     </div>
@@ -253,8 +253,10 @@
                 ]
             }
         },
-        created:function () {
-            console.log('from song-sheet playing-list.');
+        methods:{
+            show:function(){
+                this.$store.commit('showFootOrder');
+            }
         }
     }
 </script>

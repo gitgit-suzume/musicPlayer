@@ -1,7 +1,7 @@
 <template>
         <div>
             <ul>
-                <li v-for="item in list">
+                <li v-for="item in list" @click="showSongSheet()">
                     <!--<router-link to="/list/detail"></router-link>-->
                     <a href="javascript:;">
                         <span class="img" :style="{background:item.img}"></span>
@@ -72,8 +72,10 @@
                 }]
             }
         },
-        created: function () {
-            console.log('fromg list>default-list.')
+        methods:{
+            showSongSheet:function () {
+                this.$store.commit('showSongSheet');
+            }
         }
     }
 </script>

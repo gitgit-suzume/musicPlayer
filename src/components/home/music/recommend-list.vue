@@ -1,7 +1,7 @@
 <template>
     <div class="recommend-list">
         <ul>
-            <li v-for="(item,index) in info" :key="'recommend-list-'+index">
+            <li @click="linkTo" v-for="(item,index) in info" :key="'recommend-list-'+index">
                 <a href="javascript:;">
                     <div class="recommend-contianer">
                         <img src="#" alt="假装有图片" :style="{background: item.img}">
@@ -83,6 +83,11 @@
                     title:'快起床，铃声都叫几百遍了哈哈哈哈哈哈哈红红火火恍恍惚惚哈哈',
                     listener:1993333
                 }]
+            }
+        },
+        methods:{
+            linkTo:function () {
+                this.$store.commit('showSongSheet');
             }
         }
     }

@@ -1,5 +1,5 @@
 <template>
-    <div class="bg" @click="quit($event)" v-show="showing">
+    <div class="bg" @click="hide($event)" v-show="show">
         <div class="container">
             <div class="button">
                 <a href="javascript:;" class="info" @click="playingType=(playingType+1)%3">
@@ -39,7 +39,7 @@
         width: 100%;
         height: 100%;
         background: rgba(0,0,0,0.25);
-        z-index: 1000;
+        z-index: 5000;
     }
     .container{
         width: 100%;
@@ -51,6 +51,7 @@
         left: 0;
     }
     .button{
+        position: fixed;
         background: white;
         width: 100%;
         height: 20px;
@@ -151,7 +152,6 @@
         name:'foot-list',
         data: function(){
             return {
-                showing:false,
                 currentSong:0,
                 playingType:0,
                 songsCount:0,
@@ -217,13 +217,18 @@
                 }]
             }
         },
+        computed:{
+            show: function () {
+                return this.$store.getters.showPlayList;
+            }
+        },
         methods:{
             clearSong: function (index) {
                 this.list.splice(index, 1);
             },
-            quit: function (event) {
+            hide: function (event) {
                 if(event.target == event.currentTarget){
-                    this.showing = false;
+                    this.$store.commit('hidePlayList');
                 }
             }
         },
