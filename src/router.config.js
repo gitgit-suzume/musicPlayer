@@ -1,5 +1,5 @@
 import Home from './components/home/home.vue'
-import List from './components/list/list.vue'
+import List from './components/list/index.vue'
 import ListDetail from './components/list/detail/detail.vue'
 import SongSheet from './components/song-sheet/index.vue'
 import Friends from './components/friends/friends.vue'

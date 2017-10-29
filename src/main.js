@@ -5,6 +5,7 @@ import Store from './store/index.js'
 import routerConfig from './router.config'
 import App from './App.vue'
 
+
 Vue.use(VueRouter);
 Vue.use(Store);
 

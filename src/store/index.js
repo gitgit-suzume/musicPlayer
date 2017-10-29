@@ -3,9 +3,10 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex);
 
-// import mutations from './mutation'
-// import actions from './action'
 const state = {
+    info: [],
+    songSheet:[],
+    user:{},
     showSongSheet:false,
     showFootOrder:false,
     showFootManage:false,
@@ -13,6 +14,12 @@ const state = {
 };
 
 const actions={
+    initInfo:function ({commit}) {
+      commit('initInfo');
+    },
+    getSongSheet:function ({commit}) {
+        commit('getSongSheet');
+    },
     showSongSheet:function ({commit}) {
         commit('showSongSheet');
     },
@@ -40,6 +47,13 @@ const actions={
 };
 
 const mutations = {
+    initInfo:function (state, info) {
+        state.info = info;
+        state.user = info.user;
+    },
+    getSongSheet:function (state, data) {
+        state.songSheet = data;
+    },
     showSongSheet: function(state){
         state.showSongSheet = true;
     },
@@ -67,6 +81,12 @@ const mutations = {
 };
 
 const getters = {
+    info: function (state) {
+      return state.info;
+    },
+    getSongSheet:function (state) {
+        return state.songSheet
+    },
     showSongSheet: function (state) {
         return state.showSongSheet;
     },

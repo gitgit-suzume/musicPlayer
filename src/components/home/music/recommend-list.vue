@@ -1,13 +1,13 @@
 <template>
     <div class="recommend-list">
         <ul>
-            <li @click="linkTo" v-for="(item,index) in info" :key="'recommend-list-'+index">
+            <li @click="showDetail(item)" v-for="(item,index) in info" :key="'recommend-list-'+index">
                 <a href="javascript:;">
-                    <div class="recommend-contianer">
-                        <img src="#" alt="假装有图片" :style="{background: item.img}">
-                        <span>{{item.listener>100000?Math.ceil(item.listener/10000)+'万':item.listener}}</span>
-                        <h1 :title="item.title">
-                            {{item.title}}
+                    <div class="recommend-container">
+                        <img :src="'../../../../static/img/'+item.img+'.jpg'" alt="歌单图片">
+                        <span class="listener">{{item.listener>100000?Math.ceil(item.listener/10000)+'万':item.listener}}</span>
+                        <h1 :title="item.name">
+                            {{item.name}}
                         </h1>
                     </div>
                 </a>
@@ -16,33 +16,33 @@
     </div>
 </template>
 <style scoped>
-
-    .recommend{
-        clear: both;
-    }
     .recommend-list a:hover{
         text-decoration: none;
     }
-    .recommend-contianer{
+    .recommend-container{
         width: 33.3333333%;
         float: left;
         position: relative;
     }
-    .recommend-contianer img{
+    .recommend-container img{
         display: inline-block;
         width: 100%;
         height: 30vw;
         box-sizing: border-box;
         border: 0.25vw solid white;
     }
-    .recommend-contianer span{
+    .listener{
+        text-align: right;
+        background: rgba(0,0,0,0.15);
+        border-radius: 5px 5px;
+        padding: 0 10px;
         color: white;
         position: absolute;
         right:5px;
         top:5px;
         font: 10px normal;
     }
-    .recommend-contianer h1{
+    .recommend-container h1{
         display: inline-block;
         font: 12px normal;
         padding:0 12px;
@@ -56,39 +56,19 @@
 <script>
     export default {
         name:'recommend-list',
-        data: function () {
-            return {
-                info:[{
-                    img:'red',
-                    title:'秋乏症打盹专用瘫',
-                    listener:1321111
-                },{
-                    img:'green',
-                    title:'如何把一份外卖吃出仪式感？',
-                    listener:73834
-                },{
-                    img:'pink',
-                    title:'【日系诡异风】一盏灵魂灯引君入彼岸',
-                    listener:991234
-                },{
-                    img:'black',
-                    title:'【ACG/钢琴】谁的琴音 出动了你的心弦',
-                    listener:1228888
-                },{
-                    img:'gray',
-                    title:'你走了那么远的路 只是为了摆脱怀旧的负重',
-                    listener:149999
-                },{
-                    img:'blue',
-                    title:'快起床，铃声都叫几百遍了哈哈哈哈哈哈哈红红火火恍恍惚惚哈哈',
-                    listener:1993333
-                }]
+        computed:{
+            test:function (){
+                return 1;
+            },
+            info:function(){
+                return this.$store.state.info.musicSheet;
             }
-        },
+    },
         methods:{
-            linkTo:function () {
+            showDetail:function (data) {
+                this.$store.commit('getSongSheet',data);
                 this.$store.commit('showSongSheet');
             }
-        }
+        },
     }
 </script>

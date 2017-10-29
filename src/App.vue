@@ -10,6 +10,7 @@
 </template>
 
 <script>
+    import store from './store/index.js'
     import guide from './components/guide.vue'
     import home from './components/home/home.vue'
     import foot from './components/foot/foot.vue'
@@ -32,6 +33,12 @@ export default {
         'user-info':UserInfo,
         'song-sheet':SongSheet
     },
+    created:function () {
+      jQuery.get('../static/data.json',function(data, status){
+          const info = data;
+          store.commit('initInfo', info);
+      });
+    }
 }
 </script>
 

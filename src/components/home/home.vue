@@ -6,7 +6,8 @@
 </template>
 <style scoped>
     .home{
-        padding: 86px 0 0 0;
+        overflow: hidden;
+        padding: 86px 0 50px 0;
     }
 </style>
 <script>
