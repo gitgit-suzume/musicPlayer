@@ -12,21 +12,20 @@
             </div>
         </a>
         <ul>
-            <li v-for="(item,index) in list">
-                <a href="javascript:;">
+            <li v-for="(item,index) in list" :key="item.id">
+                <a href="javascript:;" @click="playingThis(list, index)">
                     <div class="index">
-                        <span class="hom"></span>
                         <span>{{index+1}}</span>
                     </div>
                     <div class="song">
                         <div class="info">
-                            <span>{{item.song}}</span>
+                            <span>{{item.name}}</span>
                             <div class="sub">
                                 <span class="icon" v-show="item.download"></span>
                                 <span>{{item.singer}}-{{item.album}}</span>
                             </div>
                         </div>
-                        <a class="manage" @click="show()">
+                        <a class="manage" @click="showDetail(item)">
                             ...
                         </a>
                     </div>
@@ -39,6 +38,7 @@
     .playing-list{
         background: white;
         width: 100%;
+        padding: 0 0 50px 0;
     }
     .the-head{
         display: block;
@@ -111,7 +111,7 @@
     }
     .info span:first-child{
         display: inline-block;
-        max-width: 75%;
+        max-width: 75vw;
     }
     .sub .icon{
         display: inline-block;
@@ -134,128 +134,39 @@
         transform: rotate(90deg);
         transition: all 0.2s linear;
     }
-    /*.manage:active{*/
-        /*background: rgba(0,0,0,0.1);*/
-    /*}*/
 </style>
 <script>
     export default {
         name: 'playing-list',
-        data () {
-            return {
-                count:56,
-                list:[
-                    {
-                        song:'封疆',
-                        singer:'东篱',
-                        album:'东篱栏歌',
-                        commentCount:14673,
-                        download:true
-                    },
-                    {
-                        song:'封疆',
-                        singer:'东篱',
-                        album:'东篱栏歌',
-                        commentCount:14673,
-                        download:true
-                    },
-                    {
-                        song:'封疆',
-                        singer:'东篱',
-                        album:'东篱栏歌',
-                        commentCount:14673,
-                        download:true
-                    },
-                    {
-                        song:'封疆',
-                        singer:'东篱',
-                        album:'东篱栏歌',
-                        commentCount:14673,
-                        download:true
-                    },
-                    {
-                        song:'封疆',
-                        singer:'东篱',
-                        album:'东篱栏歌',
-                        commentCount:14673,
-                        download:true
-                    },
-                    {
-                        song:'封疆',
-                        singer:'东篱',
-                        album:'东篱栏歌',
-                        commentCount:14673,
-                        download:true
-                    },
-                    {
-                        song:'封疆',
-                        singer:'东篱',
-                        album:'东篱栏歌',
-                        commentCount:14673,
-                        download:true
-                    },
-                    {
-                        song:'封疆',
-                        singer:'东篱',
-                        album:'东篱栏歌',
-                        commentCount:14673,
-                        download:true
-                    },
-                    {
-                        song:'封疆',
-                        singer:'东篱',
-                        album:'东篱栏歌',
-                        commentCount:14673,
-                        download:true
-                    },
-                    {
-                        song:'封疆',
-                        singer:'东篱',
-                        album:'东篱栏歌',
-                        commentCount:14673,
-                        download:true
-                    },
-                    {
-                        song:'封疆',
-                        singer:'东篱',
-                        album:'东篱栏歌',
-                        commentCount:14673,
-                        download:true
-                    },
-                    {
-                        song:'封疆',
-                        singer:'东篱',
-                        album:'东篱栏歌',
-                        commentCount:14673,
-                        download:true
-                    },
-                    {
-                        song:'封疆',
-                        singer:'东篱',
-                        album:'东篱栏歌',
-                        commentCount:14673,
-                        download:true
-                    },
-                    {
-                        song:'封疆',
-                        singer:'东篱',
-                        album:'东篱栏歌',
-                        commentCount:14673,
-                        download:true
-                    },
-                    {
-                        song:'封疆',
-                        singer:'东篱',
-                        album:'东篱栏歌',
-                        commentCount:14673,
-                        download:true
-                    }
-                ]
+        computed:{
+            list:function () {
+                var result = [];
+                const songSheet = this.$store.state.songSheet,
+                    songs = this.$store.state.info.songs,
+                    songsNum = songSheet.songsId;
+                let songsIndex;
+                if(!songSheet || !songs || !songsNum){
+                    return ;
+                }
+                for (let i = 0, len = songsNum.length; i < len; i ++){
+                    songsIndex = parseInt(songsNum[i], 10)-1;
+                    result.push(songs[songsIndex]);
+                }
+                return result?result:[];
+            },
+            count: function(){
+                console.log(typeof this.list);
+                return (this.list == [] || this.list == undefined) ? 0 : this.list.length;
             }
         },
         methods:{
-            show:function(){
+            showDetail:function(item){
                 this.$store.commit('showFootOrder');
+                this.$store.commit('songSheetFoot',item);
+            },
+            playingThis:function (info,index) {
+                var data = [].concat(info);
+                this.$store.commit('setPlayingList',{data:data, index:index});
             }
         }
     }

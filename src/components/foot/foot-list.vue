@@ -16,11 +16,11 @@
                 </a>
             </div>
             <ul>
-                <li v-for="(item,index) in list" @click="currentSong=index">
+                <li v-for="(item,index) in list" @click="changeCurSong(index)">
                     <a href="javascript:;">
                         <span class="bugle" v-show="currentSong===index"></span>
                         <div class="aboutSong">
-                            <span :class="['song',currentSong===index?'active':'']">{{item.song}}</span>
+                            <span :class="['song',currentSong===index?'active':'']">{{item.name}}</span>
                             <span :class="['singer',currentSong===index?'active':'']">- {{item.singer}}</span>
                         </div>
                         <span class="remove" @click="clearSong(index)">x</span>
@@ -39,13 +39,14 @@
         width: 100%;
         height: 100%;
         background: rgba(0,0,0,0.25);
-        z-index: 5000;
+        z-index: 6000;
     }
     .container{
         width: 100%;
         height: 50%;
         background: white;
         overflow: scroll;
+        overflow-x: hidden;
         position: fixed;
         bottom: 0;
         left: 0;
@@ -57,6 +58,10 @@
         height: 20px;
         padding:8px 0;
         border-bottom: 1px solid gray;
+        z-index: 6001;
+    }
+    ul{
+        padding: 36px 0 0 0;
     }
     .info{
         float: left;
@@ -152,59 +157,9 @@
         name:'foot-list',
         data: function(){
             return {
-                currentSong:0,
                 playingType:0,
                 songsCount:0,
                 songsNum:0,
-                list:[{
-                    song:'Bloom of Youth',
-                    singer:'Key Sounds Label',
-                    img:'blue'
-                },{
-                    song:'Smoke Filled Room (Original Mix)',
-                    singer:'Mako',
-                    img:'orange'
-                },{
-                    song:'阖眸烟云',
-                    singer:'东篱',
-                    img:'green'
-                },{
-                    song:'山有木兮-橙光游戏《人鱼传说之长生烛》主题曲',
-                    singer:'伦桑/橙光音乐',
-                    img:'olivedrab'
-                },{
-                    song:'修罗',
-                    singer:'DOES',
-                    img:'darkcyan'
-                },{
-                    song:'第一长长长长长长长长长长长长长长长长长长长长长长的歌曲名',
-                    singer:'Nightwish',
-                    img:'darkorange'
-                },{
-                    song:'第二长长长长长长长长长长长长长长长长长长的歌曲名',
-                    singer:'Nightwish',
-                    img:'darkorange'
-                },{
-                    song:'Last Of The Wilds',
-                    singer:'Nightwish',
-                    img:'darkorange'
-                },{
-                    song:'トキヲ・ファンカ',
-                    singer:'EVO+',
-                    img:'palegreen'
-                },{
-                    song:'Five Hundred Miles',
-                    singer:'Justin Timberlake',
-                    img:'deepskyblue'
-                },{
-                    song:'息兮',
-                    singer:'慕寒',
-                    img:'skyblue'
-                },{
-                    song:'云水谣',
-                    singer:'伦桑',
-                    img:'lightskyblue'
-                }],
                 playingMode:[{
                     type:'列表循环',
                     img:'yellow'
@@ -220,16 +175,25 @@
         computed:{
             show: function () {
                 return this.$store.getters.showPlayList;
+            },
+            list: function(){
+                return this.$store.state.playingList;
+            },
+            currentSong:function () {
+                return this.$store.state.playingIndex;
             }
         },
         methods:{
             clearSong: function (index) {
-                this.list.splice(index, 1);
+                this.$store.commit('removePlayingListSongs', index);
             },
             hide: function (event) {
                 if(event.target == event.currentTarget){
                     this.$store.commit('hidePlayList');
                 }
+            },
+            changeCurSong:function (index) {
+                this.$store.commit('changeCurSong', index);
             }
         },
         created: function (){

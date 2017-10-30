@@ -6,7 +6,11 @@ Vue.use(Vuex);
 const state = {
     info: [],
     songSheet:[],
+    songSheetFoot:{},
     user:{},
+    playingList:[],
+    playingTag:false,
+    playingIndex:undefined,
     showSongSheet:false,
     showFootOrder:false,
     showFootManage:false,
@@ -17,8 +21,23 @@ const actions={
     initInfo:function ({commit}) {
       commit('initInfo');
     },
+    setPlayingList:function ({commit}) {
+        commit('setPlayingList');
+    },
+    removePlayingListSongs:function ({commit}) {
+        commit('removePlayingListSongs');
+    },
+    changeCurSong: function ({commit}) {
+        commit('changeCurSong');
+    },
+    stopPlaying:function ({commit}) {
+        commit('stopPlaying');
+    },
     getSongSheet:function ({commit}) {
         commit('getSongSheet');
+    },
+    songSheetFoot:function ({commit}) {
+        commit('songSheetFoot');
     },
     showSongSheet:function ({commit}) {
         commit('showSongSheet');
@@ -50,6 +69,24 @@ const mutations = {
     initInfo:function (state, info) {
         state.info = info;
         state.user = info.user;
+    },
+    removePlayingListSongs: function (state, index) {
+        state.playingList.splice(index, 1);
+    },
+    stopPlaying:function (state) {
+        state.playingTag = !state.playingTag;
+    },
+    setPlayingList:function (state, {data, index}) {
+        state.playingList = data;
+        state.playingIndex = index;
+        state.playingTag = true;
+    },
+    changeCurSong: function (state, index) {
+        state.playingIndex = index;
+        state.playingTag = true;
+    },
+    songSheetFoot: function (state, data) {
+      state.songSheetFoot = data;
     },
     getSongSheet:function (state, data) {
         state.songSheet = data;
@@ -83,6 +120,9 @@ const mutations = {
 const getters = {
     info: function (state) {
       return state.info;
+    },
+    setPlayingList:function (state) {
+        return state.playingList;
     },
     getSongSheet:function (state) {
         return state.songSheet

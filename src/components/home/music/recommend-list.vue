@@ -4,7 +4,7 @@
             <li @click="showDetail(item)" v-for="(item,index) in info" :key="'recommend-list-'+index">
                 <a href="javascript:;">
                     <div class="recommend-container">
-                        <img :src="'../../../../static/img/'+item.img+'.jpg'" alt="歌单图片">
+                        <img :src="item.img ? '../../../../static/img/'+item.img+'.jpg' : '../../../../static/img/logo.png'" alt="歌单图片">
                         <span class="listener">{{item.listener>100000?Math.ceil(item.listener/10000)+'万':item.listener}}</span>
                         <h1 :title="item.name">
                             {{item.name}}

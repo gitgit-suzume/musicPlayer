@@ -1,7 +1,7 @@
 <template>
     <div class="intro" >
         <div class="cover">
-            <img :src="'../../../static/img/'+songSheet.img+'.jpg'" alt="图片">
+            <img :src="songSheet.img?'../../../static/img/'+songSheet.img+'.jpg':'../../../static/img/logo.png'" alt="图片">
             <div class="listeners">
                 <span class="icon">U</span>
                 <span>{{songSheet.listener>100000?Math.ceil(songSheet.listener/100000)+'万':songSheet.listener}}</span>
@@ -11,8 +11,8 @@
             <span class="sheetname">{{songSheet.name}}</span>
             <a href="javascript:;">
                 <!--<img class="head-img" :src="'../../../static/img/'+userImg+'.jpg'" alt="#">-->
-                <span class="head-img" :style="{background:headImg}"></span>
-                <span class="username">{{creater}}></span>
+                <span class="head-img"></span>
+                <span class="username">{{songSheet.create}}></span>
             </a>
         </div>
     </div>
@@ -81,28 +81,20 @@
         width: 25px;
         height: 25px;
         border-radius: 50% 50%;
-        background: red;
+        background: white;
         margin: 0 7px 0 0;
     }
 </style>
 <script>
     export default {
         name: 'intro',
-        data:function () {
-            return {
-                creater:'夏夜丶萤火'
-            }
-        },
         computed:{
             ListenersView:function () {
                 return this.listeners >= 100000 ? Math.ceil(this.listeners/100000)+'万':this.listeners;
             },
             songSheet:function () {
                 return this.$store.state.songSheet;
-            },
-        },
-        created:function () {
-            console.log('from song-sheet intro.')
+            }
         }
     }
 </script>

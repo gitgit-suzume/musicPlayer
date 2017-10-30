@@ -1,14 +1,14 @@
 <template>
     <div class="foot">
-        <div class="img" :style="{background:img}"></div>
+        <img class="img" :src="'../../../static/img/'+info.img+'.jpg'" alt="">
         <div class="song-info">
-            <span>{{song}}</span>
-            <span>{{singer}}</span>
+            <span>{{info.name}}</span>
+            <span>{{info.singer}}</span>
         </div>
         <a href="javascript:;" type="button" class="list" @click="showPlayList()">|||</a>
         <a href="javascript:;"
            type="button"
-           @click="playing=!playing"
+           @click="togglePlaying()"
            :class="['player',playing?'':'stop']">+</a>
     </div>
 </template>
@@ -80,18 +80,29 @@
        name:'footer',
         data:function () {
             return {
-                info:'from footer',
                 img:'pink',
                 song:'Gorgeous',
                 singer:'Taylor Swift',
                 allTime:'03:29',
                 finishTime: '00:00',
-                playing:false
+            }
+        },
+        computed:{
+            playing: function () {
+                return this.$store.state.playingTag;
+            },
+            info: function(){
+                var result = this.$store.state.playingList,
+                    index = this.$store.state.playingIndex;
+                return result[index];
             }
         },
         methods:{
             showPlayList:function () {
                 this.$store.commit('showPlayList');
+            },
+            togglePlaying:function () {
+                this.$store.commit('stopPlaying');
             }
         }
     }

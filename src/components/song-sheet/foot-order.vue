@@ -4,10 +4,9 @@
             <ul>
                 <li class="header">
                     <a href="javascript:;"  @click="test()">
-                        <span class="header-tile" :title="song">歌曲:{{song}}</span>
+                        <span class="header-tile" :title="info.name">歌曲:{{info.name}}</span>
                     </a>
                 </li>
-
                 <li>
                     <a href="javascript:;">
                         <div class="img"></div>
@@ -23,7 +22,7 @@
                 <li>
                     <a href="javascript:;">
                         <div class="img"></div>
-                        <div class="title"><span>评论({{comment}})</span></div>
+                        <div class="title"><span>评论({{info.command}})</span></div>
                     </a>
                 </li>
                 <li>
@@ -35,19 +34,13 @@
                 <li>
                     <a href="javascript:;">
                         <div class="img"></div>
-                        <div class="title"><span>歌手：{{singer}}</span></div>
+                        <div class="title"><span>歌手：{{info.singer}}</span></div>
                     </a>
                 </li>
                 <li>
                     <a href="javascript:;">
                         <div class="img"></div>
-                        <div class="title"><span>专辑：{{album}}</span></div>
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript:;">
-                        <div class="img"></div>
-                        <div class="title"><span>删除</span></div>
+                        <div class="title"><span>专辑：{{info.album}}</span></div>
                     </a>
                 </li>
             </ul>
@@ -67,8 +60,6 @@
     .container{
         width: 100%;
         height: 50%;
-        overflow: scroll;
-        overflow-x: hidden;
         background: white;
         position: fixed;
         bottom: 0;
@@ -109,16 +100,15 @@
 <script>
     export default {
         name:'foot-list',
-        data: function(){
-            return {
-                song:'殿书',
-                singer:'奇然',
-                comment:5992
-            }
-        },
+//                song:
+//                singer:'奇然',
+//                comment:5992
         computed:{
             show:function () {
                 return this.$store.getters.showFootOrder;
+            },
+            info(){
+                return this.$store.state.songSheetFoot;
             }
         },
         methods:{

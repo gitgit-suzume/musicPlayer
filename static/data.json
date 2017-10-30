@@ -8,6 +8,7 @@
     "name":"[古风]世事一场大梦，人生几度秋凉",
     "img":"sheet_img_1",
     "create":"绯商",
+    "createImg":"",
     "command":59,
     "collect":6705,
     "share":125,
@@ -42,7 +43,7 @@
     "collect":734,
     "share":3,
     "listener":120000,
-    "songsId": ["008"]
+    "songsId": ["009"]
   },{
     "id":"005",
     "name":"偶尔来点正能量，不枉人世走一趟",
@@ -52,7 +53,7 @@
     "collect":3034,
     "share":18,
     "listener":210000,
-    "songsId": ["009"]
+    "songsId": ["010"]
   },{
     "id":"006",
     "name":"秋天的风与温柔的摇滚少年",
@@ -62,7 +63,7 @@
     "collect":1348,
     "share":6,
     "listener":180000,
-    "songsId": ["010"]
+    "songsId": ["011"]
   }],
   "songs":[{
     "id":"001",
@@ -174,5 +175,27 @@
     "words":"",
     "songUrl":"",
     "album":"EVOLUTION"
+  },{
+    "id":"011",
+    "name":"锦鲤抄",
+    "favorite":false,
+    "download":false,
+    "command":1235,
+    "img":"song_img_11",
+    "singer":"小曲儿",
+    "words":"",
+    "songUrl":"",
+    "album":"小曲儿的专辑"
+  },{
+    "id":"012",
+    "name":"锦鲤抄",
+    "favorite":false,
+    "download":false,
+    "command":1235,
+    "img":"song_img_12",
+    "singer":"小曲儿",
+    "words":"",
+    "songUrl":"",
+    "album":"小曲儿的专辑"
   }]
 }
