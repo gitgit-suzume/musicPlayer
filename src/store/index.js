@@ -10,6 +10,13 @@ const state = {
     user:{},
     playingList:[],
     playingTag:false,
+    collect:[],
+    manageSheet:{
+      name:'',
+      from:'',
+      editable:false,
+      deleteable:false
+    },
     playingIndex:undefined,
     showSongSheet:false,
     showFootOrder:false,
@@ -32,6 +39,15 @@ const actions={
     },
     stopPlaying:function ({commit}) {
         commit('stopPlaying');
+    },
+    addCollect:function ({commit}) {
+        commit('addCollect');
+    },
+    removeCollect:function ({commit}) {
+        commit('removeCollect');
+    },
+    setManageSheet:function ({commit}) {
+        commit('setManageSheet');
     },
     getSongSheet:function ({commit}) {
         commit('getSongSheet');
@@ -88,8 +104,20 @@ const mutations = {
     songSheetFoot: function (state, data) {
       state.songSheetFoot = data;
     },
+    addCollect: function(state, data){
+      state.collect.push(data);
+    },
+    removeCollect: function(state, index){
+        state.collect.slice(index,1);
+    },
     getSongSheet:function (state, data) {
         state.songSheet = data;
+    },
+    setManageSheet: function (state, {name,from,editable,deleteable}) {
+        state.manageSheet.name = name;
+        state.manageSheet.from = from;
+        state.manageSheet.editable = editable;
+        state.manageSheet.deleteable =deleteable;
     },
     showSongSheet: function(state){
         state.showSongSheet = true;
@@ -138,6 +166,9 @@ const getters = {
     },
     showPlayList: function (state) {
         return state.showPlayList;
+    },
+    getCollect: function (state) {
+        return state.collect;
     }
 }
 

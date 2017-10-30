@@ -25,7 +25,7 @@
                                 <span>{{item.singer}}-{{item.album}}</span>
                             </div>
                         </div>
-                        <a class="manage" @click="showDetail(item)">
+                        <a class="manage" @click.stop="showDetail(item)">
                             ...
                         </a>
                     </div>

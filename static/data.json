@@ -3,6 +3,94 @@
     "name":"夏夜丶萤火",
     "img":"userimg"
   },
+  "collectList":{
+    "listsId":["001","002","003"]
+  },
+  "myList":[{
+    "id":"007",
+    "name":"我最喜欢的音乐",
+    "img":"sheet_img_7",
+    "create":"夏夜丶萤火",
+    "songId":["012"],
+    "haveLoaded":0,
+    "deleteable":false,
+    "editable":false,
+    "createImg":"",
+    "command":0,
+    "collect":0,
+    "share":0,
+    "listener":0
+  },{
+    "id":"008",
+    "name":"古风",
+    "img":"sheet_img_8",
+    "create":"夏夜丶萤火",
+    "songId":["013"],
+    "haveLoaded":0,
+    "deleteable":true,
+    "editable":true,
+    "createImg":"",
+    "command":0,
+    "collect":0,
+    "share":0,
+    "listener":0
+  },{
+    "id":"009",
+    "img":"sheet_img_9",
+    "songId":["014"],
+    "name":"五色石楠叶",
+    "haveLoaded":0,
+    "deleteable":true,
+    "editable":true,
+    "create":"夏夜丶萤火",
+    "createImg":"",
+    "command":0,
+    "collect":0,
+    "share":0,
+    "listener":0
+  },{
+    "id":"010",
+    "img":"sheet_img_10",
+    "songId":["015"],
+    "name":"东篱",
+    "haveLoaded":0,
+    "deleteable":true,
+    "editable":true,
+    "create":"夏夜丶萤火",
+    "createImg":"",
+    "command":0,
+    "collect":0,
+    "share":0,
+    "listener":0
+  },{
+    "id":"011",
+    "img":"sheet_img_11",
+    "songId":["016"],
+    "name":"喵喵喵",
+    "haveLoaded":0,
+    "deleteable":true,
+    "editable":true,
+    "create":"夏夜丶萤火",
+    "createImg":"",
+    "command":0,
+    "collect":0,
+    "share":0,
+    "listener":0
+  },{
+    "id":"012",
+    "img":"sheet_img_12",
+    "songId":["017"],
+    "name":"EVO",
+    "haveLoaded":0,
+    "deleteable":true,
+    "editable":true,
+    "create":"夏夜丶萤火",
+    "createImg":"",
+    "command":0,
+    "collect":0,
+    "share":0,
+    "listener":0
+  }],
   "musicSheet":[{
     "id":"001",
     "name":"[古风]世事一场大梦，人生几度秋凉",
@@ -13,6 +101,8 @@
     "collect":6705,
     "share":125,
     "listener":280000,
+    "deleteable":true,
+    "editable":false,
     "songsId": ["001","002","003","004","005","006"]
   },{
     "id":"002",
@@ -20,12 +110,16 @@
     "img":"sheet_img_2",
     "create":"绯商",
     "command":644,
+    "deleteable":true,
+    "editable":false,
     "collect":152000,
     "share":1037,
     "listener":3370000,
     "songsId": ["007"]
   },{
     "id":"003",
+    "deleteable":true,
+    "editable":false,
     "name":"古风音樂史上最優美的夜曲与小夜曲",
     "img":"sheet_img_3",
     "create":"雪父",
@@ -36,6 +130,8 @@
     "songsId": ["008"]
   },{
     "id":"004",
+    "deleteable":true,
+    "editable":false,
     "name":"时过境迁 唯初心不变",
     "img":"sheet_img_4",
     "create":"柚子_ccc",
@@ -46,6 +142,8 @@
     "songsId": ["009"]
   },{
     "id":"005",
+    "deleteable":true,
+    "editable":false,
     "name":"偶尔来点正能量，不枉人世走一趟",
     "img":"sheet_img_5",
     "create":"轨迹已偏离",
@@ -56,6 +154,8 @@
     "songsId": ["010"]
   },{
     "id":"006",
+    "deleteable":true,
+    "editable":false,
     "name":"秋天的风与温柔的摇滚少年",
     "img":"sheet_img_6",
     "create":"神威有呆毛",
@@ -180,22 +280,165 @@
     "name":"锦鲤抄",
     "favorite":false,
     "download":false,
-    "command":1235,
+    "command":1516,
     "img":"song_img_11",
     "singer":"小曲儿",
     "words":"",
     "songUrl":"",
-    "album":"小曲儿的专辑"
+    "album":"锦鲤抄"
   },{
     "id":"012",
-    "name":"锦鲤抄",
+    "name":"Flower Dance",
     "favorite":false,
     "download":false,
-    "command":1235,
+    "command":91575,
     "img":"song_img_12",
-    "singer":"小曲儿",
+    "singer":"DJ Okawari",
     "words":"",
     "songUrl":"",
-    "album":"小曲儿的专辑"
+    "album":"A Cup Of Coffee"
+  },{
+    "id":"013",
+    "name":"Bloom of Youth",
+    "command":14824,
+    "img":"song_img_13",
+    "singer":"Key Sounds Label",
+    "album":"クドわふたー オリジナル サウンドトラック (Kud Wafter Original SoundTrack)",
+    "download":false,
+    "favorite":false,
+    "words":"",
+    "songUrl":""
+  },{
+    "id":"014",
+    "name":"PneumaticTokyo",
+    "command":62048,
+    "img":"song_img_14",
+    "singer":"EnV",
+    "album":"Key Sounds Label",
+    "download":false,
+    "favorite":false,
+    "words":"",
+    "songUrl":""
+  },{
+    "id":"015",
+    "img":"song_img_15",
+    "name":"Here With You",
+    "album":"Here With You",
+    "singer":"Asher Book",
+    "command":51763,
+    "download":false,
+    "favorite":false,
+    "words":"",
+    "songUrl":""
+  },{
+    "id":"016",
+    "img":"song_img_16",
+    "name":"Refrain",
+    "album":"Eternal Light (永恒之光)",
+    "singer":"Anan Ryoko",
+    "command":59011,
+    "download":false,
+    "favorite":false,
+    "words":"",
+    "songUrl":""
+  },{
+    "id":"017",
+    "img":"song_img_17",
+    "name":"旧梦",
+    "album":"热门华语232",
+    "singer":"Winky诗",
+    "command":1965,
+    "download":false,
+    "favorite":false,
+    "words":"",
+    "songUrl":""
+  },{
+    "id":"018",
+    "img":"song_img_18",
+    "name":"山鬼",
+    "album":"热门华语214",
+    "singer":"Winky诗",
+    "command":22288,
+    "download":false,
+    "favorite":false,
+    "words":"",
+    "songUrl":""
+  },{
+    "id":"019",
+    "img":"song_img_19",
+    "name":"Abell 1835",
+    "album":"Hy-Brasil",
+    "singer":"Lights Out Asia",
+    "command":432,
+    "download":false,
+    "favorite":false,
+    "words":"",
+    "songUrl":""
+  },{
+    "id":"020",
+    "img":"song_img_20",
+    "name":"担风袖月",
+    "album":"担风袖月",
+    "singer":"小魂",
+    "command":2771,
+    "download":false,
+    "favorite":false,
+    "words":"",
+    "songUrl":""
+  },{
+    "id":"021",
+    "img":"song_img_21",
+    "name":"九歌",
+    "album":"九歌",
+    "singer":"小曲儿",
+    "command":5607,
+    "download":false,
+    "favorite":false,
+    "words":"",
+    "songUrl":""
+  },{
+    "id":"022",
+    "img":"song_img_22",
+    "name":"琴丝误",
+    "album":"琴丝误",
+    "singer":"张萌川",
+    "command":274,
+    "download":false,
+    "favorite":false,
+    "words":"",
+    "songUrl":""
+  },{
+    "id":"022",
+    "img":"song_img_22",
+    "name":"阖眸烟云",
+    "album":"五时景",
+    "singer":"东篱",
+    "command":5607,
+    "download":false,
+    "favorite":false,
+    "words":"",
+    "songUrl":""
+  },{
+    "id":"023",
+    "img":"song_img_23",
+    "name":"桃花诀《御剑情缘》主题曲",
+    "album":"桃花诀《御剑情缘》主题曲",
+    "singer":"萧忆情Alex",
+    "command":4712,
+    "download":false,
+    "favorite":false,
+    "words":"",
+    "songUrl":""
+  },{
+    "id":"024",
+    "img":"song_img_24",
+    "name":"霜雪千年",
+    "album":"热门华语281",
+    "singer":"萧忆情Alex",
+    "command":11439,
+    "download":false,
+    "favorite":false,
+    "words":"",
+    "songUrl":""
   }]
 }

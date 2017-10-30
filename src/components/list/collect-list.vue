@@ -11,17 +11,17 @@
             <span class="manage">+</span>
         </a>
         <ul v-show="showing">
-            <li v-for="item in list">
-                <a href="javascript:;" @click.stop="item.clicked=true,showSongSheet()">
-                    <span class="img" :style="{background:item.img}"></span>
+            <li v-for="item in list" :key="item.id">
+                <a href="javascript:;" @click.stop="showSongSheet(item)">
+                    <img class="img" :src="'../../../static/img/'+ (item ? item.img+'.jpg' : 'logo.png')" alt="img">
                     <div class="container">
-                        <div class="manage-icon" @click="showFootManage()">...</div>
+                        <div class="manage-icon" @click.stop="showFootManage(item)">...</div>
                         <div class="list-info">
                             <span class="list-name">{{item.name}}</span>
                             <div class="more-info">
-                                <span class="icon" v-show="item.clicked&&item.download!==0"></span>
-                                <span class="list-more-info">{{item.count}}首</span>
-                                <span class="download" v-show="item.clicked&&item.download!==0">已下载{{item.download}}首</span>
+                                <!--<span class="icon" v-show="item.clicked&&item.download!==0"></span>-->
+                                <span class="list-more-info">{{item.songsId.length}}首</span>
+                                <!--<span class="download" v-show="item.clicked&&item.download!==0">已下载{{item.download}}首</span>-->
                             </div>
                         </div>
                     </div>
@@ -114,69 +114,42 @@
 <script>
     export default{
         name:'collect-list',
+        computed:{
+            list: function(){
+                const info = this.$store.state.info,
+                    songs = info.musicSheet,
+                    index = info.collectList ? info.collectList.listsId : [],
+                    len = index.length;
+                var result = [];
+                for (let i = 0, p; i < len; i ++){
+                    p = parseInt(index[i], 10)-1;
+                    result.push(songs[p]);
+                }
+                return result;
+            },
+            count: function(){
+                return this.list !== undefined ? this.list.length : 0;
+            }
+        },
         data: function (){
             return {
-                count:8,
                 showing:true,
                 currentplaying:null,
-                list:[{
-                    name:'100首古风歌去推荐①【古风控必备】',
-                    creater:'米虫-小蚊子丶一只呆雯纸',
-                    img:'yellow',
-                    count:100,
-                    clicked:false,
-                    download:8,
-                },{
-                    name:'诡夜之梦，幽鬼之幻',
-                    creater:'-奇-想-天-外-',
-                    img:'green',
-                    count:38,
-                    clicked:false,
-                    download:0,
-                },{
-                    name:'秋 乏 打 盹 专 用 瘫',
-                    creater:'beetlebumon',
-                    img:'red',
-                    count:40,
-                    clicked:false,
-                    download:0,
-                },{
-                    name:'[东方雅乐集|和风意境纯音赏]',
-                    creater:'魔理沙的扫帚视角_',
-                    img:'pink',
-                    count:42,
-                    clicked:false,
-                    download:0,
-                },{
-                    name:'伴随着旋律，进入纯音的世界',
-                    creater:'野良兔',
-                    img:'lightblue',
-                    count:20,
-                    clicked:false,
-                    download:0,
-                },{
-                    name:'[物哀纯音]如坠入悲伤螺旋，少女终焉',
-                    creater:'想吃蜜渍桃子的赫萝',
-                    img:'brown',
-                    count:70,
-                    clicked:false,
-                    download:0,
-                },{
-                    name:'舒缓·欧美|柔情嗓音，温暖人心',
-                    creater:'DJ顾念晨',
-                    img:'yellowgreen',
-                    count:20,
-                    clicked:false,
-                    download:0,
-                }]
             }
         },
         methods:{
-            showFootManage:function () {
+            showFootManage:function (item) {
                 this.$store.commit('showFootManage');
+                this.$store.commit('setManageSheet',{
+                    from:'collect',
+                    name: item.name,
+                    editable: false,
+                    deleteable: true
+                });
             },
-            showSongSheet: function () {
+            showSongSheet: function (data) {
                 this.$store.commit('showSongSheet');
+                this.$store.commit('getSongSheet', data);
             }
         }
     }

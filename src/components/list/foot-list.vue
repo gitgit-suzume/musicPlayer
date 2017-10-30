@@ -4,40 +4,28 @@
             <ul>
                 <li >
                     <a href="javascript:;">
-                        <span class="header-tile" :title="sheetName[fromNum%3]">{{sheetName[fromNum%3]}}</span>
+                        <span class="header-tile" :title="from">{{from}}</span>
                     </a>
                 </li>
-                <li v-show="fromNum%3===0">
-                    <a href="javascript:;">
-                        <div class="img"></div>
-                        <div class="title"><span>创建新歌单</span></div>
-                    </a>
-                </li>
-                <li v-show="fromNum%3===0 || fromNum%3===1">
-                    <a href="javascript:;">
-                        <div class="img"></div>
-                        <div class="title"><span>歌单管理</span></div>
-                    </a>
-                </li>
-                <li v-show="fromNum%3===2">
+                <li>
                     <a href="javascript:;">
                         <div class="img"></div>
                         <div class="title"><span>下载</span></div>
                     </a>
                 </li>
-                <li v-show="fromNum%3===2">
+                <li>
                     <a href="javascript:;">
                         <div class="img"></div>
                         <div class="title"><span>分享</span></div>
                     </a>
                 </li>
-                <li v-show="fromNum%3===2&&editable">
+                <li v-show="editable">
                     <a href="javascript:;">
                         <div class="img"></div>
                         <div class="title"><span>编辑歌单信息</span></div>
                     </a>
                 </li>
-                <li v-show="fromNum%3===2&&deleteable">
+                <li v-show="deleteable">
                     <a href="javascript:;">
                         <div class="img"></div>
                         <div class="title"><span>删除</span></div>
@@ -63,6 +51,7 @@
         position: fixed;
         bottom: 0;
         left: 0;
+        padding: 0 0 40px 0;
     }
     .header-tile{
         display: inline-block;
@@ -99,17 +88,21 @@
 <script>
     export default {
         name:'foot-list',
-        data: function(){
-            return {
-                fromNum:0,
-                editable:true,
-                deleteable:true,
-                sheetName:['创建的歌单','收藏的歌单','歌单:'+'五色石楠叶']
-            }
-        },
         computed:{
+            info: function () {
+              return this.$store.state.manageSheet;
+            },
             show:function () {
                 return this.$store.getters.showFootManage;
+            },
+            from: function (){
+                return '歌单：' + this.info.name;
+            },
+            editable:function () {
+                return this.info.editable;
+            },
+            deleteable:function () {
+                return this.info.deleteable;
             }
         },
         methods:{
