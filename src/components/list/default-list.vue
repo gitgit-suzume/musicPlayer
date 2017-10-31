@@ -1,8 +1,8 @@
 <template>
         <div>
             <ul>
-                <li v-for="item in list" @click="showSongSheet()">
-                    <!--<router-link to="/list/detail"></router-link>-->
+                <li v-for="item in list">
+                <!--<li v-for="item in list" @click="showSongSheet()">-->
                     <a href="javascript:;">
                         <span class="img" :style="{background:item.img}"></span>
                         <div class="info">
@@ -12,7 +12,6 @@
                     </a>
                 </li>
             </ul>
-            <!--<router-view></router-view>-->
         </div>
 </template>
 <style scoped>

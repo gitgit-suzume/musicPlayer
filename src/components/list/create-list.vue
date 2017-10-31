@@ -11,17 +11,17 @@
             <span class="manage">+</span>
         </a>
         <ul v-show="showing">
-            <li v-for="item in list">
-                <a href="javascript:;" @click="item.clicked=true, showSongSheet()">
-                    <span class="img" :style="{background:item.img}"></span>
+            <li v-for="(item, index) in list">
+                <a href="javascript:;" @click="showSongSheet(item)">
+                    <img class="img" :src="item.img ? '../../../static/img/'+item.img+'.jpg' : '../../../static/img/logo.png'" alt="">
                     <div class="container">
-                        <a class="manage-icon" @click.stop="showFootManage()">...</a>
+                        <a class="manage-icon" @click.stop="showFootManage(item,index)">...</a>
                         <div class="list-info">
                             <span class="list-name">{{item.name}}</span>
                             <div class="more-info">
-                                <span class="icon" v-show="item.clicked&&item.download!==0"></span>
-                                <span class="list-more-info">{{item.count}}首</span>
-                                <span class="download" v-show="item.clicked&&item.download!==0">已下载{{item.download}}首</span>
+                                <!--<span class="icon" v-show="item.clicked&&item.download!==0"></span>-->
+                                <span class="list-more-info">{{item.songsId.length}}首</span>
+                                <!--<span class="download" v-show="item.clicked&&item.download!==0">已下载{{item.download}}首</span>-->
                             </div>
                         </div>
                     </div>
@@ -114,62 +114,34 @@
 <script>
     export default{
         name:'create-list',
+        computed:{
+            list:function () {
+                return this.$store.state.info.myList;
+            },
+            count: function () {
+                return this.list ? this.list.length : 0;
+            }
+        },
         data: function (){
             return {
-                count:8,
                 showing:true,
                 currentplaying:null,
-                list:[{
-                    name:'我最喜欢的音乐',
-                    img:'black',
-                    count:56,
-                    clicked:false,
-                    download:53,
-                    deleteable:false
-                },{
-                    name:'古风',
-                    img:'gray',
-                    count:120,
-                    clicked:false,
-                    download:19,
-                    deleteable:true
-                },{
-                    name:'东篱',
-                    img:'red',
-                    count:69,
-                    clicked:false,
-                    deleteable:true,
-                    download:5
-                },{
-                    name:'五色石楠叶',
-                    img:'deepblue',
-                    count:79,
-                    clicked:false,
-                    deleteable:true,
-                    download:1
-                },{
-                    name:'喵喵喵',
-                    img:'pink',
-                    count:12,
-                    clicked:false,
-                    deleteable:true,
-                    download:3
-                },{
-                    name:'EVO',
-                    img:'purple',
-                    count:48,
-                    deleteable:true,
-                    clicked:false,
-                    download:0
-                }]
             }
         },
         methods:{
-            showFootManage:function () {
+            showFootManage:function (data, index) {
+                var deleteable = index === 0 ? false : true;
                 this.$store.commit('showFootManage');
+                this.$store.commit('setManageSheet',{
+                    from:'create',
+                    name: data.name,
+                    editable: true,
+                    deleteable: deleteable
+                });
             },
-            showSongSheet:function () {
+            showSongSheet:function (data) {
                 this.$store.commit('showSongSheet');
+                this.$store.commit('getSongSheet', data);
             }
         },
         created: function () {

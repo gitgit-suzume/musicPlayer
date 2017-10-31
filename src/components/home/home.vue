@@ -7,7 +7,7 @@
 <style scoped>
     .home{
         overflow: hidden;
-        padding: 86px 0 50px 0;
+        padding: 84px 0 50px 0;
     }
 </style>
 <script>

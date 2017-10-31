@@ -26,6 +26,7 @@
         width: 100%;
         height: 34px;
         background: white;
+        z-index: 1000;
         font:14px normal;
         display: flex;
         justify-content: center;

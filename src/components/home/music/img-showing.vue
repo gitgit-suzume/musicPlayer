@@ -1,11 +1,12 @@
 <template>
     <div class="img-showing" >
         <ul :style="{width:imgs.lenght*100 + 'vw'}">
-            <li class="img-images"
+            <li :class="['img-images',index === 0 ? 'img-images-active' : '']"
                 v-for="(item,index) in imgs"
-                :key="'img-images-'+index"
-                :style="{background:item.img}">
-                <a href="javascript:;"></a>
+                :key="'img-images-'+index">
+                <a class="img" href="javascript:;">
+                    <img :src="item.img" alt="轮播图片">
+                </a>
                 <span class="img-title"
                       :style="{background:item.titleBackground}">
                             {{item.title}}
@@ -34,11 +35,16 @@
         height: 50vw;
         transition:all 0.5s;
     }
-    .img-images:first-child{
-        opacity: 1;
-    }
     .img-images-active{
         opacity: 1;
+    }
+    .img{
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+    }
+    .img img {
+        width: 100%;
     }
     .img-title{
         position: absolute;
@@ -46,7 +52,7 @@
         right:1% ;
         display: inline-block;
         color:white;
-        padding:3px 10px 3px 15px;
+        padding:3px 15px 3px 15px;
         border-radius: 10px 0 0 10px;
         font: 14px normal ;
     }
@@ -74,30 +80,26 @@
             return {
                 buttonName:'img-button',
                 imgs:[{
-                    img: 'pink',
+                    img: '../../../../static/img/carousel_1.jpg',
                     title:'独家专访',
                     titleBackground: 'green',
                     imgsRotate:null
                 },{
-                    img:'blue',
+                    img:'../../../../static/img/carousel_2.jpg',
                     title:'电音',
                     titleBackground:'pink',
-                    imgsRotate:null
                 },{
-                    img:'orange',
+                    img:'../../../../static/img/carousel_3.jpg',
                     title:'独家',
                     titleBackground:'red',
-                    imgsRotate:null
                 },{
-                    img:'red',
+                    img:'../../../../static/img/carousel_4.jpg',
                     title:'演出',
-                    titleBackground:'yellow',
-                    imgsRotate:null
+                    titleBackground:'yellowgreen',
                 },{
-                    img:'green',
+                    img:'../../../../static/img/carousel_5.jpg',
                     title:'活动',
                     titleBackground:'blue',
-                    imgsRotate:null
                 }]
             }
         },

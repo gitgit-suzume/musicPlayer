@@ -149,6 +149,9 @@ const getters = {
     info: function (state) {
       return state.info;
     },
+    getCarousel:function (state) {
+        return state.carousel;
+    },
     setPlayingList:function (state) {
         return state.playingList;
     },

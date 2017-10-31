@@ -38,7 +38,7 @@
     .playing-list{
         background: white;
         width: 100%;
-        padding: 0 0 50px 0;
+        margin: 0 0 50px 0;
     }
     .the-head{
         display: block;
@@ -111,7 +111,7 @@
     }
     .info span:first-child{
         display: inline-block;
-        max-width: 75vw;
+        max-width: 50vw;
     }
     .sub .icon{
         display: inline-block;
@@ -123,6 +123,10 @@
     .sub{
         font: 10px normal;
         color: gray;
+        max-width: 50vw;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
     .manage{
         float: right;

@@ -12,7 +12,7 @@
         </a>
         <ul v-show="showing">
             <li v-for="item in list" :key="item.id">
-                <a href="javascript:;" @click.stop="showSongSheet(item)">
+                <a href="javascript:;" @click="showSongSheet(item)">
                     <img class="img" :src="'../../../static/img/'+ (item ? item.img+'.jpg' : 'logo.png')" alt="img">
                     <div class="container">
                         <div class="manage-icon" @click.stop="showFootManage(item)">...</div>
