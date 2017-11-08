@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="./src/assets/css/INIT.css">
+    <link rel="stylesheet" href="./node_modules/swiper/dist/css/swiper.css">
+    <style>
+        .swiper-container {
+            width: 100%;
+            height: 50vw;
+        }
+        .swiper-slide{
+            width: 100%;
+            height: 100%;
+        }
+        .swiper-pagination{
+            position: relative;
+            top: -35px;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" style="background:orangered">Slide 1.....</div>
+            <div class="swiper-slide"style="background:yellowgreen">Slide 2</div>
+            <div class="swiper-slide" style="background:cornflowerblue">Slide 3</div>
+        </div>
+        <div class="swiper-pagination">1</div>
+    </div>
+
+            <!--<div class="swiper-slide" style="background:orangered">Slide 1.....</div>-->
+            <!--<div class="swiper-slide"style="background:yellowgreen">Slide 2</div>-->
+            <!--<div class="swiper-slide" style="background:cornflowerblue">Slide 3</div>-->
+
+    <script src="./node_modules/jquery/dist/jquery.js"></script>
+    <script src="./node_modules/swiper/dist/js/swiper.js"></script>
+    <script>
+        var mySwiper = new Swiper('.swiper-container', {
+//            autoplay : 500,
+            loop:true,
+            pagination : '.swiper-pagination',
+            paginationType : 'bullets',
+            paginationClickable :true,
+            paginationElement : 'li'
+        });
+        setInterval('mySwiper.slideNext()', 5000);
+    </script>
+</body>
+</html>

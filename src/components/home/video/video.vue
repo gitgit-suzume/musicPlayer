@@ -11,8 +11,5 @@
                 info: 'from home-video'
             }
         },
-        created: function () {
-            console.log('---------from home-video---------')
-        }
     }
 </script>

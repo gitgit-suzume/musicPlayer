@@ -3,7 +3,8 @@
         <div class="container">
             <div class="button">
                 <a href="javascript:;" class="info" @click="playingType=(playingType+1)%3">
-                    <span class="img" :style="{background:playingMode[playingType%3].img}"></span>
+                    <span class="img"
+                          :style="{background:playingMode[playingType%3].img}"></span>
                     <span>{{playingMode[playingType%3].type}}({{songsCount}})</span>
                 </a>
                 <a href="javascript:;" class="clear">
@@ -196,8 +197,5 @@
                 this.$store.commit('changeCurSong', index);
             }
         },
-        created: function (){
-            console.log('from foot list')
-        }
     }
 </script>

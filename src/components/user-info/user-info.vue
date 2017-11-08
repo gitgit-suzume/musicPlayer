@@ -214,9 +214,5 @@
 //              }
 //          }
 //        },
-        created:function () {
-            console.log('from user-info');
-            $('.container').css('overflow-y')
-        }
     }
 </script>

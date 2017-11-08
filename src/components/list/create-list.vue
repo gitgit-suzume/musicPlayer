@@ -144,8 +144,5 @@
                 this.$store.commit('getSongSheet', data);
             }
         },
-        created: function () {
-            console.log('fromg list>create-list.')
-        }
     }
 </script>

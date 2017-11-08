@@ -22,8 +22,5 @@
             meeting: meeting,
             recommend: recommend
         },
-        created:function () {
-            console.log('---------from home-music---------')
-        }
     }
 </script>

@@ -159,7 +159,6 @@
                 return result?result:[];
             },
             count: function(){
-                console.log(typeof this.list);
                 return (this.list == [] || this.list == undefined) ? 0 : this.list.length;
             }
         },

@@ -1,5 +1,6 @@
 <template>
     <div class="img-showing" >
+
         <ul :style="{width:imgs.lenght*100 + 'vw'}">
             <li :class="['img-images',index === 0 ? 'img-images-active' : '']"
                 v-for="(item,index) in imgs"

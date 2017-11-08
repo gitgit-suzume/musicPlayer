@@ -115,8 +115,5 @@
                 }
             }
         },
-        created: function (){
-            console.log('from foot list')
-        }
     }
 </script>

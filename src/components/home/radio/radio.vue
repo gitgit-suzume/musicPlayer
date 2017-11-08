@@ -11,8 +11,5 @@
                 info: 'from home-radio'
             }
         },
-        created:function () {
-            console.log('---------from home-video---------')
-        }
     }
 </script>

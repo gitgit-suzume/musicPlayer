@@ -44,9 +44,5 @@
             'playing-list':PlayingList,
             'foot-order':FootOrder
         },
-        created:function () {
-            console.log(this.$store);
-            console.log('from song sheet');
-        }
     }
 </script>

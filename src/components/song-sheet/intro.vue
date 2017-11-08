@@ -32,7 +32,6 @@
         box-sizing: border-box;
         margin: 0 17px;
         box-sizing: border-box;
-        border: 1px solid white;
         overflow: hidden;
         background: black;
     }

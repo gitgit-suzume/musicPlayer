@@ -1,8 +1,8 @@
 <template>
     <div class="home-guide" @click="active($event)">
-        <router-link to="/home/music" tag="li" class="home-guide-active">
-            <a href="javascript:;" >
-                <span :class="index===0?'guide-active':''">音乐</span>
+        <router-link to="/home/music" tag="li">
+            <a href="javascript:;">
+                <span class="home-guide-active">音乐</span>
             </a>
         </router-link>
         <router-link to="/home/video" tag="li">
