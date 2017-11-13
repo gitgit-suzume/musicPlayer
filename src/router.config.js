@@ -7,10 +7,12 @@ import Friends from './components/friends/friends.vue'
 import Music from './components/home/music/music.vue'
 import Video from './components/home/video/video.vue'
 import Radio from './components/home/radio/radio.vue'
+import Test from '../test.vue'
 
 export default[
     {path:'/',redirect:'/home/music'},
     {path:'/home',redirect:'/home/music'},
+    {path:'/test',component:Test},
     {
         path:'/home',
         component:Home,
@@ -28,7 +30,6 @@ export default[
         ]
     },
     {path:'/friends',component:Friends},
-    // {path:'/test',component:ListDetail},
     {path:'/song-sheet',component:SongSheet},
     // {path:'*',redirect:'/home'}
 ];
