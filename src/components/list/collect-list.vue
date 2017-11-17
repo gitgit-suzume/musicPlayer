@@ -2,20 +2,23 @@
     <div>
         <a class="list-header" href="javascript:;">
             <a @click="showing=!showing" href="javascript:;">
-                <span :class="['flex-button', showing?'open':'close']">></span>
+                <i class="flex-button el-icon-arrow-down"
+                      :class="showing?'open':'close'"></i>
                 <div class="info">
                     <span>收藏的歌单</span>
                     <span>({{count}})</span>
                 </div>
             </a>
-            <span class="manage">+</span>
+            <span class="manage el-icon-plus"></span>
         </a>
         <ul v-show="showing">
             <li v-for="item in list" :key="item.id">
                 <a href="javascript:;" @click="showSongSheet(item)">
                     <img class="img" :src="'../../../static/img/'+ (item ? item.img+'.jpg' : 'logo.png')" alt="img">
                     <div class="container">
-                        <div class="manage-icon" @click.stop="showFootManage(item)">...</div>
+                        <a class="manage-icon" @click.stop="showFootManage(item)">
+                            <i class="el-icon-more"></i>
+                        </a>
                         <div class="list-info">
                             <span class="list-name">{{item.name}}</span>
                             <div class="more-info">
@@ -40,16 +43,13 @@
     }
     .flex-button{
         float: left;
-        margin: 0 5px 0 8px;
+        margin: 3px 5px 0 8px;
         transition: all 0.5s;
-        font: 14px normal;
+        font: 12px normal;
         color: gray;
     }
-    .open{
-        transform: rotate(90deg);
-    }
     .close{
-        transform: rotate(0);
+        transform: rotate(-90deg);
     }
     .info{
         float: left;
@@ -60,7 +60,7 @@
     }
     .manage{
         float: right;
-        margin: 0 20px 0 0;
+        margin: 3px 17px 0 0;
         color: gray;
         font: 14px normal;
     }
@@ -106,9 +106,9 @@
     }
     .manage-icon{
         float: right;
-        font: 18px normal;
+        font: 12px normal;
         transform: rotate(90deg);
-        margin: 11px 11px 0 0;
+        margin: 12px 17px 0 0;
     }
 </style>
 <script>

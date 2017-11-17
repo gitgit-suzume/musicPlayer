@@ -1,18 +1,30 @@
 <template>
     <div class="guide">
-        <li class="guide-list"><a href="javascript:;">1</a></li>
+        <li class="guide-list">
+            <a href="javascript:;">
+                <i class="el-icon-tickets"></i>
+            </a>
+        </li>
         <div class="guide-button">
             <router-link to="/list" tag="li">
-                <a href="javascript:;">1</a>
+                <i class="el-icon-document"></i>
             </router-link>
             <router-link to="/home" tag="li">
-                <a href="javascript:;">2</a>
+                <i class="el-icon-bell"></i>
+                <!--<a href="javascript:;">-->
+                    <!--2-->
+                <!--</a>-->
             </router-link>
             <router-link to="/friends" tag="li">
-                <a href="javascript:;">3</a>
+                <i class="el-icon-service"></i>
+                <!--<a href="javascript:;">3</a>-->
             </router-link>
         </div>
-        <li class="guide-search"><a href="javascript:;">5</a></li>
+        <li class="guide-search">
+            <a href="javascript:;">
+                <i class="el-icon-search"></i>
+            </a>
+        </li>
     </div>
 </template>
 <style scoped>
@@ -33,6 +45,15 @@
         display: inline-block;
         width: 50px;
         height: 100%;
+    }
+    .guide li i {
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        font: 30px normal;
+        color: white;
+        line-height: 50px;
+        text-align: center;
     }
     .guide li a{
         width: 50px;

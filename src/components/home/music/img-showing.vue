@@ -1,13 +1,14 @@
 <template>
     <div class="img-showing swiper-container" >
         <div class="swiper-wrapper">
-            <div class="swiper-slide" v-for="(item, index) in imgs" :key="item.id">
+            <div class="swiper-slide" v-for="item in imgs" :key="item.id">
                 <a href="javascript:;">
-                    <img :src="item.img" :alt="index">
+                    <img :src="item.img" alt="swiper">
                 </a>
                 <span :style="{background: item.titleBackground}">{{item.title}}</span>
             </div>
         </div>
+        <div class="swiper-pagination"></div>
         <!--<ul :style="{width:imgs.lenght*100 + 'vw'}">-->
             <!--<li :class="['img-images',index === 0 ? 'img-images-active' : '']"-->
                 <!--v-for="(item,index) in imgs"-->
@@ -85,7 +86,11 @@
                 loop: true,
                 speed: 300,
                 autoplay: {
-                    delay: 3000
+                    delay: 3000,
+                    disableOnInteraction:false
+                },
+                pagination:{
+                    el:'.swiper-pagination'
                 }
             })
         }

@@ -3,8 +3,10 @@
         <ul>
             <li v-for="(item,index) in info" :key="'meeting-'+index">
                 <a href="javascript:;">
-                    <div>
-                        <img src="#" alt="">
+                    <div class="container">
+                        <div class="icon">
+                            <i :class="item.icon"></i>
+                        </div>
                         <span>{{item.title}}</span>
                     </div>
                 </a>
@@ -22,18 +24,30 @@
     .meeting a:hover img{
         background: red;
     }
-    .meeting div{
+    .meeting .container{
         float: left;
         width: 25%;
         overflow: hidden;
     }
-    .meeting img{
-        display: block;
+    .meeting .icon{
         width: 50px;
         height: 50px;
         margin: 0 auto 5px;
         border-radius: 50% 50%;
         border: 1px solid red;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .icon i{
+        color: red;
+        font: 1.7rem bold;
+    }
+    .icon:hover{
+        background: red;
+    }
+    .icon:hover i{
+        color: white;
     }
     .meeting span{
         display: inline-block;
@@ -49,16 +63,16 @@
         data: function () {
             return{
                 info: [{
-                    img: '',
+                    icon:'el-icon-date',
                     title: '私人FM'
                 }, {
-                    img: '',
+                    icon: 'el-icon-location-outline',
                     title: '每日推荐'
                 }, {
-                    img: '',
+                    icon: 'el-icon-date',
                     title: '歌单'
                 }, {
-                    img: '',
+                    icon: 'el-icon-location-outline',
                     title: '排行榜'
                 }]
             }

@@ -4,7 +4,6 @@
             <li>
                 <a href="javascript:;">
                     <span class="img" >
-                        &
                     </span>
                     <span class="name">{{collect}}</span>
                 </a>
@@ -12,7 +11,6 @@
             <li>
                 <a href="javascript:;">
                     <span class="img" >
-                        &
                     </span>
                     <span class="name">{{command}}</span>
                 </a>
@@ -20,7 +18,6 @@
             <li>
                 <a href="javascript:;">
                     <span class="img" >
-                        &
                     </span>
                     <span class="name">{{share}}</span>
                 </a>
@@ -28,7 +25,6 @@
             <li>
                 <a href="javascript:;">
                     <span class="img" >
-                        &
                     </span>
                     <span class="name">{{downLoad}}</span>
                 </a>

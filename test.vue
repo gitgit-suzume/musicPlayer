@@ -4,8 +4,10 @@
             <div class="swiper-slide"
                  v-for="(item, index) in imgs">
                 <img :src="item.img" :alt="index">
+                <span :style="{background: item.titleBackground}">{{item.title}}</span>
             </div>
         </div>
+        <div class="swiper-pagination"></div>
     </div>
 </template>
 <style scoped>
@@ -57,6 +59,9 @@
                 loop: true,
                 autoplay: {
                     delay: 500
+                },
+                pagination:{
+                    el:'.swiper-pagination'
                 }
             })
         }

@@ -1,12 +1,12 @@
 <template>
     <div class="guide" :style="{background:bgColor}">
         <div class="left">
-            <a href="javascript:;" class="back" @click="hide()">←</a>
+            <a href="javascript:;" class="back el-icon-back" @click="hide()"></a>
             <span class="name">歌单</span>
         </div>
         <div class="right">
-            <a href="javascript:;" class="search">O-</a>
-            <a href="javascript:;" class="all-manage">...</a>
+            <a href="javascript:;" class="el-icon-search"></a>
+            <a href="javascript:;" class="more el-icon-more"></a>
         </div>
     </div>
 </template>
@@ -30,12 +30,7 @@
     .back{
         margin: 0 10px 0 17px;
     }
-    .search{
-        display: inline-block;
-        transform: rotate(45deg);
-    }
-    .all-manage{
-        display: inline-block;
+    .more{
         transform: rotate(90deg);
         margin: 0 10px 0 17px;
     }

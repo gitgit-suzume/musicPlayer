@@ -8,12 +8,12 @@
                     <span>{{playingMode[playingType%3].type}}({{songsCount}})</span>
                 </a>
                 <a href="javascript:;" class="clear">
-                    <span class="img">|||</span>
+                    <span class="el-icon-delete"></span>
                     <span>清空</span>
                 </a>
                 <a href="javascript:;" class="collect">
-                    <span class="img">+</span>
-                    <span>收藏</span>
+                    <span class="el-icon-printer"></span>
+                    <span>收藏全部</span>
                 </a>
             </div>
             <ul>

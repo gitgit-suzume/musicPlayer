@@ -4,7 +4,7 @@
                 <li v-for="item in list">
                 <!--<li v-for="item in list" @click="showSongSheet()">-->
                     <a href="javascript:;">
-                        <span class="img" :style="{background:item.img}"></span>
+                        <i class="img" :class="item.icon"></i>
                         <div class="info">
                             <span class="name">{{item.name}}</span>
                             <span class="count">({{item.count}})</span>
@@ -21,11 +21,14 @@
     }
     .img {
         float: left;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         margin: 14px 8px;
         width: 20px;
         height: 20px;
-        border-radius: 50% 50%;
-        border: 1px solid #c62f2f;
+        font: 20px normal;
+        color: #c62f2f;
     }
     .info{
         overflow: hidden;
@@ -50,24 +53,24 @@
                 list:[{
                     name:'本地音乐',
                     count:'84',
-                    img:'yellow'
+                    icon:'el-icon-printer'
                 },{
                     name:'最近播放',
                     count:'100',
                     maxCount:100,
-                    img:'blue'
+                    icon:'el-icon-document'
                 },{
                     name:'下载管理',
                     count: 0,
-                    img:'pink'
+                    icon:'el-icon-printer'
                 },{
                     name:'我的电台',
                     count: 1,
-                    img:'gray'
+                    icon:'el-icon-document'
                 },{
                     name:'我的收藏',
                     count: 1,
-                    img:'olive'
+                    icon:'el-icon-printer'
                 }]
             }
         },

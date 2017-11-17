@@ -9,7 +9,8 @@
         <a href="javascript:;"
            type="button"
            @click="togglePlaying()"
-           :class="['player',playing?'':'stop']">+</a>
+           class="player"
+           :class="playing?'':'stop'">+</a>
     </div>
 </template>
 <style scoped>
@@ -52,7 +53,7 @@
     }
     .list{
         font: 20px normal;
-        padding:5px;
+        padding:0 10px 0 24px;
         line-height: 30px;
         text-align: center;
         transform: rotate(90deg);
@@ -61,12 +62,12 @@
         width: 20px;
         height: 20px;
         font: 20px normal;
-        line-height: 20px;
+        line-height: 19px;
         text-align: center;
         padding:0 0 1px 1px;
         border-radius: 50% 50%;
         border: 1px solid black;
-        margin: 10px 10px 0 0;
+        margin: 12px 6px 0 0;
         transition: all 0.5s;
         color: #c62f2f;
     }
