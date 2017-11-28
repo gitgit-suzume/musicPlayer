@@ -1,4 +1,5 @@
 <template>
+    <transition name="song-sheet">
     <div class="song-sheet" v-show="showing">
         <guide></guide>
         <intro></intro>
@@ -6,8 +7,25 @@
         <playing-list></playing-list>
         <foot-order></foot-order>
     </div>
+    </transition>
 </template>
 <style scoped>
+    @keyframes to-up {
+         0%{
+             top:75%;
+             opacity: 0;
+         }
+         100%{
+             top: 0;
+             opacity: 1;
+         }
+     }
+    .song-sheet-enter-active{
+        animation: to-up .25s ease;
+    }
+    .song-sheet-leave-active{
+        animation: to-up .25s ease reverse;
+    }
     .song-sheet{
         position: fixed;
         top: 0;

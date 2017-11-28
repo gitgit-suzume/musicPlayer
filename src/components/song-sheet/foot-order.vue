@@ -1,6 +1,7 @@
 <template>
     <div class="bg" @click="quit($event)" v-show="show">
-        <div class="container">
+        <transition name="foot">
+        <div class="container" v-show="show">
             <ul>
                 <li class="header">
                     <a href="javascript:;"  @click="test()">
@@ -45,9 +46,23 @@
                 </li>
             </ul>
         </div>
+        </transition>
     </div>
 </template>
 <style scoped>
+    @keyframes to-up {
+        0%{
+            bottom:-50%;
+            opacity: 0;
+        }
+        100%{
+            bottom: 0;
+            opacity: 1;
+        }
+    }
+    .foot-enter-active{
+        animation: to-up .25s ease;
+    }
     .bg{
         position: fixed;
         top: 0;
@@ -56,6 +71,7 @@
         height: 100%;
         background: rgba(0,0,0,0.25);
         z-index: 5000;
+        transition: opacity .25s ease
     }
     .container{
         width: 100%;
@@ -64,6 +80,7 @@
         position: fixed;
         bottom: 0;
         left: 0;
+        z-index: 5000;
     }
     .header-tile{
         display: inline-block;

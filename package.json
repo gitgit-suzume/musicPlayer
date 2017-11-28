@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "element-ui": "^2.0.4",
+    "less": "^2.7.3",
+    "less-loader": "^4.0.5",
     "vue": "^2.4.4"
   },
   "devDependencies": {

@@ -21,10 +21,14 @@ const state = {
     showSongSheet:false,
     showFootOrder:false,
     showFootManage:false,
-    showPlayList: false
+    showPlayList: false,
+    showUserList: false
 };
 
 const actions={
+    showUserList: ({commit}) => {
+        commit('showUserList');
+    },
     initInfo:function ({commit}) {
       commit('initInfo');
     },
@@ -82,6 +86,9 @@ const actions={
 };
 
 const mutations = {
+    showUserList: (state) => {
+        state.showUserList = !state.showUserList
+    },
     initInfo:function (state, info) {
         state.info = info;
         state.user = info.user;
@@ -146,6 +153,9 @@ const mutations = {
 };
 
 const getters = {
+    showUserList: function(state){
+        return state.showUserList
+    },
     info: function (state) {
       return state.info;
     },

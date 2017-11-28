@@ -1,6 +1,7 @@
 <template>
     <div class="bg" @click="hide($event)" v-show="show">
-        <div class="container">
+        <transition name="foot-list">
+        <div class="container" v-show="show">
             <div class="button">
                 <a href="javascript:;" class="info" @click="playingType=(playingType+1)%3">
                     <span class="img"
@@ -30,9 +31,26 @@
                 </li>
             </ul>
         </div>
+        </transition>
     </div>
 </template>
-<style scoped>
+<style lang="less" scoped>
+    @keyframes to-up {
+        0%{
+            bottom:-50%;
+            opacity: 0;
+        }
+        100%{
+            bottom: 0;
+            opacity: 1;
+        }
+    }
+    .foot-list-enter-active{
+        animation: to-up .25s ease;
+    }
+    .foot-list-leave-active{
+        animation: to-up .25s ease reverse;
+    }
     .bg{
         position: fixed;
         top: 0;
@@ -41,6 +59,7 @@
         height: 100%;
         background: rgba(0,0,0,0.25);
         z-index: 6000;
+        transition: opacity .25s;
     }
     .container{
         width: 100%;

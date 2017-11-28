@@ -1,7 +1,8 @@
 <template>
     <div v-show="showing" >
-        <div class="bg" @click="showing=false">
-            <div class="container">
+        <div class="bg" @click="hide($event)">
+            <transition name="user-info">
+            <div class="container" v-show="showing">
                 <div class="header">
                     <div class="appear">
                         <div class="img"></div>
@@ -95,10 +96,27 @@
                     </li>
                 </ul>
             </div>
+            </transition>
         </div>
     </div>
 </template>
 <style scoped>
+    @keyframes left-to-right {
+        0%{
+            left:-50%;
+            opacity: 0;
+        }
+        100%{
+            left: 0;
+            opacity: 1;
+        }
+    }
+    .user-info-enter-active{
+        animation: left-to-right .25s ease
+    }
+    .user-info-leave-active{
+        animation: left-to-right .25s ease reverse
+    }
     .bg{
         position: fixed;
         top: 0;
@@ -198,13 +216,22 @@
         name:'user-info',
         data: function () {
             return {
-                showing:false,
                 register:false,
                 username:'夏夜丶萤火夏夜丶萤火夏夜丶萤火夏夜丶萤火',
                 lv:6
             }
         },
-//        methods:{
+        computed:{
+            showing: function () {
+                return this.$store.state.showUserList
+            }
+        },
+        methods:{
+            hide (e){
+                if(e.target === e.currentTarget) {
+                    this.$store.commit('showUserList')
+                }
+            }
 //          disappear:function (event) {
 //              var count = 0;
 //              if(event.target==event.currentTarget){
@@ -213,6 +240,6 @@
 //                  $('.bg').css('opacity','0');
 //              }
 //          }
-//        },
+        },
     }
 </script>

@@ -1,7 +1,7 @@
 <template>
     <div class="guide">
         <li class="guide-list">
-            <a href="javascript:;">
+            <a href="javascript:;" @click="showUserList()">
                 <i class="el-icon-tickets"></i>
             </a>
         </li>
@@ -75,5 +75,10 @@
             return {
             }
         },
+        methods:{
+            showUserList () {
+                this.$store.commit('showUserList')
+            }
+        }
     }
 </script>
