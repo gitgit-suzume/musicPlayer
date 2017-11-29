@@ -30,7 +30,7 @@
         position: fixed;
         top: 0;
         left: 0;
-        z-index: 2000;
+        z-index: 1999;
         height: 100%;
         overflow: auto;
         background: #f2f2f2;

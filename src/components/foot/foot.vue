@@ -1,9 +1,9 @@
 <template>
-    <div class="foot">
+    <div class="foot" v-show="info">
         <img class="img" :src="info?'../../../static/img/'+info.img+'.jpg':'../../../static/img/logo.png'" alt="#">
         <div class="song-info">
-            <span>{{info?info.name:'为了表示我做了这里，姑且显示一下'}}</span>
-            <span>{{info?info.singer:'正常情况下播放列表无歌曲，此处用v-show隐藏'}}</span>
+            <span>{{info?info.name:'歌曲名字'}}</span>
+            <span>{{info?info.singer:'歌手'}}</span>
         </div>
         <a href="javascript:;" type="button" class="list" @click="showPlayList()">|||</a>
         <a href="javascript:;"
