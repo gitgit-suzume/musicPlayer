@@ -18,28 +18,36 @@
     import UserInfo from './components/user-info/user-info.vue'
     import SongSheet from './components/song-sheet/index.vue'
     import {mapActions, mapGetters} from 'vuex'
-export default {
-  name: 'app',
-  data () {
-    return {
-      msg: 'fromg App.vue'
+
+    import Login from './api/login'
+    export default {
+        name: 'app',
+        data() {
+            return {
+                msg: 'fromg App.vue'
+            }
+        },
+        components: {
+            guide: guide,
+            home: home,
+            foot: foot,
+            'foot-list': FootList,
+            'user-info': UserInfo,
+            'song-sheet': SongSheet
+        },
+        created: function () {
+            jQuery.get('../static/data.json', function (data, status) {
+                const info = data;
+                store.commit('initInfo', info);
+            });
+          Login.login('17854287241', 'cyy5507889').then(res => {
+              this.msg = res
+              console.log('res', res)
+          }).catch(err => {
+              console.log('err', err)
+          })
+        }
     }
-  },
-    components:{
-      guide: guide,
-        home:home,
-        foot:foot,
-        'foot-list':FootList,
-        'user-info':UserInfo,
-        'song-sheet':SongSheet
-    },
-    created:function () {
-      jQuery.get('../static/data.json',function(data, status){
-          const info = data;
-          store.commit('initInfo', info);
-      });
-    }
-}
 </script>
 
 <style>

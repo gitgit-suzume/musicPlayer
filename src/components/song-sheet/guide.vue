@@ -19,7 +19,7 @@
         position: fixed;
         top:0;
         left:0;
-        z-index: 2000;
+        z-index: 125;
         width: 100%;
         height: 50px;
         display: flex;

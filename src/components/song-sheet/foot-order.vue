@@ -70,17 +70,17 @@
         width: 100%;
         height: 100%;
         background: rgba(0,0,0,0.25);
-        z-index: 5000;
+        z-index: 300;
         transition: opacity .25s ease
     }
     .container{
+        position: absolute;
         width: 100%;
         height: 50%;
         background: white;
-        position: fixed;
         bottom: 0;
         left: 0;
-        z-index: 5000;
+        z-index: 300;
     }
     .header-tile{
         display: inline-block;

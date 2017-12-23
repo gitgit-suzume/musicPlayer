@@ -21,7 +21,7 @@
         background:#fff;
         bottom: 0;
         padding:5px 0;
-        z-index: 4000;
+        z-index: 200;
     }
     .img{
         width: 40px;

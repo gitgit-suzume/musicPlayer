@@ -10,7 +10,7 @@ import Radio from './components/home/radio/radio.vue'
 import Test from '../test.vue'
 
 export default[
-    {path:'/',redirect:'/home/music'},
+    {path:'/',redirect:'/list'},
     {path:'/home',redirect:'/home/music'},
     {path:'/test',component:Test},
     {

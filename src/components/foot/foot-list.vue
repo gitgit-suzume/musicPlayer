@@ -58,7 +58,7 @@
         width: 100%;
         height: 100%;
         background: rgba(0,0,0,0.25);
-        z-index: 6000;
+        z-index: 300;
         transition: opacity .25s;
     }
     .container{
@@ -78,7 +78,7 @@
         height: 20px;
         padding:8px 0;
         border-bottom: 1px solid gray;
-        z-index: 6001;
+        z-index: 300;
     }
     ul{
         padding: 36px 0 0 0;
