@@ -33,9 +33,56 @@
         </ul>
     </div>
 </template>
-<style scoped>
+<script>
+    export default{
+        name:'collect-list',
+        computed:{
+            list: function(){
+                const info = this.$store.state.info,
+                    songs = info.musicSheet,
+                    index = info.collectList ? info.collectList.listsId : [],
+                    len = index.length;
+                var result = [];
+                for (let i = 0, p; i < len; i ++){
+                    p = parseInt(index[i], 10)-1;
+                    result.push(songs[p]);
+                }
+                return result;
+            },
+            count: function(){
+                return this.list !== undefined ? this.list.length : 0;
+            }
+        },
+        data: function (){
+            return {
+                showing:true,
+                currentplaying:null,
+            }
+        },
+        methods:{
+            showFootManage:function (item) {
+                this.$store.commit('showFootManage');
+                this.$store.commit('setManageSheet',{
+                    from:'collect',
+                    name: item.name,
+                    editable: false,
+                    deleteable: true
+                });
+            },
+            showSongSheet: function (data) {
+                this.$store.commit('showSongSheet');
+                this.$store.commit('getSongSheet', data);
+            }
+        }
+    }
+</script>
+<style scoped lang="less">
+    @import (less) "../../style/mixin.less";
+    @header-font-size: 3.52vw;
+    @icon-color: gray;
     .list-header {
-        display: block;
+        display: flex;
+        justify-content: space-between;
         width: 100%;
         overflow: hidden;
         padding: 5px 0;
@@ -111,46 +158,3 @@
         margin: 12px 17px 0 0;
     }
 </style>
-<script>
-    export default{
-        name:'collect-list',
-        computed:{
-            list: function(){
-                const info = this.$store.state.info,
-                    songs = info.musicSheet,
-                    index = info.collectList ? info.collectList.listsId : [],
-                    len = index.length;
-                var result = [];
-                for (let i = 0, p; i < len; i ++){
-                    p = parseInt(index[i], 10)-1;
-                    result.push(songs[p]);
-                }
-                return result;
-            },
-            count: function(){
-                return this.list !== undefined ? this.list.length : 0;
-            }
-        },
-        data: function (){
-            return {
-                showing:true,
-                currentplaying:null,
-            }
-        },
-        methods:{
-            showFootManage:function (item) {
-                this.$store.commit('showFootManage');
-                this.$store.commit('setManageSheet',{
-                    from:'collect',
-                    name: item.name,
-                    editable: false,
-                    deleteable: true
-                });
-            },
-            showSongSheet: function (data) {
-                this.$store.commit('showSongSheet');
-                this.$store.commit('getSongSheet', data);
-            }
-        }
-    }
-</script>

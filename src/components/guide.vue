@@ -27,47 +27,6 @@
         </li>
     </div>
 </template>
-<style scoped>
-    .guide{
-        position: fixed;
-        top:0;
-        left:0;
-        right: 0;
-        z-index: 10;
-        width: 100%;
-        height: 50px;
-        background-color: #c62f2f;
-        display: flex;
-        justify-content: space-between;
-        overflow: hidden;
-    }
-    .guide li{
-        display: inline-block;
-        width: 50px;
-        height: 100%;
-    }
-    .guide li i {
-        display: inline-block;
-        width: 50px;
-        height: 50px;
-        font: 30px normal;
-        color: white;
-        line-height: 50px;
-        text-align: center;
-    }
-    .guide li a{
-        width: 50px;
-        height: 100%;
-        display: inline-block;
-        font:30px normal;
-        line-height: 50px;
-        text-align: center;
-        color: white;
-    }
-    .guide li a:hover{
-        text-decoration: none;
-    }
-</style>
 <script>
     export default {
         name: 'guide',
@@ -82,3 +41,65 @@
         }
     }
 </script>
+<style scoped lang="less">
+    @import (less) "../style/mixin";
+    .active-i{
+        color: white;
+    }
+    .guide{
+        position: fixed;
+        top:0;
+        left:0;
+        right: 0;
+        z-index: 10;
+        height: @header-height;
+        background-color: @red;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        overflow: hidden;
+        li{
+            display: inline-block;
+            height: 7.04vw;
+            i{
+                display: inline-block;
+                width: 7.04vw;
+                height: 7.04vw;
+                font: 7.04vw normal;
+                color: rgba(255, 255, 255, 0.5);
+                line-height: 100%;
+                text-align: center;
+            }
+            i:hover{
+                .active-i;
+            }
+            a{
+                width: 50px;
+                height: 100%;
+                display: inline-block;
+                font:30px normal;
+                line-height: 50px;
+                text-align: center;
+                color: white;
+            }
+            a:hover{
+                text-decoration: none;
+            }
+        }
+        .guide-list{
+            margin-left: @body-margin-left;
+        }
+        .guide-search{
+            margin-right: @body-margin-left;
+        }
+        .guide-button{
+            li{
+                margin-right: @body-margin-left;
+            }
+            li:last-child{
+                margin-right: 0;
+            }
+        }
+    }
+</style>
+

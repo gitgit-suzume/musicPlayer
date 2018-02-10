@@ -14,37 +14,6 @@
             </ul>
         </div>
 </template>
-<style scoped>
-    li{
-        height: 50px;
-        width: 100%;
-    }
-    .img {
-        float: left;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 14px 8px;
-        width: 20px;
-        height: 20px;
-        font: 20px normal;
-        color: #c62f2f;
-    }
-    .info{
-        overflow: hidden;
-        height: 100%;
-        border-bottom: 1px solid rgba(0,0,0,0.1);
-        display: flex;
-        align-items: center;
-    }
-    .name{
-        color: black;
-    }
-    .count{
-        font: 12px normal;
-        color: gray;
-    }
-</style>
 <script>
     export default{
         name:'default-list',
@@ -81,3 +50,32 @@
         }
     }
 </script>
+<style scoped lang="less">
+    @import (less) "../../style/mixin.less";
+    @item-heigth: 13.90vw;
+    li{
+        padding: 4.23vw 0 0 0;
+        width: 100%;
+        .img {
+            float: left;
+            margin: 0 @body-margin-left/2 0 @body-margin-left;
+            width: 5.63vw;
+            height: 5.63vw;
+            font: 5.63vw normal;
+            color: @red;
+        }
+        .info{
+            overflow: hidden;
+            .list-underline;
+            padding: 0 0 5.28vw 0;
+            .name{
+                font-size: @list-font-size;
+                color: black;
+            }
+            .count{
+                font-size: 3.5vw;
+                color: gray;
+            }
+        }
+    }
+</style>

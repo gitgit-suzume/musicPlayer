@@ -51,5 +51,5 @@
 </script>
 
 <style>
-  @import "assets/css/INIT.css";
+  @import "style/INIT.css";
 </style>

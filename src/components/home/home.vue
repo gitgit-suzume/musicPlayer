@@ -4,12 +4,6 @@
         <router-view></router-view>
     </div>
 </template>
-<style scoped>
-    .home{
-        overflow: hidden;
-        padding: 86px 0 50px 0;
-    }
-</style>
 <script>
     import guide from './home-guide.vue'
     export default {
@@ -22,3 +16,9 @@
         },
     };
 </script>
+<style scoped lang="less">
+    .home{
+        overflow: hidden;
+        padding: 86px 0 50px 0;
+    }
+</style>

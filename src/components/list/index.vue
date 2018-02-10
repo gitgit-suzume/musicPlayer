@@ -2,15 +2,10 @@
     <div class="list">
         <default-list></default-list>
         <create-list></create-list>
-        <collect-list></collect-list>
+        <create-list></create-list>
         <foot-list></foot-list>
     </div>
 </template>
-<style scoped>
-    .list{
-        margin: 50px 0 50px 0;
-    }
-</style>
 <script>
     import Default from './default-list.vue'
     import Create from './create-list.vue'
@@ -34,3 +29,10 @@
         }
     }
 </script>
+<style scoped lang="less">
+    @import (less) "../../style/mixin.less";
+    .list{
+        width: 100vw;
+        margin-top: @header-height;
+    }
+</style>

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="create-list">
         <a class="list-header" href="javascript:;">
             <a @click="showing=!showing" href="javascript:;">
                 <i class="flex-button el-icon-arrow-down"
@@ -16,16 +16,16 @@
                 <a href="javascript:;" @click="showSongSheet(item)">
                     <img class="img" :src="item.img ? '../../../static/img/'+item.img+'.jpg' : '../../../static/img/logo.png'" alt="">
                     <div class="container">
-                        <a class="manage-icon" @click.stop="showFootManage(item,index)">
-                            <i class="el-icon-more"></i>
-                        </a>
                         <div class="list-info">
                             <span class="list-name">{{item.name}}</span>
                             <div class="more-info">
-                                <!--<span class="icon" v-show="item.clicked&&item.download!==0"></span>-->
                                 <span class="list-more-info">{{item.songsId.length}}首</span>
-                                <!--<span class="download" v-show="item.clicked&&item.download!==0">已下载{{item.download}}首</span>-->
                             </div>
+                        </div>
+                        <div class="manage-icon">
+                            <a @click.stop="showFootManage(item,index)">
+                                <i class="el-icon-more"></i>
+                            </a>
                         </div>
                     </div>
                 </a>
@@ -33,87 +33,9 @@
         </ul>
     </div>
 </template>
-<style scoped>
-    .list-header {
-        display: block;
-        width: 100%;
-        overflow: hidden;
-        padding: 5px 0;
-        background: rgba(0,0,0,0.1);
-    }
-    .flex-button{
-        float: left;
-        margin: 3px 5px 0 8px;
-        transition: all 0.5s;
-        font: 12px normal;
-        color: gray;
-    }
-    .close{
-        transform: rotate(-90deg);
-    }
-    .info{
-        float: left;
-    }
-    .info span{
-        color: black;
-        font: 12px normal;
-    }
-    .manage{
-        float: right;
-        margin: 3px 17px 0 0;
-        color: gray;
-        font: 14px normal;
-    }
-
-    ul li{
-        width: 100%;
-        height: 44px;
-    }
-    .img {
-        float: left;
-        width: 40px;
-        height: 40px;
-        margin: 3px 10px 3px 3px;
-    }
-    .container{
-        margin: 7px 0 0 0;
-        overflow: hidden;
-        height: 100%;
-        border-bottom: 1px solid rgba(0,0,0,0.1);
-
-    }
-    .list-name{
-        display: inline-block;
-        max-width: 50vw;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-    .more-info{
-        font: 10px normal;
-        color: gray;
-        max-width: 50vw;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-    .more-info .icon{
-        display: inline-block;
-        width: 10px;
-        height: 10px;
-        border-radius: 50% 50%;
-        border:1px solid deepskyblue;
-    }
-    .manage-icon{
-        float: right;
-        font: 12px normal;
-        transform: rotate(90deg);
-        margin: 12px 17px 0 0;
-    }
-</style>
 <script>
     export default{
-        name:'create-list',
+        name:'createList',
         computed:{
             list:function () {
                 return this.$store.state.info.myList;
@@ -146,3 +68,94 @@
         },
     }
 </script>
+<style scoped lang="less">
+    @import (less) "../../style/mixin.less";
+    @header-font-size: 3.52vw;
+    @icon-color: gray;
+    .list-header {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        overflow: hidden;
+        padding: 2.82vw 0;
+        background: rgba(0,0,0,0.1);
+        a {
+            margin: 0 0 0 @body-margin-left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .info {
+                margin: 0 0 0 3.17vw;
+                span {
+                    font-size: @header-font-size;
+                }
+            }
+            .flex-button {
+                transition: all 0.5s;
+                font-size: @header-font-size;
+                color: @icon-color;
+            }
+            .close {
+                transform: rotate(-90deg);
+            }
+        }
+        .manage{
+            color: @icon-color;
+            margin: 0 @body-margin-left 0 0;
+            font-size: @header-font-size;
+        }
+    }
+    ul {
+        li{
+            width: 100%;
+            height: 17.61vw;
+            .img {
+                float: left;
+                width: 15.14vw;
+                height: 15.14vw;
+                margin: 1.41vw 2.11vw;
+            }
+            .container{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin: 7px 0 0 0;
+                height: 100%;
+                .list-underline;
+                .list-info{
+                    .list-name{
+                        display: inline-block;
+                        max-width: 50vw;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        font-size: @list-font-size;
+                        color: black;
+                    }
+                    .more-info{
+                        font-size: @list-font-size / 3 * 2;
+                        color: gray;
+                        max-width: 50vw;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        .icon{
+                            display: inline-block;
+                            width: 10vw;
+                            height: 10vw;
+                            background: red;
+                            border-radius: 50% 50%;
+                            border:1px solid deepskyblue;
+                        }
+                    }
+                }
+                .manage-icon {
+                    margin: 0 @body-margin-left 0 0;
+                    i {
+                        font-size: @list-font-size;
+                    }
+                }
+            }
+        }
+    }
+</style>
