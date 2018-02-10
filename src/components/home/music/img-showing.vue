@@ -9,52 +9,12 @@
             </div>
         </div>
         <div class="swiper-pagination"></div>
-        <!--<ul :style="{width:imgs.lenght*100 + 'vw'}">-->
-            <!--<li :class="['img-images',index === 0 ? 'img-images-active' : '']"-->
-                <!--v-for="(item,index) in imgs"-->
-                <!--:key="'img-images-'+index">-->
-                <!--<a class="img" href="javascript:;">-->
-                    <!--<img :src="item.img" alt="轮播图片">-->
-                <!--</a>-->
-                <!--<span class="img-title"-->
-                      <!--:style="{background:item.titleBackground}">-->
-                            <!--{{item.title}}-->
-                        <!--</span>-->
-            <!--</li>-->
-        <!--</ul>-->
-        <!--<ul @click="playingByUser($event)"-->
-            <!--:style="{width: 8 * imgs.length + 5 * (imgs.length) + 'px'}">-->
-            <!--<li v-for="(item,index) in imgs"-->
-                <!--:class="['img-button',index==0?'img-button-active':'']"-->
-                <!--:key="'img-button-'+index"></li>-->
-        <!--</ul>-->
     </div>
 </template>
-<style scoped>
-    .swiper-container{
-        height: 50vw;
-    }
-    .swiper-slide{
-        width: 100%;
-        height: 100%;
-    }
-    .swiper-slide img{
-        width: 100%;
-    }
-    .swiper-slide span{
-        position: absolute;
-        right: 0;
-        bottom: 2vw;
-        padding: 3px 3px 3px 15px;
-        color: white;
-        font: 12px normal;
-        border-radius: 12px 0 0 12px;
-    }
-</style>
 <script>
     export default {
-        name: 'showing',
-        data: function () {
+        name: 'img-showing',
+        data () {
             return {
                 buttonName:'img-button',
                 imgs:[{
@@ -96,3 +56,24 @@
         }
     }
 </script>
+<style scoped lang="less">
+    .swiper-container{
+        height: 39.08vw;
+        .swiper-slide{
+            width: 100%;
+            height: 100%;
+            img{
+                width: 100%;
+            }
+            span{
+                position: absolute;
+                right: 0;
+                bottom: 2vw;
+                padding: 1.76vw 1.76vw 1.76vw 5.28vw;
+                color: white;
+                font: 3.52vw normal;
+                border-radius: 7.04vw 0 0 7.04vw;
+            }
+        }
+    }
+</style>

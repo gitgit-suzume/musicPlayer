@@ -5,77 +5,23 @@
             <span>{{info?info.name:'歌曲名字'}}</span>
             <span>{{info?info.singer:'歌手'}}</span>
         </div>
-        <a href="javascript:;" type="button" class="list" @click="showPlayList()">|||</a>
+        <a href="javascript:;" type="button" class="list" @click="showPlayList()">
+            <i class="el-icon-more"></i>
+        </a>
         <a href="javascript:;"
            type="button"
            @click="togglePlaying()"
            class="player"
+           v-if="playing"
            :class="playing?'':'stop'">+</a>
+        <a href="javascript:;"
+           type="button"
+           @click="togglePlaying()"
+           class="player"
+           v-else
+           :class="playing?'':'stop'">||</a>
     </div>
 </template>
-<style scoped>
-    .foot{
-        width: 100%;
-        height: 40px;
-        position: fixed;
-        background:#fff;
-        bottom: 0;
-        padding:5px 0;
-        z-index: 200;
-    }
-    .img{
-        width: 40px;
-        height: 40px;
-        float: left;
-        margin: 0 5px;
-    }
-    .song-info{
-        float: left;
-    }
-    .song-info span{
-        display: block;
-    }
-    .song-info span:first-child{
-        margin: 5px 0 0 0;
-        color: black;
-        font: 12px normal;
-    }
-    .song-info span:last-child{
-        margin: 0 0 5px 0;
-        color: gray;
-        font: 10px normal;
-    }
-    a{
-        float: right;
-    }
-    a:hover{
-        text-decoration: none;
-    }
-    .list{
-        font: 20px normal;
-        padding:0 10px 0 24px;
-        line-height: 30px;
-        text-align: center;
-        transform: rotate(90deg);
-    }
-    .player{
-        width: 20px;
-        height: 20px;
-        font: 20px normal;
-        line-height: 19px;
-        text-align: center;
-        padding:0 0 1px 1px;
-        border-radius: 50% 50%;
-        border: 1px solid black;
-        margin: 12px 6px 0 0;
-        transition: all 0.5s;
-        color: #c62f2f;
-    }
-    .stop{
-        transform: rotate(45deg);
-        color: black;
-    }
-</style>
 <script>
     export default {
        name:'footer',
@@ -108,3 +54,61 @@
         }
     }
 </script>
+<style scoped lang="less">
+    @import (less) "../../style/mixin";
+    @ctn-margin: 1.76vw;
+    .foot{
+        width: 100%;
+        position: fixed;
+        background: white;
+        bottom: 0;
+        padding:5px 0;
+        z-index: 200;
+        padding: @ctn-margin 0;
+        .img{
+            width: 10.56vw;
+            height: 10.56vw;
+            float: left;
+            margin: 0 @ctn-margin;
+        }
+        .song-info{
+            float: left;
+            span{
+                display: block;
+            }
+            span:first-child{
+                color: black;
+                font-size: 3.52vw;
+            }
+            span:last-child{
+                color: gray;
+                font-size: 3.17vw;
+            }
+        }
+        a{
+            float: right;
+        }
+        a:hover{
+            text-decoration: none;
+        }
+        .list{
+            display: inline-block;
+            font-size: 5.99vw;
+            margin: @ctn-margin;
+        }
+        .player{
+            width: 7.75vw;
+            height: 7.75vw;
+            font-size: 4vw;
+            line-height: 7.75vw;
+            text-align: center;
+            margin: @ctn-margin 0;
+            border-radius: 50% 50%;
+            border: 1px solid black;
+            color: @red;
+        }
+        .stop{
+            color: black;
+        }
+    }
+</style>

@@ -14,49 +14,6 @@
         </ul>
     </div>
 </template>
-<style scoped>
-    .meeting{
-        margin: 10px 0 0 0;
-    }
-    .meeting a:hover{
-        text-decoration: none;
-    }
-    .meeting a:hover img{
-        background: red;
-    }
-    .meeting .container{
-        float: left;
-        width: 25%;
-        overflow: hidden;
-    }
-    .meeting .icon{
-        width: 50px;
-        height: 50px;
-        margin: 0 auto 5px;
-        border-radius: 50% 50%;
-        border: 1px solid red;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .icon i{
-        color: red;
-        font: 1.7rem bold;
-    }
-    .icon:hover{
-        background: red;
-    }
-    .icon:hover i{
-        color: white;
-    }
-    .meeting span{
-        display: inline-block;
-        width: 100%;
-        text-align: center;
-        font:12px normal;
-        margin: 0 0 10px 0;
-    }
-</style>
 <script>
     export default {
         name:'meeting',
@@ -79,3 +36,48 @@
         }
     }
 </script>
+<style scoped lang="less">
+    @import (less) "../../../style/mixin";
+    .meeting{
+        /*margin: 4.23vw 0 0 0;*/
+        a:hover{
+            text-decoration: none;
+            img{
+                background: @red;
+            }
+        }
+        .container{
+            float: left;
+            width: 25vw;
+            overflow: hidden;
+            .icon{
+                width: 13.73vw;
+                height: 13.73vw;
+                margin: 4.23vw auto 3.17vw;
+                border-radius: 50% 50%;
+                border: .3vw solid @red;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                i{
+                    color: @red;
+                    font-size: 6.34vw;
+                }
+            }
+            .icon:hover{
+                background: @red;
+                i {
+                    color: white;
+                }
+            }
+        }
+        span{
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            font-size: 3.52vw;
+            margin: 0 0 5.28vw 0;
+        }
+    }
+</style>
+

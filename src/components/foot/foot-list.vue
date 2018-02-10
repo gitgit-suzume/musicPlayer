@@ -1,5 +1,5 @@
 <template>
-    <div class="bg" @click="hide($event)" v-show="show">
+    <div class="foot-list" @click="hide($event)" v-show="show">
         <transition name="foot-list">
         <div class="container" v-show="show">
             <div class="button">
@@ -34,6 +34,52 @@
         </transition>
     </div>
 </template>
+<script>
+    export default {
+        name:'foot-list',
+        data (){
+            return {
+                playingType:0,
+                songsCount:0,
+                songsNum:0,
+                playingMode:[{
+                    type:'列表循环',
+                    img:'yellow'
+                },{
+                    type:'随机播放',
+                    img:'orange'
+                },{
+                    type:'单曲循环',
+                    img:'brown'
+                }]
+            }
+        },
+        computed:{
+            show () {
+                return this.$store.getters.showPlayList;
+            },
+            list (){
+                return this.$store.state.playingList;
+            },
+            currentSong () {
+                return this.$store.state.playingIndex;
+            }
+        },
+        methods:{
+            clearSong (index) {
+                this.$store.commit('removePlayingListSongs', index);
+            },
+            hide (event) {
+                if(event.target == event.currentTarget){
+                    this.$store.commit('hidePlayList');
+                }
+            },
+            changeCurSong (index) {
+                this.$store.commit('changeCurSong', index);
+            }
+        },
+    }
+</script>
 <style lang="less" scoped>
     @keyframes to-up {
         0%{
@@ -172,49 +218,3 @@
         font: 14px normal;
     }
 </style>
-<script>
-    export default {
-        name:'foot-list',
-        data: function(){
-            return {
-                playingType:0,
-                songsCount:0,
-                songsNum:0,
-                playingMode:[{
-                    type:'列表循环',
-                    img:'yellow'
-                },{
-                    type:'随机播放',
-                    img:'orange'
-                },{
-                    type:'单曲循环',
-                    img:'brown'
-                }]
-            }
-        },
-        computed:{
-            show: function () {
-                return this.$store.getters.showPlayList;
-            },
-            list: function(){
-                return this.$store.state.playingList;
-            },
-            currentSong:function () {
-                return this.$store.state.playingIndex;
-            }
-        },
-        methods:{
-            clearSong: function (index) {
-                this.$store.commit('removePlayingListSongs', index);
-            },
-            hide: function (event) {
-                if(event.target == event.currentTarget){
-                    this.$store.commit('hidePlayList');
-                }
-            },
-            changeCurSong:function (index) {
-                this.$store.commit('changeCurSong', index);
-            }
-        },
-    }
-</script>

@@ -17,8 +17,10 @@
     };
 </script>
 <style scoped lang="less">
+    @import (less) "../../style/mixin.less";
+    @padding-top: (@home-guide-heigth + @header-height);
     .home{
         overflow: hidden;
-        padding: 86px 0 50px 0;
+        padding: @padding-top 0 50px 0;
     }
 </style>

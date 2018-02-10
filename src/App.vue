@@ -40,12 +40,12 @@
                 const info = data;
                 store.commit('initInfo', info);
             });
-          Login.login('17854287241', 'cyy5507889').then(res => {
-              this.msg = res
-              console.log('res', res)
-          }).catch(err => {
-              console.log('err', err)
-          })
+          // Login.login('17854287241', 'cyy5507889').then(res => {
+          //     this.msg = res
+          //     console.log('res', res)
+          // }).catch(err => {
+          //     console.log('err', err)
+          // })
         }
     }
 </script>

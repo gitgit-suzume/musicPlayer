@@ -1,6 +1,8 @@
 # 介绍
 > 模仿网易云音乐移动端app的vue项目。
+
 > 技术栈为vue + vuex + vue-route + webpack。后台是其他github用户提供的数据接口
+
 > 请务必用chrome浏览器的移动模式浏览
 
 ## 项目运行

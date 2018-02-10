@@ -6,31 +6,6 @@
         </a>
     </div>
 </template>
-<style scoped>
-    .recommend-title{
-        margin:10px 0;
-        border-left: #c62f2f solid 3px;
-    }
-    .recommend-title a:hover{
-        text-decoration:none;
-    }
-    .recommend-title h1{
-        display: inline-block;
-        margin: 0 0 0 8px;
-        color: black;
-        font: 14px normal;
-    }
-    .recommend-title span{
-        color: rgba(0,0,0,0.5);
-        font: 14px normal;
-    }
-    .recommend-title:active h1{
-        opacity: 0.5;
-    }
-    .recommend-title:active span{
-        opacity: 0.5;
-    }
-</style>
 <script>
     export default {
         name:'recommend-tilte',
@@ -41,3 +16,31 @@
         }
     }
 </script>
+<style scoped lang="less">
+    @import (less) "../../../style/mixin";
+    .recommend-title{
+        margin: 6.69vw 0 4.23vw 0;
+        border-left: @red solid .71vw;
+        a:hover{
+            text-decoration:none;
+        }
+        h1{
+            display: inline-block;
+            margin: 0 0 0 2.46vw;
+            color: black;
+            font-size: 4.23vw;
+        }
+        span{
+            color: rgba(0,0,0,0.5);
+            font: 14px normal;
+        }
+    }
+    .recommend-title:active{
+        h1 {
+            opacity: 0.5;
+        }
+        span{
+            opacity: 0.5;
+        }
+    }
+</style>
