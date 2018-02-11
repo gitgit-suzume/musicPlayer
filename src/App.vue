@@ -4,6 +4,7 @@
     <router-view></router-view>
     <foot></foot>
     <foot-list></foot-list>
+    <foot-order></foot-order>
     <user-info></user-info>
     <song-sheet></song-sheet>
   </div>
@@ -17,6 +18,7 @@
     import FootList from './components/foot/foot-list.vue'
     import UserInfo from './components/user-info/user-info.vue'
     import SongSheet from './components/song-sheet/index.vue'
+    import FootOrder from './components/foot/foot-order.vue'
     import {mapActions, mapGetters} from 'vuex'
 
     import Login from './api/login'
@@ -33,7 +35,8 @@
             foot: foot,
             'foot-list': FootList,
             'user-info': UserInfo,
-            'song-sheet': SongSheet
+            'song-sheet': SongSheet,
+            'foot-order': FootOrder
         },
         created: function () {
             jQuery.get('../static/data.json', function (data, status) {

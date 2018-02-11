@@ -5,7 +5,7 @@
         <intro></intro>
         <info></info>
         <playing-list></playing-list>
-        <foot-order></foot-order>
+        <!--<foot-list></foot-list>-->
     </div>
     </transition>
 </template>
@@ -42,7 +42,6 @@
     import Intro from './intro.vue'
     import Info from './sheet-info.vue'
     import PlayingList from './playing-list.vue'
-    import FootOrder from './foot-order.vue'
     export default {
         name: 'song-sheet',
         data () {
@@ -60,8 +59,7 @@
             guide: Guide,
             intro:Intro,
             info:Info,
-            'playing-list':PlayingList,
-            'foot-order':FootOrder
+            'playing-list':PlayingList
         },
     }
 </script>
