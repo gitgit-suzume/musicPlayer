@@ -1,32 +1,42 @@
 <template>
-    <div class="foot-list" @click="hide($event)" v-show="show">
+    <div class="foot-list"
+         @click="hide($event)"
+         v-show="show">
         <transition name="foot-list">
-        <div class="container" v-show="show">
+        <div class="container"
+             v-show="show">
             <div class="button">
-                <a href="javascript:;" class="info" @click="playingType=(playingType+1)%3">
+                <a href="javascript:;"
+                   class="info manage-item"
+                   @click="playingType=(playingType+1)%3">
                     <span class="img"
-                          :style="{background:playingMode[playingType%3].img}"></span>
+                          :class="playingMode[playingType%3].className"></span>
                     <span>{{playingMode[playingType%3].type}}({{songsCount}})</span>
                 </a>
-                <a href="javascript:;" class="clear">
+                <a href="javascript:;"
+                   class="clear manage-item">
                     <span class="el-icon-delete"></span>
                     <span>清空</span>
                 </a>
-                <a href="javascript:;" class="collect">
-                    <span class="el-icon-printer"></span>
+                <a href="javascript:;"
+                   class="collect manage-item">
+                    <span class="el-icon-star-off"></span>
                     <span>收藏全部</span>
                 </a>
             </div>
             <ul>
-                <li v-for="(item,index) in list" @click="changeCurSong(index)">
+                <li v-for="(item,index) in list"
+                    @click="changeCurSong(index)">
                     <a href="javascript:;">
-                        <span class="bugle" v-show="currentSong===index"></span>
-                        <div class="aboutSong">
-                            <span :class="['song',currentSong===index?'active':'']">{{item.name}}</span>
-                            <span :class="['singer',currentSong===index?'active':'']">- {{item.singer}}</span>
+                        <div>
+                            <span class="el-icon-phone-outline bugle"
+                                  v-show="currentSong===index"></span>
+                            <div class="about-song">
+                                <span :class="['song',currentSong===index?'active':'']">{{item.name}}</span>
+                                <span :class="['singer',currentSong===index?'active':'']">- {{item.singer}}</span>
+                            </div>
                         </div>
-                        <span class="remove" @click="clearSong(index)">x</span>
-                        <span class="songSheet" v-show="currentSong===index">8</span>
+                        <span class="remove el-icon-close" @click="clearSong(index)"></span>
                     </a>
                 </li>
             </ul>
@@ -44,13 +54,13 @@
                 songsNum:0,
                 playingMode:[{
                     type:'列表循环',
-                    img:'yellow'
+                    className: 'el-icon-refresh'
                 },{
                     type:'随机播放',
-                    img:'orange'
+                    className: 'el-icon-question'
                 },{
                     type:'单曲循环',
-                    img:'brown'
+                    className: 'el-icon-loading'
                 }]
             }
         },
@@ -81,6 +91,12 @@
     }
 </script>
 <style lang="less" scoped>
+    @import (less) "../../style/mixin";
+    @margin-between: 2.11vw;
+    @margin-img: 3.17vw;
+    .font-size{
+        font-size: 3.87vw;
+    }
     @keyframes to-up {
         0%{
             bottom:-50%;
@@ -97,124 +113,110 @@
     .foot-list-leave-active{
         animation: to-up .25s ease reverse;
     }
-    .bg{
+    .foot-list{
+        .bg-black;
         position: fixed;
         top: 0;
         left:0;
         width: 100%;
         height: 100%;
-        background: rgba(0,0,0,0.25);
         z-index: 300;
         transition: opacity .25s;
-    }
-    .container{
-        width: 100%;
-        height: 50%;
-        background: white;
-        overflow: scroll;
-        overflow-x: hidden;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-    }
-    .button{
-        position: fixed;
-        background: white;
-        width: 100%;
-        height: 20px;
-        padding:8px 0;
-        border-bottom: 1px solid gray;
-        z-index: 300;
+        .container{
+            width: 100%;
+            height: 63.39%;
+            background: white;
+            overflow: scroll;
+            overflow-x: hidden;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            .button{
+                position: fixed;
+                background: white;
+                width: 100%;
+                padding: 5.46vw 0;
+                border-bottom: 1px solid gray;
+                z-index: 300;
+                .manage-item{
+                    display: flex;
+                    align-items: center;
+                    .font-size;
+                    .img{
+                        display: inline-block;
+                        height: 20px;
+                    }
+                }
+                .info{
+                    float: left;
+                    color: black;
+                    .img{
+                        font-size: 4.75vw;
+                        width: 4.75vw;
+                        height: 4.75vw;
+                        color: gray;
+                        margin:0 @margin-between 0 @margin-img;
+                    }
+                }
+                .clear{
+                    float: right;
+                    margin: 0 @margin-between 0 7.39vw;
+                    .img{
+                        color: gray;
+                        margin: 0 3px 0 0;
+                    }
+                }
+                .collect{
+                    float: right;
+                    .img{
+                        color: gray;
+                        margin: 0 3px 0 0;
+                    }
+                }
+            }
+        }
     }
     ul{
-        padding: 36px 0 0 0;
+        padding: 14.79vw 0 0 0;
+        li{
+            /*height: 12.68vw;*/
+            border-bottom: 1px solid gray;
+            padding: 4.93vw 0;
+            a{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                .bugle{
+                    .active;
+                    float: left;
+                    font-size: 4.23vw;
+                    margin: 0 @margin-img 0 @margin-between;
+                }
+                .about-song{
+                    float: left;
+                    max-width: 75vw;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    .song{
+                        font-size: 4.23vw;
+                        color: black;
+                    }
+                    .singer{
+                        color: gray;
+                        font-size: 3.17vw;
+                    }
+                }
+                .remove{
+                    color: gray;
+                    font-size: 3.52vw;
+                    margin: 0 @margin-between 0 0;
+                }
+            }
+            .active{
+                color:red !important;
+            }
+        }
     }
-    .info{
-        float: left;
-        color: black;
-        display: flex;
-        align-items: center;
-    }
-    .info .img{
-        display: inline-block;
-        width: 20px;
-        height: 20px;
-        margin:0 6px 0 8px;
-    }
-    .info span:last-child{
-        font: 16px normal;
-    }
-    .clear{
-        float: right;
-        display: flex;
-        align-items: center;
-        margin: 0 10px 0 25px;
-        font: 14px normal;
-    }
-    .clear .img{
-        display: inline-block;
-        height: 20px;
-        color: gray;
-        font: 14px normal;
-        margin: 0 3px 0 0;
-    }
-    .collect{
-        float: right;
-        display: flex;
-        font: 14px normal;
-        align-items: center;
-    }
-    .collect .img{
-        display: inline-block;
-        font: 14px normal;
-        height: 20px;
-        color: gray;
-        margin: 0 3px 0 0;
-    }
-    .container li{
-        height: 20px;
-        padding: 6px 10px 6px 6px;
-        background: white;
-        border-bottom: 1px solid gray;
-    }
-    .aboutSong{
-        float: left;
-        max-width: 75vw;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-    .song{
-        font: 14px nromal;
-        color: black;
-        line-height: 20px;
-        text-align: center;
-    }
-    .singer{
-        color: gray;
-        font: 12px normal;
-    }
-    .bugle{
-        float: left;
-        width: 14px;
-        height: 14px;
-        margin: 3px 6px 0 0;
-        border-radius: 50% 50%;
-        background: red;
-    }
-    .active{
-        color:red;
-    }
-    .remove{
-        color: gray;
-        float: right;
-        font: 14px normal;
-    }
-    .songSheet{
-        color: gray;
-        float: right;
-        transform: rotate(30deg);
-        margin: 0 23px 0 0;
-        font: 14px normal;
-    }
+
 </style>

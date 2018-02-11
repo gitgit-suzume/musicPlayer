@@ -10,10 +10,11 @@
         </div>
     </div>
 </template>
-<style scoped>
+<style scoped lang="less">
+    @import (less) "../../style/mixin";
     a, span{
         color: white;
-        font: 20px normal;
+        font-size: 5.28vw;
     }
     .guide{
         position: fixed;
@@ -21,18 +22,18 @@
         left:0;
         z-index: 125;
         width: 100%;
-        height: 50px;
+        height: @header-height;
         display: flex;
         justify-content: space-between;
         align-items: center;
         overflow: hidden;
     }
     .back{
-        margin: 0 10px 0 17px;
+        margin: 0 3.87vw 0 5.28vw;
     }
     .more{
         transform: rotate(90deg);
-        margin: 0 10px 0 17px;
+        margin: 0 6.34vw 0 8.45vw;
     }
 </style>
 <script>

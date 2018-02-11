@@ -9,7 +9,8 @@
     </div>
     </transition>
 </template>
-<style scoped>
+<style scoped lang="less">
+    @import (less) "../../style/mixin";
     @keyframes to-up {
          0%{
              top:75%;
