@@ -101,14 +101,12 @@
                     height: 12.85vw;
                     .img{
                         font-size: 4vw;
-                        margin: 3px 6px 0 0;
+                        margin: 0 4.4vw 0 @margin-left;
                     }
                     .title{
-                        /*padding: 4.4vw 0;*/
                         font-size: 3.52vw;
                         overflow: hidden;
                         color: black;
-                        border-bottom: 1px solid gray;
                     }
                 }
             }
