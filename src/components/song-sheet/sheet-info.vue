@@ -12,7 +12,7 @@
                 <a href="javascript:;">
                     <span class="img el-icon-info" >
                     </span>
-                    <span class="name">{{command}}</span>
+                    <span class="name">{{comment}}</span>
                 </a>
             </li>
             <li>
@@ -32,6 +32,49 @@
         </ul>
     </div>
 </template>
+<script>
+    export default {
+        name: 'sheet-info',
+        props:{
+            collect: {
+                type: [Number, String],
+                default: '收藏'
+            },
+            comment: {
+                type: [Number, String],
+                default: '评论'
+            },
+            share: {
+                type: [Number, String],
+                default: '分享'
+            }
+        },
+        data:function () {
+            return {
+                bgColor:'black',
+                downLoad:'下载'
+            }
+        },
+        methods:{
+            changeProp(val, defaultVal){
+                if(val === 0){
+                    return defaultVal
+                } else{
+                    return val >= 100000 ? Math.ceil(val/100000)+'万': val
+                }
+            }
+        },
+        created:function () {
+            var count, i, items = this.items;
+            for(i in items){
+                count = items[i].count;
+                if(count !== undefined && count > 0){
+                    this.items[i].name = count >= 100000 ? Math.ceil(count/100000)+'万': count;
+                }
+            }
+        }
+    }
+</script>
 <style scoped lang="less">
     @import (less) "../../style/mixin";
     .info{
@@ -60,55 +103,3 @@
         }
     }
 </style>
-<script>
-    export default {
-        name: 'sheet-info',
-        computed:{
-            collect:function(){
-                const data = this.$store.state.songSheet.collect;
-                if(!data){
-                    return '收藏';
-                } else {
-                    return data >= 100000 ? Math.ceil(data/100000) + '万' : data
-                }
-            },
-            command:function () {
-                const data = this.$store.state.songSheet.command;
-                if(!data){
-                    return '评论';
-                } else {
-                    return data >= 100000 ? Math.ceil(data/100000) + '万' : data;
-                }
-            },
-            share:function () {
-                const data = this.$store.state.songSheet.share;
-                if(!data){
-                    return '分享';
-                } else {
-                    return data >= 100000 ? Math.ceil(data/100000) + '万' : data
-                }
-            },
-        },
-        data:function () {
-            return {
-                bgColor:'black',
-                downLoad:'下载'
-//                items:[
-//                    {img:'white',name:'收藏',showing:true,count:645978},
-//                    {img:'gray',name:'评论',showing:true,count:2327},
-//                    {img:'pink',name:'分享',showing:true,count:4342},
-//                    {img:'deepskyblue',name:'下载',showing:true}
-//                ]
-            }
-        },
-        created:function () {
-            var count, i, items = this.items;
-            for(i in items){
-                count = items[i].count;
-                if(count !== undefined && count > 0){
-                    this.items[i].name = count >= 100000 ? Math.ceil(count/100000)+'万': count;
-                }
-            }
-        }
-    }
-</script>

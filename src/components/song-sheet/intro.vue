@@ -1,17 +1,17 @@
 <template>
     <div class="intro" >
         <div class="cover">
-            <img :src="songSheet.img?'../../../static/img/'+songSheet.img+'.jpg':'../../../static/img/logo.png'" alt="图片">
+            <img :src="coverImgUrl" alt="图片">
             <div class="listeners">
-                <span>{{songSheet.listener>100000?Math.ceil(songSheet.listener/100000)+'万':songSheet.listener}}</span>
+                <span>{{listener>100000?Math.ceil(listener/100000)+'万':listener}}</span>
             </div>
         </div>
         <div class="info">
-            <span class="sheet-name">{{songSheet.name}}</span>
+            <span class="sheet-name">{{name}}</span>
             <a href="javascript:;">
-                <!--<img class="head-img" :src="'../../../static/img/'+userImg+'.jpg'" alt="#">-->
-                <span class="head-img"></span>
-                <span class="user-name">{{songSheet.create}}></span>
+                <img class="head-img" :src="userImg" alt="#">
+                <!--<span class="head-img"></span>-->
+                <span class="user-name">{{creator}}></span>
             </a>
         </div>
     </div>
@@ -19,12 +19,26 @@
 <script>
     export default {
         name: 'intro',
-        computed:{
-            ListenersView:function () {
-                return this.listeners >= 100000 ? Math.ceil(this.listeners/100000)+'万':this.listeners;
+        props:{
+            coverImgUrl: {
+                type: String,
+                default: '#'
             },
-            songSheet:function () {
-                return this.$store.state.songSheet;
+            name: {
+                type: String,
+                default: ''
+            },
+            listener: {
+                type:[Number, String],
+                default: 0
+            },
+            userImg:{
+                type: String,
+                default: '#'
+            },
+            creator: {
+                type: String,
+                default: '歌单创建者'
             }
         }
     }

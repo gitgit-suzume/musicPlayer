@@ -43,6 +43,9 @@ const actions={
     setListId: ({commit}) => {
         commit('setListId')
     },
+    setPlayingList:function ({commit}) {
+        commit('setPlayingList');
+    },
 
     showUserList: ({commit}) => {
         commit('showUserList');
@@ -50,9 +53,7 @@ const actions={
     initInfo:function ({commit}) {
       commit('initInfo');
     },
-    setPlayingList:function ({commit}) {
-        commit('setPlayingList');
-    },
+
     removePlayingListSongs:function ({commit}) {
         commit('removePlayingListSongs');
     },
@@ -116,6 +117,12 @@ const mutations = {
     setListId: (state, id) => {
         state.listId = id
     },
+    setPlayingList:function (state, {data, index}) {
+        state.playingList = data;
+        state.playingIndex = index;
+        console.log(state.playingList[state.playingIndex])
+        state.playingTag = true;
+    },
 
     showUserList: (state) => {
         state.showUserList = !state.showUserList
@@ -129,11 +136,7 @@ const mutations = {
     stopPlaying:function (state) {
         state.playingTag = !state.playingTag;
     },
-    setPlayingList:function (state, {data, index}) {
-        state.playingList = data;
-        state.playingIndex = index;
-        state.playingTag = true;
-    },
+
     changeCurSong: function (state, index) {
         state.playingIndex = index;
         state.playingTag = true;

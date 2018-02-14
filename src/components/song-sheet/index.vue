@@ -2,9 +2,15 @@
     <transition name="song-sheet">
     <div class="song-sheet" v-show="showing">
         <guide></guide>
-        <intro></intro>
-        <info></info>
-        <playing-list></playing-list>
+        <intro :coverImgUrl="info.coverImgUrl"
+               :creator="info.creator.nickname"
+               :userImg="info.creator.avatarUrl"
+               :listener="info.playCount"
+               :name="info.name"></intro>
+        <info :collect="info.subscribedCount"
+              :share="info.shareCount"
+              :comment="info.commentCount"></info>
+        <playing-list :count="info.trackCount" :list="info.tracks"></playing-list>
         <!--<foot-list></foot-list>-->
     </div>
     </transition>
@@ -45,15 +51,18 @@
     import GetData from '../../api/getData'
     export default {
         name: 'song-sheet',
+        data(){
+            return {
+                info:{
+                    creator:{}
+                }
+            }
+        },
         computed:{
-            listId(){
-                return this.$store.state.listId
-            },
             showing () {
-                console.log(this.listId)
-                if(this.listId !== 0) {
-                    GetData.detailList(this.listId).then(res => {
-                        console.log(res)
+                if(this.$store.state.listId !== 0) {
+                    GetData.detailList(this.$store.state.listId).then(res => {
+                        this.info = res.data.result
                     }).catch(err => {
                         console.log(err);
                     })

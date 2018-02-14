@@ -33,7 +33,9 @@
                                   v-show="currentSong===index"></span>
                             <div class="about-song">
                                 <span :class="['song',currentSong===index?'active':'']">{{item.name}}</span>
-                                <span :class="['singer',currentSong===index?'active':'']">- {{item.singer}}</span>
+                                <span :class="['singer',currentSong===index?'active':'']">-</span>
+                                <span :class="['singer',currentSong===index?'active':'']"
+                                      v-for="singer in item.artists">{{singer.name}}</span>
                             </div>
                         </div>
                         <span class="remove el-icon-close" @click="clearSong(index)"></span>
@@ -199,6 +201,7 @@
                     text-overflow: ellipsis;
                     white-space: nowrap;
                     .song{
+                        margin: 0 0 0 @margin-between;
                         font-size: 4.23vw;
                         color: black;
                     }
@@ -210,7 +213,7 @@
                 .remove{
                     color: gray;
                     font-size: 3.52vw;
-                    margin: 0 @margin-between 0 0;
+                    margin: 0 @margin-between * 2 0 0;
                 }
             }
             .active{

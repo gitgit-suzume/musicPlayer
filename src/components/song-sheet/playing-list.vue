@@ -16,9 +16,9 @@
             </div>
         </a>
         <ul>
-            <li v-for="(item,index) in list" :key="item.id">
+            <li v-for="(item,index) in list" :key="index">
                 <a href="javascript:;"
-                   @click="playingThis(list, index)">
+                   @click="playingThis(list, item.id, index)">
                     <div class="index">
                         <span>{{index+1}}</span>
                     </div>
@@ -26,9 +26,13 @@
                         <div class="info">
                             <span>{{item.name}}</span>
                             <div class="sub">
-                                <span class="icon"
-                                      v-show="item.download"></span>
-                                <span>{{item.singer}}-{{item.album}}</span>
+                                <!--<span class="icon"-->
+                                      <!--v-show="item.download"></span>-->
+                                <span v-for="(singer,index) in item.artists">{{singer.name}}
+                                    {{index < (item.artists.length-1)?'/':''}}
+                                </span>
+                                <span>-</span>
+                                <span>{{item.album.name}}</span>
                             </div>
                         </div>
                         <a class="manage"
@@ -44,24 +48,14 @@
 <script>
     export default {
         name: 'playing-list',
-        computed:{
-            list:function () {
-                var result = [];
-                const songSheet = this.$store.state.songSheet,
-                    songs = this.$store.state.info.songs,
-                    songsNum = songSheet.songsId;
-                let songsIndex;
-                if(!songSheet || !songs || !songsNum){
-                    return ;
-                }
-                for (let i = 0, len = songsNum.length; i < len; i ++){
-                    songsIndex = parseInt(songsNum[i], 10)-1;
-                    result.push(songs[songsIndex]);
-                }
-                return result?result:[];
+        props:{
+            count:{
+                type:[Number, String],
+                default:0
             },
-            count: function(){
-                return (this.list == [] || this.list == undefined) ? 0 : this.list.length;
+            list:{
+                type:[Array],
+                defualt:[]
             }
         },
         methods:{
@@ -69,9 +63,9 @@
                 this.$store.commit('showFootOrder');
                 this.$store.commit('songSheetFoot',item);
             },
-            playingThis:function (info,index) {
-                var data = [].concat(info);
-                this.$store.commit('setPlayingList',{data:data, index:index});
+            playingThis:function (info, id, index) {
+                var data = Array.of(...info);
+                this.$store.commit('setPlayingList',{data:data, id: id, index:index});
             }
         }
     }
@@ -163,6 +157,11 @@
                             > span{
                                 display: inline-block;
                                 max-width: 50vw;
+                            }
+                            span:first-child{
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                white-space: nowrap;
                             }
                             .sub{
                                 font-size: 2.64vw;

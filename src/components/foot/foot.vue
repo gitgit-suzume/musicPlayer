@@ -1,25 +1,28 @@
 <template>
     <div class="foot" v-show="info">
-        <img class="img" :src="info?'../../../static/img/'+info.img+'.jpg':'../../../static/img/logo.png'" alt="#">
+        <img class="img" :src="info.album.picUrl" alt="#">
         <div class="song-info">
-            <span>{{info?info.name:'歌曲名字'}}</span>
-            <span>{{info?info.singer:'歌手'}}</span>
+            <span>{{info.name}}</span>
+            <span v-for="(singer,index) in info.artists">
+                {{singer.name}}
+                {{index < (info.artists.length-1)?'/':''}}
+            </span>
         </div>
         <a href="javascript:;" type="button" class="list" @click="showPlayList()">
-            <i class="el-icon-more"></i>
-        </a>
+                <i class="el-icon-more"></i>
+            </a>
         <a href="javascript:;"
-           type="button"
-           @click="togglePlaying()"
-           class="player"
-           v-if="playing"
-           :class="playing?'':'stop'">+</a>
+               type="button"
+               @click="togglePlaying()"
+               class="player"
+               v-if="playing"
+               :class="playing?'':'stop'">+</a>
         <a href="javascript:;"
-           type="button"
-           @click="togglePlaying()"
-           class="player"
-           v-else
-           :class="playing?'':'stop'">||</a>
+               type="button"
+               @click="togglePlaying()"
+               class="player"
+               v-else
+               :class="playing?'':'stop'">||</a>
     </div>
 </template>
 <script>
@@ -41,7 +44,7 @@
             info: function(){
                 var result = this.$store.state.playingList,
                     index = this.$store.state.playingIndex;
-                return result[index];
+                return result[index]
             }
         },
         methods:{
@@ -51,7 +54,7 @@
             togglePlaying:function () {
                 this.$store.commit('stopPlaying');
             }
-        }
+        },
     }
 </script>
 <style scoped lang="less">

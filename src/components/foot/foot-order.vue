@@ -22,12 +22,12 @@
                         <span class="title">收藏到歌单</span>
                     </a>
                 </li>
-                <li>
-                    <a href="javascript:;">
-                        <i class="img el-icon-edit-outline"></i>
-                        <span class="title">评论({{info.command}})</span>
-                    </a>
-                </li>
+                <!--<li>-->
+                    <!--<a href="javascript:;">-->
+                        <!--<i class="img el-icon-edit-outline"></i>-->
+                        <!--<span class="title">评论({{info.command}})</span>-->
+                    <!--</a>-->
+                <!--</li>-->
                 <li>
                     <a href="javascript:;">
                         <i class="img el-icon-share"></i>
@@ -37,13 +37,29 @@
                 <li>
                     <a href="javascript:;">
                         <i class="img el-icon-info"></i>
-                        <span class="title">歌手：{{info.singer}}</span>
+                        <span class="title">歌手：</span>
+                        <span class="title" v-for="singer in info.artists">{{singer.name}}</span>
+                        <span class="title" v-for="(singer, index) in info.artists">
+                            {{index < info.artists.length-1 ? '、': ''}}
+                        </span>
                     </a>
                 </li>
                 <li>
                     <a href="javascript:;">
                         <i class="img el-icon-info"></i>
-                        <span class="title">专辑：{{info.album}}</span>
+                        <span class="title">专辑：{{info.album.name}}</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <i class="img el-icon-info"></i>
+                        <span class="title">查看视频</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <i class="img el-icon-info"></i>
+                        <span class="title">彩铃</span>
                     </a>
                 </li>
             </ul>
@@ -136,7 +152,14 @@
                 return this.$store.getters.showFootOrder;
             },
             info(){
-                return this.$store.state.songSheetFoot;
+                if(this.$store.state.songSheetFoot) {
+                    return this.$store.state.songSheetFoot;
+                } else {
+                    return {
+                        album:{},
+                        artists:{}
+                    }
+                }
             }
         },
         methods:{
