@@ -4,7 +4,8 @@
             <div class="container" v-show="showing">
                 <div class="header">
                     <div class="appear">
-                        <div class="img"></div>
+                        <div class="img"
+                             :style="{background: 'url(' + this.avatarUrl + ')'}"></div>
                     </div>
                     <div class="info">
                         <div>
@@ -15,7 +16,7 @@
                             </a>
                             <a href="javascript:;"
                                class="lv">
-                                lv.{{lv}}
+                                lv.{{lv + 1}}
                             </a>
                         </div>
                         <a href="javascript:;"
@@ -113,6 +114,46 @@
         </transition>
     </div>
 </template>
+<script>
+    export default {
+        name:'user-info',
+        props: {
+            username:{
+                type: String,
+                default: '用户昵称'
+            },
+            lv:{
+                type: [Number, String],
+                default: 0
+            },
+            backgroundUlr:{
+                type: String,
+                defualt: '#'
+            },
+            avatarUrl:{
+                type: String,
+                default: '#'
+            }
+        },
+        data: function () {
+            return {
+                register:false,
+            }
+        },
+        computed:{
+            showing: function () {
+                return this.$store.state.showUserList
+            }
+        },
+        methods:{
+            hide (e){
+                if(e.target === e.currentTarget) {
+                    this.$store.commit('showUserList')
+                }
+            }
+        },
+    }
+</script>
 <style scoped lang="less">
     @import (less) "../../style/mixin";
     @margin-left: 2.82vw;
@@ -159,7 +200,9 @@
                     width: 17.96vw;
                     height: 17.96vw;
                     background: white;
+                    background-size: cover !important;
                     border-radius: 50% 50%;
+                    border: 2px solid white
                 }
                 .info{
                     display: flex;
@@ -168,13 +211,13 @@
                         max-width: 57%;
                         overflow: hidden;
                         display: flex;
-                        align-items: center;
+                        align-items: baseline;
                     }
                     a{
                         color: white;
                     }
                     .username{
-                        margin: 0 0 0 @margin-left;
+                        margin: 0 2vw 0 @margin-left;
                         font-size: 4.4vw;
                         display: inline-block;
                         overflow: hidden;
@@ -186,7 +229,6 @@
                         padding: 0 1.94vw;
                         border: .25vw solid white;
                         border-radius: 5vw;
-                        margin: 19px 0 0 0;
                     }
                     .register{
                         margin: 0 2.82vw 0 0;
@@ -233,35 +275,3 @@
 
 
 </style>
-<script>
-    export default {
-        name:'user-info',
-        data: function () {
-            return {
-                register:false,
-                username:'夏夜丶萤火夏夜丶萤火夏夜丶萤火夏夜丶萤火',
-                lv:6
-            }
-        },
-        computed:{
-            showing: function () {
-                return this.$store.state.showUserList
-            }
-        },
-        methods:{
-            hide (e){
-                if(e.target === e.currentTarget) {
-                    this.$store.commit('showUserList')
-                }
-            }
-//          disappear:function (event) {
-//              var count = 0;
-//              if(event.target==event.currentTarget){
-//                  var width = $('.container').innerWidth();
-//                  $('.container').css('left','-'+width+'px');
-//                  $('.bg').css('opacity','0');
-//              }
-//          }
-        },
-    }
-</script>

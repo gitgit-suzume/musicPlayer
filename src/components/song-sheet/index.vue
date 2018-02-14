@@ -42,16 +42,22 @@
     import Intro from './intro.vue'
     import Info from './sheet-info.vue'
     import PlayingList from './playing-list.vue'
+    import GetData from '../../api/getData'
     export default {
         name: 'song-sheet',
-        data () {
-            return {
-//                showing:true,
-                info:'from song sheet'
-            }
-        },
         computed:{
-            showing:function () {
+            listId(){
+                return this.$store.state.listId
+            },
+            showing () {
+                console.log(this.listId)
+                if(this.listId !== 0) {
+                    GetData.detailList(this.listId).then(res => {
+                        console.log(res)
+                    }).catch(err => {
+                        console.log(err);
+                    })
+                }
                 return this.$store.getters.showSongSheet;
             }
         },

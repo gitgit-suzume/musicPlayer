@@ -21,13 +21,23 @@ function playList(uid) {
     })
 }
 
+function detailList(id){
+    return fetch({
+        url: 'playlist/detail?id=' + id,
+        method: 'get'
+    })
+}
+
+
 export default {
     login,
-    refresh
+    refresh,
+    playList,
+    detailList
 }
 export {
     login,
-    refresh
+    refresh,
+    playList,
+    detailList
 }
-
-    // useid = 560325858

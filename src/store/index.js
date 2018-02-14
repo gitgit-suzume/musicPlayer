@@ -4,10 +4,15 @@ import Vuex from 'vuex'
 Vue.use(Vuex);
 
 const state = {
+    uid: 0,
+    createList: [],
+    collectList: [],
+    listId: 0,
+
     info: [],
     songSheet:[],
     songSheetFoot:{},
-    user:{},
+    // user:{},
     playingList:[],
     playingTag:false,
     collect:[],
@@ -26,6 +31,19 @@ const state = {
 };
 
 const actions={
+    setUid: ({commit}) => {
+        commit('setUid');
+    },
+    setCreateList: ({commit}) => {
+        commit('setCreateList')
+    },
+    setCollectList: ({commit}) => {
+        commit('setCollectList')
+    },
+    setListId: ({commit}) => {
+        commit('setListId')
+    },
+
     showUserList: ({commit}) => {
         commit('showUserList');
     },
@@ -86,12 +104,24 @@ const actions={
 };
 
 const mutations = {
+    setUid: (state, data) => {
+        state.uid = data
+    },
+    setCreateList: (state, arr) => {
+        state.createList = Array.of(...arr)
+    },
+    setCollectList: (state, arr) => {
+        state.collectList = Array.of(...arr)
+    },
+    setListId: (state, id) => {
+        state.listId = id
+    },
+
     showUserList: (state) => {
         state.showUserList = !state.showUserList
     },
     initInfo:function (state, info) {
         state.info = info;
-        state.user = info.user;
     },
     removePlayingListSongs: function (state, index) {
         state.playingList.splice(index, 1);

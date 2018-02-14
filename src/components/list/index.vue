@@ -1,8 +1,8 @@
 <template>
     <div class="list">
         <default-list></default-list>
-        <create-list></create-list>
-        <create-list></create-list>
+        <create-list :list="createList"></create-list>
+        <create-list :list="collectList"></create-list>
         <foot-list></foot-list>
     </div>
 </template>
@@ -13,6 +13,14 @@
     import FootList from './foot-list.vue'
     export default {
         name:'list',
+        computed: {
+            createList() {
+                return this.$store.state.createList;
+            },
+            collectList() {
+                return this.$store.state.collectList;
+            }
+        },
         data: function () {
             return {
                 info:'list data'
@@ -24,9 +32,6 @@
             'create-list':Create,
             'foot-list':FootList
         },
-        created: function () {
-            console.log('---------from list----------')
-        }
     }
 </script>
 <style scoped lang="less">

@@ -13,13 +13,13 @@
         </a>
         <ul v-show="showing">
             <li v-for="(item, index) in list">
-                <a href="javascript:;" @click="showSongSheet(item)">
-                    <img class="img" :src="item.img ? '../../../static/img/'+item.img+'.jpg' : '../../../static/img/logo.png'" alt="">
+                <a href="javascript:;" @click="showSongSheet(item.id)">
+                    <img class="img" :src="item.coverImgUrl" alt="">
                     <div class="container">
                         <div class="list-info">
                             <span class="list-name">{{item.name}}</span>
                             <div class="more-info">
-                                <span class="list-more-info">{{item.songsId.length}}首</span>
+                                <span class="list-more-info">{{item.trackCount}}首</span>
                             </div>
                         </div>
                         <div class="manage-icon">
@@ -36,15 +36,21 @@
 <script>
     export default{
         name:'createList',
+        props:{
+            list: {
+                type:[Object, Array],
+                default: []
+            }
+        },
         computed:{
-            list:function () {
-                return this.$store.state.info.myList;
-            },
+            // list:function () {
+            //     return this.$store.state.info.myList;
+            // },
             count: function () {
                 return this.list ? this.list.length : 0;
             }
         },
-        data: function (){
+        data (){
             return {
                 showing:true,
                 currentplaying:null,
@@ -61,9 +67,9 @@
                     deleteable: deleteable
                 });
             },
-            showSongSheet:function (data) {
+            showSongSheet (data) {
                 this.$store.commit('showSongSheet');
-                this.$store.commit('getSongSheet', data);
+                this.$store.commit('setListId', data);
             }
         },
     }

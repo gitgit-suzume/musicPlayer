@@ -21,11 +21,11 @@
             return {
                 list:[{
                     name:'本地音乐',
-                    count:'84',
+                    count:'0',
                     icon:'el-icon-printer'
                 },{
                     name:'最近播放',
-                    count:'100',
+                    count:'0',
                     maxCount:100,
                     icon:'el-icon-document'
                 },{
@@ -34,19 +34,19 @@
                     icon:'el-icon-printer'
                 },{
                     name:'我的电台',
-                    count: 1,
+                    count: 0,
                     icon:'el-icon-document'
                 },{
                     name:'我的收藏',
-                    count: 1,
+                    count: 0,
                     icon:'el-icon-printer'
                 }]
             }
         },
         methods:{
-            showSongSheet:function () {
-                this.$store.commit('showSongSheet');
-            }
+            // showSongSheet:function () {
+            //     this.$store.commit('showSongSheet');
+            // }
         }
     }
 </script>
