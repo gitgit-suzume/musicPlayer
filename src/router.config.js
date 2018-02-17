@@ -3,12 +3,15 @@ import List from './components/list/index.vue'
 import ListDetail from './components/list/detail/detail.vue'
 import SongSheet from './components/song-sheet/index.vue'
 import Friends from './components/friends/friends.vue'
+import SongPlayer from './components/song-plyaer/index.vue'
 
 import Music from './components/home/music/music.vue'
 import Video from './components/home/video/video.vue'
 import Radio from './components/home/radio/radio.vue'
 
 export default[
+    {path: '/song-player', component: SongPlayer},
+    {path:'/',redirect:'/list'},
     {path:'/home',redirect:'/home/music'},
     {
         path:'/home',
@@ -26,7 +29,6 @@ export default[
             {path:'/list/detail',component:ListDetail}
         ]
     },
-    {path:'/',redirect:'/list'},
     {path:'/friends',component:Friends},
     {path:'/song-sheet',component:SongSheet},
 ];

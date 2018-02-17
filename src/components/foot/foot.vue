@@ -77,15 +77,19 @@
         .song-info{
             float: left;
             span{
-                display: block;
+                color: gray;
+                font-size: 3.17vw;
             }
             span:first-child{
                 color: black;
                 font-size: 3.52vw;
+                max-width: 50vw;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
             }
-            span:last-child{
-                color: gray;
-                font-size: 3.17vw;
+            span:nth-child(1){
+                display: block;
             }
         }
         a{

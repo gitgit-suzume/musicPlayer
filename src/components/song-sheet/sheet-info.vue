@@ -5,21 +5,21 @@
                 <a href="javascript:;">
                     <span class="img el-icon-star-off" >
                     </span>
-                    <span class="name">{{collect}}</span>
+                    <span class="name">{{curCollect}}</span>
                 </a>
             </li>
             <li>
                 <a href="javascript:;">
                     <span class="img el-icon-info" >
                     </span>
-                    <span class="name">{{comment}}</span>
+                    <span class="name">{{curComment}}</span>
                 </a>
             </li>
             <li>
                 <a href="javascript:;">
                     <span class="img el-icon-share" >
                     </span>
-                    <span class="name">{{share}}</span>
+                    <span class="name">{{curShare}}</span>
                 </a>
             </li>
             <li>
@@ -55,23 +55,28 @@
                 downLoad:'下载'
             }
         },
-        methods:{
-            changeProp(val, defaultVal){
-                if(val === 0){
-                    return defaultVal
-                } else{
-                    return val >= 100000 ? Math.ceil(val/100000)+'万': val
+        computed: {
+            curCollect(){
+                if(this.collect === undefined || this.collect <= 0){
+                    return '收藏'
+                } else {
+                    return this.collect > 100000 ? Math.ceil(this.collect / 100000) + '万' : this.collect;
                 }
-            }
-        },
-        created:function () {
-            var count, i, items = this.items;
-            for(i in items){
-                count = items[i].count;
-                if(count !== undefined && count > 0){
-                    this.items[i].name = count >= 100000 ? Math.ceil(count/100000)+'万': count;
+            },
+            curComment(){
+                if(this.collect === undefined || this.collect <= 0){
+                    return '评论'
+                } else {
+                    return this.collect > 100000 ? Math.ceil(this.collect / 100000) + '万' : this.collect;
                 }
-            }
+            },
+            curShare(){
+                if(this.collect === undefined || this.collect <= 0){
+                    return '分享'
+                } else {
+                    return this.collect > 100000 ? Math.ceil(this.collect / 100000) + '万' : this.collect;
+                }
+            },
         }
     }
 </script>

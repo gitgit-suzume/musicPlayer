@@ -201,6 +201,10 @@
                     text-overflow: ellipsis;
                     white-space: nowrap;
                     .song{
+                        max-width: ;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
                         margin: 0 0 0 @margin-between;
                         font-size: 4.23vw;
                         color: black;

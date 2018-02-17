@@ -49,7 +49,9 @@
             'foot-order': FootOrder
         },
         methods: {
-            getPlayList (id) {
+            getPlayList () {
+                let id = this.$store.state.uid
+                console.log(id)
                 GetData.playList(id).then(res => {
                     let data = res.data.playlist
                     let createList = [], collectList = [], len = data.length
@@ -67,7 +69,7 @@
                 })
                 return null
             },
-            login(cb){
+            login(...args){
                 let cellPhone = 17854287241;
                 let password = 'cyy5507889'
                 GetData.login(cellPhone, password).then(res => {
@@ -77,7 +79,9 @@
                     this.userInfo.version = res.data.account.viptypeVersion
                     this.userInfo.avatarUrl = res.data.profile.avatarUrl
                     this.userInfo.backgroundUrl = res.data.profile.backgroundUrl
-                    cb(this.userInfo.userId)
+                    for(let i = 0, l = args.length; i < l; i ++){
+                        args[i]();
+                    }
                 }).catch(err => {
                     console.log('err', err)
                 })
@@ -88,7 +92,7 @@
                 const info = data;
                 store.commit('initInfo', info);
             });
-          this.login(this.getPlayList)
+          this.login(this.getPlayList, this.gerRecommend)
         }
     }
 </script>

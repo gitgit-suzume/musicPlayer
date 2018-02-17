@@ -16,6 +16,7 @@
     </div>
 </template>
 <script>
+    import GetData from '../../../api/getData'
     export default {
         name:'recommend-list',
         computed: {
@@ -25,8 +26,8 @@
         },
         methods:{
             showDetail:function (data) {
-                this.$store.commit('getSongSheet',data);
-                this.$store.commit('showSongSheet');
+                // this.$store.commit('getSongSheet',data);
+                // this.$store.commit('showSongSheet');
             }
         },
     }

@@ -67,7 +67,7 @@
         </transition>
     </div>
 </template>
-<style scoped lang="less">
+<style scoped lang="less"no>
     @import (less) "../../style/mixin";
     @margin-left: 2.82vw;
     @keyframes to-up {

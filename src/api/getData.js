@@ -2,7 +2,7 @@ import fetch from './fetch'
 
 function login(phone, password) {
     return fetch({
-        url: 'login/cellphone?phone=' + phone + '&password=' + password,
+        url: '/login/cellphone?phone=' + phone + '&password=' + password,
         method: 'get'
     })
 }
@@ -23,21 +23,21 @@ function playList(uid) {
 
 function detailList(id){
     return fetch({
-        url: 'playlist/detail?id=' + id,
+        url: '/playlist/detail?id=' + id,
         method: 'get'
     })
 }
-
 
 export default {
     login,
     refresh,
     playList,
-    detailList
+    detailList,
+
 }
 export {
     login,
     refresh,
     playList,
-    detailList
+    detailList,
 }

@@ -8,6 +8,7 @@ const state = {
     createList: [],
     collectList: [],
     listId: 0,
+    songId: 0,
 
     info: [],
     songSheet:[],

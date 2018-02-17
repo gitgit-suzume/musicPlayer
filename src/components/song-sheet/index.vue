@@ -15,34 +15,6 @@
     </div>
     </transition>
 </template>
-<style scoped lang="less">
-    @import (less) "../../style/mixin";
-    @keyframes to-up {
-         0%{
-             top:75%;
-             opacity: 0;
-         }
-         100%{
-             top: 0;
-             opacity: 1;
-         }
-     }
-    .song-sheet-enter-active{
-        animation: to-up .25s ease;
-    }
-    .song-sheet-leave-active{
-        animation: to-up .25s ease reverse;
-    }
-    .song-sheet{
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 100;
-        height: 100%;
-        overflow: auto;
-        background: #f2f2f2;
-    }
-</style>
 <script>
     import Guide from './guide.vue'
     import Intro from './intro.vue'
@@ -78,3 +50,31 @@
         },
     }
 </script>
+<style scoped lang="less">
+    @import (less) "../../style/mixin";
+    @keyframes to-up {
+        0%{
+            top:75%;
+            opacity: 0;
+        }
+        100%{
+            top: 0;
+            opacity: 1;
+        }
+    }
+    .song-sheet-enter-active{
+        animation: to-up .25s ease;
+    }
+    .song-sheet-leave-active{
+        animation: to-up .25s ease reverse;
+    }
+    .song-sheet{
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 100;
+        height: 100%;
+        overflow: auto;
+        background: #f2f2f2;
+    }
+</style>
