@@ -12,6 +12,8 @@
 * webpack：自动化构建工具，初始配置由vue-cli提供
 * less: css预处理语言
 
+```
+
 ## 项目运行
 
 ``` bash
