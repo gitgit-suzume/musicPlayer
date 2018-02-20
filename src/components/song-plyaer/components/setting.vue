@@ -27,6 +27,7 @@
     @import (less) "../../../style/mixin";
     @margin-between: 4.75vw;
     .setting{
+        clear: both;
         display: flex;
         justify-content: space-between;
         align-items: center;

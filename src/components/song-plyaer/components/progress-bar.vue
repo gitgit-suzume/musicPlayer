@@ -29,13 +29,24 @@
             })
         },
         methods:{
+            getLeft (el) {
+                let cur = el
+                let count = 0
+                while (cur != null){
+                    count += cur.offsetLeft
+                    cur = cur.offsetParent
+                }
+                return count
+            },
             moveBar(e){
                 let el = this.$refs.ball
-                console.log(el.offsetLeft)
                 if(!this.moving) {
                     return;
                 }
-                // el.style.left = (e.clientX + diff) + 'px'
+                let allLeft = this.getLeft(el)
+                let parentLeft = el.offsetLeft
+                let diff = allLeft - parentLeft
+                el.style.left = (e.clientX - diff) + 'px'
             },
             setEvent(e){
                 switch (e.type){
@@ -48,7 +59,6 @@
                     default:
                         this.moving = false;
                 }
-                // e.target.style.left = e.clientX + 'px';
             }
         }
     }
