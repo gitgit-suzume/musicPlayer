@@ -5,25 +5,23 @@
 
 ## 技术栈
 
-``` bash
-
 * vue+vuex+vue-router：核心框架
 * axios：请求数据
 * webpack：自动化构建工具，初始配置由vue-cli提供
 * less: css预处理语言
 
-```
-
 ## 项目运行
 
 ``` bash
 
-> 请务必先运行提供数据的API
-
 # 克隆到本地
 npm install https://github.com/gitgit-suzume/musicPlayer.git
 
+```
+
 > 请务必先运行提供数据的API
+
+``` bash
 
 # 进入文件夹
 cd musicPlayer/NeteaseCloudMusicApi
@@ -31,12 +29,15 @@ cd musicPlayer/NeteaseCloudMusicApi
 # 安装依赖
 npm i
 
-# 启动后台
+# 启动数据API
 node app.js
 
+```
 > 运行musicPlayer下的前端项目
 
-# 进入musicPlayer文件夹
+``` bash
+
+#进入musicPlayer文件夹
 cd musicPlayer
 
 # 安装依赖项
@@ -46,7 +47,6 @@ npm i
 npm run dev
 
 ```
-
 ## 功能
 
 > v1.0
