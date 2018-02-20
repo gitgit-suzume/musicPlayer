@@ -3,7 +3,7 @@
         <guide></guide>
         <record></record>
         <info></info>
-        <progress-bar></progress-bar>
+        <progress-bar ref="player"></progress-bar>
         <setting></setting>
     </div>
 </template>
@@ -26,7 +26,7 @@
             info: Info,
             setting: Setting,
             'progress-bar': ProgressBar
-        }
+        },
     }
 </script>
 <style lang="less" scoped>
