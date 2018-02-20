@@ -1,15 +1,17 @@
 <template>
-    <div class="progress-bar" @mouseover="moveBar($event)">
-        <span class="cur-time">{{curTime}}</span>
+    <div class="progress-bar"
+         @mouseleave.self="setEvent($event)"
+         @mouseup="setEvent($event)"
+         @mouseover="moveBar($event)">
+        <span class="cur-time">{{showCurTime.min}}:{{showCurTime.second}}</span>
         <div class="bar">
-            <div class="finish-bar"></div>
-            <div class="all-bar"></div>
+            <div class="finish-bar"
+                 :style="{width: finishBar + '%'}"></div>
             <div class="ball"
                  ref="ball"
-                 @mousedown="setEvent($event)"
-                 @mouseup="setEvent($event)"></div>
+                 @mousedown="setEvent($event)"></div>
         </div>
-        <span class="all-time">{{allTime}}</span>
+        <span class="all-time">{{showAllTime.min}}:{{showAllTime.second}}</span>
     </div>
 </template>
 <script>
@@ -18,46 +20,95 @@
         data () {
             return {
                 info: 'progress-bar',
-                curTime: '03:15',
-                allTime: '04:23',
+                curTime: {
+                    min: 0,
+                    second: 0
+                },
+                allTime: {
+                    min: 4,
+                    second: 29
+                },
                 moving: false
             }
         },
+        computed: {
+            showCurTime(){
+                return this.timeFormat(this.curTime)
+            },
+            showAllTime(){
+                return this.timeFormat(this.allTime)
+            },
+            finishBar(){
+                let allSecond = this.allTime.min * 60 + this.allTime.second
+                let curSecond = this.curTime.min * 60 + this.curTime.second
+                return curSecond / allSecond * 100
+            }
+        },
         mounted(){
-            this.$on('movingBar', (e) => {
-                this.moveBar(e)
-            })
+
         },
         methods:{
-            getLeft (el) {
-                let cur = el
-                let count = 0
-                while (cur != null){
-                    count += cur.offsetLeft
-                    cur = cur.offsetParent
+            timeFormat({min: min = 0, second: second = 0}){
+                if(second >= 60){
+                    min += second / 60
+                    second = second % 60
                 }
-                return count
+                if(second < 10){
+                    second = '0' + second
+                }
+                if(min < 10) {
+                    min = '0' + min
+                }
+                return {
+                    min: min,
+                    second: second
+                }
+            },
+            updateTime(time){
+                this.curTime = time
             },
             moveBar(e){
-                let el = this.$refs.ball
                 if(!this.moving) {
                     return;
                 }
-                let allLeft = this.getLeft(el)
-                let parentLeft = el.offsetLeft
-                let diff = allLeft - parentLeft
-                el.style.left = (e.clientX - diff) + 'px'
+                //计算滑块位移结果
+                let el = this.$refs.ball
+                let curTime = this.$refs.curTime
+                //边界
+                let parentNode = el.parentNode
+                let parentInfo = parentNode.getBoundingClientRect()
+                let min = parentInfo.x
+                let max = parentInfo.width + min
+                let clientX = e.clientX
+                let result = clientX - min
+                if(clientX < min){
+                    result = 0
+                }
+                if(clientX > max){
+                    result = parentInfo.width
+                }
+                el.style.left = result + 'px'
+                this.turnToTime(result, parentInfo.width)
+            },
+            turnToTime(finishWidth, allWidth){
+                let percent = finishWidth / allWidth
+                let allTime = this.allTime.min * 60 + this.allTime.second
+                let finishTime = Math.floor(allTime * percent)
+                this.curTime.min = Math.floor(finishTime / 60)
+                this.curTime.second = finishTime % 60
             },
             setEvent(e){
                 switch (e.type){
                     case 'mousedown':
                         this.moving = true;
                         break;
+                    case 'mouseleave':
                     case 'mouseup':
+                        console.log(e.type, e.target)
                         this.moving = false;
                         break;
                     default:
-                        this.moving = false;
+                        ;
                 }
             }
         }
@@ -67,12 +118,13 @@
     @import (less) "../../../style/mixin";
     @margin-between: 5.81vw;
     .progress-bar {
-        margin: 7.75vw 0 6.16vw 0;
+        padding: 7.75vw 0 6.16vw 0;
         display: flex;
         justify-content: space-between;
         align-items: center;
         span{
             font-size: 2.29vw;
+            user-select: none;
         }
         .cur-time{
             margin-left: @margin-between;
@@ -86,21 +138,17 @@
             position: relative;
             display: flex;
             align-items: center;
+            width: 73.59vw;
+            height: .7vw;
+            background: rgba(255, 255, 255, .5);
             .finish-bar{
                 position: absolute;
                 left: 0;
                 height: .7vw;
-                width: 50vw;
                 background: @red;
-            }
-            .all-bar{
-                width: 73.59vw;
-                height: .7vw;
-                background: rgba(255, 255, 255, .5)
             }
             .ball{
                 position: absolute;
-                left: 100px;
                 width: 1.23vw;
                 height: 1.23vw;
                 border-radius: 50% 50%;
