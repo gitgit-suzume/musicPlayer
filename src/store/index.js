@@ -8,7 +8,8 @@ const state = {
     createList: [],
     collectList: [],
     listId: 0,
-    songId: 0,
+    songId: 34204084,
+    songAudio: null,
 
     info: [],
     songSheet:[],
@@ -46,6 +47,9 @@ const actions={
     },
     setPlayingList:function ({commit}) {
         commit('setPlayingList');
+    },
+    setSongAudio: ({commit}) => {
+        commit('setSongAudio')
     },
 
     showUserList: ({commit}) => {
@@ -123,6 +127,9 @@ const mutations = {
         state.playingIndex = index;
         console.log(state.playingList[state.playingIndex])
         state.playingTag = true;
+    },
+    setSongAudio: (state, val) => {
+        state.songAudio = val
     },
 
     showUserList: (state) => {

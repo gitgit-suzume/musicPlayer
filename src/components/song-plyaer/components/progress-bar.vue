@@ -5,6 +5,7 @@
          @mouseover="moveBar($event)">
         <span class="cur-time">{{showCurTime.min}}:{{showCurTime.second}}</span>
         <div class="bar">
+            <p>2333</p>
             <div class="finish-bar"
                  :style="{width: finishBar + '%'}"></div>
             <div class="ball"
@@ -16,8 +17,15 @@
     </div>
 </template>
 <script>
+    import GetData from '../../../api/getData'
     export default {
         name: 'progress-bar',
+        props: {
+            url:{
+                type: String,
+                required: false
+            }
+        },
         data () {
             return {
                 info: 'progress-bar',

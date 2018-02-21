@@ -28,16 +28,24 @@ function detailList(id){
     })
 }
 
+function getMusic(id){
+    return fetch({
+        url: '/music/url?id=' + id,
+        method: 'get'
+    })
+}
+
 export default {
     login,
     refresh,
     playList,
     detailList,
-
+    getMusic
 }
 export {
     login,
     refresh,
     playList,
     detailList,
+    getMusic
 }

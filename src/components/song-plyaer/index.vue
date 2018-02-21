@@ -13,6 +13,7 @@
     import Info from './components/info.vue'
     import ProgressBar from './components/progress-bar.vue'
     import Setting from './components/setting.vue'
+    import GetData from '../../api/getData'
     export default {
         name: 'song-player',
         data () {

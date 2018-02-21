@@ -1,5 +1,6 @@
 <template>
-    <div class="foot" v-show="info">
+    <div class="foot" v-if="songId">
+        <audio :src="url" autoplay id="song-audio"></audio>
         <img class="img" :src="info.album.picUrl" alt="#">
         <div class="song-info">
             <span>{{info.name}}</span>
@@ -26,26 +27,43 @@
     </div>
 </template>
 <script>
+    import GetData from '../../api/getData'
     export default {
-       name:'footer',
-        data:function () {
+       name:'foot',
+        data () {
             return {
                 img:'pink',
                 song:'Gorgeous',
                 singer:'Taylor Swift',
                 allTime:'03:29',
                 finishTime: '00:00',
+                url: ''
             }
         },
         computed:{
-            playing: function () {
+            playing () {
                 return this.$store.state.playingTag;
             },
-            info: function(){
+            info (){
                 var result = this.$store.state.playingList,
                     index = this.$store.state.playingIndex;
                 return result[index]
+            },
+            songId (){
+                return this.$store.state.songId
             }
+        },
+        created(){
+           GetData.getMusic(this.songId).then(res => {
+               let id = this.songId
+               GetData.getMusic(id).then(res => {
+                   this.url = res.data.data[0].url
+               }).catch(err => {
+                   console.log(err)
+               })
+           }).catch(err => {
+               console.log(err)
+           })
         },
         methods:{
             showPlayList () {
@@ -53,6 +71,10 @@
             },
             togglePlaying () {
                 this.$store.commit('stopPlaying');
+            },
+            setSongAudio(url){
+                let el = document.querySelector('#song-audio')
+                console.log(el)
             }
         },
     }

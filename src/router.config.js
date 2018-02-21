@@ -9,8 +9,11 @@ import Music from './components/home/music/music.vue'
 import Video from './components/home/video/video.vue'
 import Radio from './components/home/radio/radio.vue'
 
+import Test from './components/test/test.vue'
+
 export default[
     {path: '/song-player', component: SongPlayer},
+    {path: '/test', component: Test},
     {path:'/',redirect:'/list'},
     {path:'/home',redirect:'/home/music'},
     {
