@@ -53,10 +53,16 @@
         methods:{
             autoPlay(){
                 let interval = 1000
-                this.timer = setTimeout(() => {
+                this.timer = setTimeout((cur) => {
+                    let curTime = this.countSecond(this.curTime)
+                    let allTime = this.countSecond(this.allTime)
+                    // let now = new Date()
+                    // console.log(now - cur)
+                    if(curTime >= allTime) {
+                        return
+                    }
                     if(!this.moving) {
                         this.curTime.second++
-                        console.log(this.curTime.min + ':' + this.curTime.second)
                         clearTimeout(this.timer)
                     }
                     setTimeout(this.autoPlay(), interval)
@@ -105,6 +111,7 @@
                 }
                 el.style.left = result + 'px'
                 this.turnToTime(result, parentInfo.width)
+                this.autoPlay()
             },
             turnToTime(finishWidth, allWidth){
                 let percent = finishWidth / allWidth
