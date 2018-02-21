@@ -48,10 +48,10 @@
             }
         },
         methods:{
-            showPlayList:function () {
+            showPlayList () {
                 this.$store.commit('showPlayList');
             },
-            togglePlaying:function () {
+            togglePlaying () {
                 this.$store.commit('stopPlaying');
             }
         },

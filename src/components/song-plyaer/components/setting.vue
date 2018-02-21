@@ -8,7 +8,7 @@
             <i class="el-icon-caret-right playing-button"></i>
             <i class="el-icon-arrow-right next"></i>
         </div>
-        <div class="right">
+        <div class="right" @click="showList()">
             <i class="el-icon-more"></i>
         </div>
     </div>
@@ -19,6 +19,12 @@
         data(){
             return {
                 info: 'setting'
+            }
+        },
+        methods:{
+            showList(){
+                console.log('showList')
+                this.$store.commit('showPlayList');
             }
         }
     }

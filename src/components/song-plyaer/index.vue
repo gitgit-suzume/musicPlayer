@@ -33,7 +33,7 @@
     @import (less) "../../style/mixin";
     .song-player{
         position: fixed;
-        z-index: 450;
+        z-index: 300;
         width: 100%;
         height: 100%;
         background: black;

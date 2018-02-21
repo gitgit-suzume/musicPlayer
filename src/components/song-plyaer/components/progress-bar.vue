@@ -9,6 +9,7 @@
                  :style="{width: finishBar + '%'}"></div>
             <div class="ball"
                  ref="ball"
+                 :style="{left: finishBar + '%'}"
                  @mousedown="setEvent($event)"></div>
         </div>
         <span class="all-time">{{showAllTime.min}}:{{showAllTime.second}}</span>
@@ -28,7 +29,8 @@
                     min: 4,
                     second: 29
                 },
-                moving: false
+                moving: false,
+                timer: null
             }
         },
         computed: {
@@ -39,20 +41,37 @@
                 return this.timeFormat(this.allTime)
             },
             finishBar(){
-                let allSecond = this.allTime.min * 60 + this.allTime.second
-                let curSecond = this.curTime.min * 60 + this.curTime.second
+                let allSecond = this.countSecond(this.allTime)
+                let curSecond = this.countSecond(this.curTime)
                 return curSecond / allSecond * 100
             }
         },
         mounted(){
-
+            clearTimeout(this.timer)
+            this.autoPlay()
         },
         methods:{
-            timeFormat({min: min = 0, second: second = 0}){
+            autoPlay(){
+                let interval = 1000
+                this.timer = setTimeout(() => {
+                    if(!this.moving) {
+                        this.curTime.second++
+                        console.log(this.curTime.min + ':' + this.curTime.second)
+                        clearTimeout(this.timer)
+                    }
+                    setTimeout(this.autoPlay(), interval)
+                }, interval)
+            },
+            countSecond({min: min = 0, second: second = 0}){
+                return min * 60 + second
+            },
+            timeFormat(time){
+                let {min: min = 0, second: second = 0} = time
                 if(second >= 60){
-                    min += second / 60
-                    second = second % 60
+                    time.min += second / 60
+                    time.second = second % 60
                 }
+                ({min: min = 0, second: second = 0} = time)
                 if(second < 10){
                     second = '0' + second
                 }
@@ -63,9 +82,6 @@
                     min: min,
                     second: second
                 }
-            },
-            updateTime(time){
-                this.curTime = time
             },
             moveBar(e){
                 if(!this.moving) {
@@ -92,7 +108,7 @@
             },
             turnToTime(finishWidth, allWidth){
                 let percent = finishWidth / allWidth
-                let allTime = this.allTime.min * 60 + this.allTime.second
+                let allTime = this.countSecond(this.allTime)
                 let finishTime = Math.floor(allTime * percent)
                 this.curTime.min = Math.floor(finishTime / 60)
                 this.curTime.second = finishTime % 60
@@ -104,7 +120,6 @@
                         break;
                     case 'mouseleave':
                     case 'mouseup':
-                        console.log(e.type, e.target)
                         this.moving = false;
                         break;
                     default:
