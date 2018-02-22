@@ -6,8 +6,6 @@
 
 > master分支数据需要在线获取，请在联网情况下运行。static分支数据来源于项目中的json文件，可离线运行。
 
-> 刷新页面次数过多可能会导致获取数据失败,此时请重新运行NeteaseCloudMusicApi目录下的app.js
-
 ## 技术栈
 
 * vue+vuex+vue-router：核心框架

@@ -157,7 +157,7 @@
                 } else {
                     return {
                         album:{},
-                        artists:{}
+                        artists:[]
                     }
                 }
             }

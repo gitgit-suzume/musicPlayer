@@ -1,11 +1,11 @@
 <template>
-    <div class="foot" v-show="songId" @click.self="toSongPlayer()">
+    <div class="foot" v-show="songId" @click="toSongPlayer()">
         <audio :src="url"
                autoplay
                ref="audio"
                id="song-audio"></audio>
         <img class="img" :src="info.album.picUrl" alt="#">
-        <div class="song-info">
+        <div class="song-info" >
             <span>{{info.name}}</span>
             <span v-for="(singer,index) in info.artists">
                 {{singer.name}}
@@ -22,14 +22,14 @@
                type="button"
                @click="togglePlaying()"
                class="player"
-               v-show="playing">
+               v-if="playing">
             <span>||</span>
         </a>
         <a href="javascript:;"
                type="button"
                @click="togglePlaying()"
                class="player stop"
-               v-show="!playing">
+               v-else>
             <span class="el-icon-caret-right"></span>
         </a>
     </div>
@@ -53,7 +53,15 @@
             info (){
                 var result = this.$store.state.playingList,
                     index = this.$store.state.playingIndex;
-                return result[index]
+                if(result[index]){
+                    return result[index]
+                } else {
+                    return {
+                        artists: [],
+                        name: '',
+                        album:{}
+                    }
+                }
             },
             songId (){
                 return this.$store.state.songId
