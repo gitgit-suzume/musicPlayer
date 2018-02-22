@@ -4,10 +4,22 @@
             <i class="el-icon-refresh"></i>
         </div>
         <div class="middle">
-            <i class="el-icon-arrow-left pre" @click="switchSong(-1)"></i>
-            <i class="playing-button" v-show="playing">||</i>
-            <i class="el-icon-caret-right playing-button" v-show="!playing"></i>
-            <i class="el-icon-arrow-right next" @click="switchSong(1)"></i>
+            <a href="javascript:;" type="button" @click="switchSong(-1)">
+                <i class="el-icon-arrow-left pre"></i>
+            </a>
+            <a href="javascript:;"
+               type="button"
+               class="playing-button"
+               @click="togglePlaying()">
+                <i  v-show="playing">||</i>
+                <i class="el-icon-caret-right" v-show="!playing"></i>
+            </a>
+            <a href="javascript:;"
+               class="next"
+               type="button"
+               @click="switchSong(1)">
+                <i class="el-icon-arrow-right"></i>
+            </a>
         </div>
         <div class="right" @click="showList()">
             <i class="el-icon-more"></i>
@@ -20,30 +32,43 @@
         data(){
             return {
                 playing: true,
-                switchTime: new Date(),
-                interval: 500,
-                timer: null
+                // switchTime: new Date(),
+                // interval: 500,
+                // timer: null
             }
         },
         computed:{
+            songAudio(){
+                return this.$store.state.songAudio
+            },
             songIndex(){
                 return this.$store.state.playingIndex
             }
+        },
+        mounted(){
+            this.playing = !this.songAudio.paused
+            console.log(this.playing)
         },
         methods:{
             switchSong(type){
                 this.$store.commit('changeCurSong', this.songIndex + type)
                 // let cur = new Date()
-                // clearTimeout(this.timer)
-                // if(!this.switchTime){
-                //     this.switchTime = new Date()
-                // }
                 // if(cur - this.switchTime >= this.interval) {
                 //     this.switchTime = cur
                 //     this.$store.commit('changeCurSong', this.songIndex + type)
                 // } else {
-                //     this.timer = setTimeout(this.switchSong(type), 250)
+                //     setTimeout(this.switchSong(type))
                 // }
+            },
+            togglePlaying(){
+                if(this.songAudio.paused){
+                    this.songAudio.play()
+                    this.playing = true
+                } else {
+                    this.songAudio.pause()
+                    this.playing = false
+                }
+                console.log(this.playing)
             },
             showList(){
                 console.log('showList')
@@ -61,6 +86,9 @@
         justify-content: space-between;
         align-items: center;
         color: white;
+        a{
+            color: white;
+        }
         .left{
             margin-left: @margin-between;
             font-size: 5.99vw;
@@ -81,7 +109,7 @@
             height: 12.5vw;
             border: 1px solid white;
             border-radius: 50% 50%;
-            font-size: 7.5vw;
+            font-size: 6vw;
             margin: 0 11.8vw;
         }
         .pre, .next{

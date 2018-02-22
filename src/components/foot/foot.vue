@@ -1,5 +1,5 @@
 <template>
-    <div class="foot" v-show="songId" @click="toSongPlayer()">
+    <div class="foot" v-show="songId" @click.self="toSongPlayer()">
         <audio :src="url"
                autoplay
                ref="audio"
