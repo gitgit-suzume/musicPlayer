@@ -72,7 +72,7 @@
     }
 </script>
 <style scoped lang="less">
-    @import (less) "../../style/mixin";
+    @import (less) "../../../style/mixin";
     @icon-font-size: 4vw;
     @font-size: 4.4vw;
     @margin-left: 4.23vw;
@@ -126,6 +126,7 @@
             }
         }
         ul{
+            padding-bottom: @foot-height;
             li{
                 overflow: hidden;
                 margin: -3px 0 0 0 ;

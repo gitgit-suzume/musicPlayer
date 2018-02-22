@@ -44,7 +44,7 @@
     }
 </script>
 <style scoped lang="less">
-    @import (less) "../../style/mixin";
+    @import (less) "../../../style/mixin";
     .intro{
         width: 100%;
         height: auto;

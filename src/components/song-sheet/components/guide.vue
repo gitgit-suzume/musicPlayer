@@ -11,7 +11,7 @@
     </div>
 </template>
 <style scoped lang="less">
-    @import (less) "../../style/mixin";
+    @import (less) "../../../style/mixin";
     a, span{
         color: white;
         font-size: 5.28vw;

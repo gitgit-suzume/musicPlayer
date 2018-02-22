@@ -16,10 +16,10 @@
     </transition>
 </template>
 <script>
-    import Guide from './guide.vue'
-    import Intro from './intro.vue'
-    import Info from './sheet-info.vue'
-    import PlayingList from './playing-list.vue'
+    import Guide from './components/guide.vue'
+    import Intro from './components/intro.vue'
+    import Info from './components/sheet-info.vue'
+    import PlayingList from './components/playing-list.vue'
     import GetData from '../../api/getData'
     export default {
         name: 'song-sheet',
@@ -75,6 +75,7 @@
         z-index: 100;
         height: 100%;
         overflow: auto;
-        background: #f2f2f2;
+        background: white;
+        /*background: #f2f2f2;*/
     }
 </style>

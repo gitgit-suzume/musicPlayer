@@ -4,9 +4,10 @@
             <i class="el-icon-refresh"></i>
         </div>
         <div class="middle">
-            <i class="el-icon-arrow-left pre"></i>
-            <i class="el-icon-caret-right playing-button"></i>
-            <i class="el-icon-arrow-right next"></i>
+            <i class="el-icon-arrow-left pre" @click="switchSong(-1)"></i>
+            <i class="playing-button" v-show="playing">||</i>
+            <i class="el-icon-caret-right playing-button" v-show="!playing"></i>
+            <i class="el-icon-arrow-right next" @click="switchSong(1)"></i>
         </div>
         <div class="right" @click="showList()">
             <i class="el-icon-more"></i>
@@ -18,10 +19,32 @@
         name: 'setting',
         data(){
             return {
-                info: 'setting'
+                playing: true,
+                switchTime: new Date(),
+                interval: 500,
+                timer: null
+            }
+        },
+        computed:{
+            songIndex(){
+                return this.$store.state.playingIndex
             }
         },
         methods:{
+            switchSong(type){
+                this.$store.commit('changeCurSong', this.songIndex + type)
+                // let cur = new Date()
+                // clearTimeout(this.timer)
+                // if(!this.switchTime){
+                //     this.switchTime = new Date()
+                // }
+                // if(cur - this.switchTime >= this.interval) {
+                //     this.switchTime = cur
+                //     this.$store.commit('changeCurSong', this.songIndex + type)
+                // } else {
+                //     this.timer = setTimeout(this.switchSong(type), 250)
+                // }
+            },
             showList(){
                 console.log('showList')
                 this.$store.commit('showPlayList');

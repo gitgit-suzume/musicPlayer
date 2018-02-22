@@ -138,6 +138,10 @@ const mutations = {
         state.songId = id
     },
     changeCurSong: (state, index) => {
+        let len = state.playingList.length
+        if(index < 0 || index >= len){
+            return ;
+        }
         state.playingIndex = index;
         state.playingTag = true;
     },

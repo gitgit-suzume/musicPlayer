@@ -22,14 +22,14 @@
                type="button"
                @click="togglePlaying()"
                class="player"
-               v-if="playing">
+               v-show="playing">
             <span>||</span>
         </a>
         <a href="javascript:;"
                type="button"
                @click="togglePlaying()"
                class="player stop"
-               v-else>
+               v-show="!playing">
             <span class="el-icon-caret-right"></span>
         </a>
     </div>

@@ -39,5 +39,6 @@
     .list{
         width: 100vw;
         margin-top: @header-height;
+        padding-bottom: @foot-height;
     }
 </style>

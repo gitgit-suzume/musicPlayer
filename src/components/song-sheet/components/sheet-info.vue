@@ -81,7 +81,7 @@
     }
 </script>
 <style scoped lang="less">
-    @import (less) "../../style/mixin";
+    @import (less) "../../../style/mixin";
     .info{
         width: 100%;
         padding: 0 0 3.52vw 0;

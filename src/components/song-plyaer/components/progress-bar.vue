@@ -1,7 +1,9 @@
 <template>
     <div class="progress-bar"
+         @touchend="setEvent($event)"
          @mouseleave.self="setEvent($event)"
          @mouseup="setEvent($event)"
+         @touchmove="moveBar($event)"
          @mouseover="moveBar($event)">
         <span class="cur-time">
             {{curTime.min}}:{{curTime.second}}
@@ -11,6 +13,7 @@
                  :style="{width: finishBar + '%'}"></div>
             <div class="ball"
                  :style="{left: finishBar + '%'}"
+                 @touchstart="setEvent($event)"
                  @mousedown="setEvent($event)"></div>
         </div>
         <span class="all-time">{{allTime.min}}:{{allTime.second}}</span>
@@ -26,14 +29,21 @@
                 currentTime: 0,
                 movingRate: 0,
                 movingTemp: -1,
+                duration: 0,
+            }
+        },
+        watch: {
+            songIndex: function () {
+                this.duration = this.songAudio.duration
+                this.currentTime = 0
             }
         },
         computed: {
             songAudio(){
                 return this.$store.state.songAudio
             },
-            duration(){
-                return Math.floor(this.songAudio.duration)
+            songIndex(){
+                return this.$store.state.playingIndex
             },
             curTime(){
                 let result = this.secondToFormat(this.currentTime)
@@ -57,6 +67,7 @@
             }
         },
         mounted(){
+            this.duration = this.songAudio.duration
             this.updateTime()
         },
         methods:{
@@ -100,12 +111,20 @@
                 let barInfo = bar.getBoundingClientRect()
                 let min = barInfo.x
                 let max = barInfo.width + min
-                let clientX = e.clientX
-                let result = clientX - min
-                if(clientX < min){
+                let x
+                switch(e.type) {
+                    case 'mouseover':
+                        x = e.clientX;
+                        break;
+                    case 'touchmove':
+                        x = e.touches[0].pageX
+                }
+                console.log(e.type, x)
+                let result = x - min
+                if(x < min){
                     result = 0
                 }
-                if(clientX > max){
+                if(x > max){
                     result = barInfo.width
                 }
 
@@ -113,21 +132,22 @@
                 // el.style.left = result + 'px'
             },
             setEvent(e){
+                console.log(e.type)
                 switch (e.type){
+                    case 'touchstart':
                     case 'mousedown':
                         this.moving = true;
+                        this.movingTemp = this.currentTime
                         break;
+                    case 'touchend':
                     case 'mouseleave':
                     case 'mouseup':
                         this.moving = false;
+                        this.songAudio.currentTime = this.movingTemp
+                        this.songAudio.play()
                         break;
                     default:
                         ;
-                }
-                if(!this.moving && this.movingTemp !== -1){
-                    this.songAudio.currentTime = this.movingTemp
-                    this.songAudio.play()
-                    this.movingTemp = -1
                 }
             }
         }

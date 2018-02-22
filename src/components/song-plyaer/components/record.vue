@@ -1,6 +1,6 @@
 <template>
     <div class="record">
-
+        <img src="" alt="">
     </div>
 </template>
 <script>

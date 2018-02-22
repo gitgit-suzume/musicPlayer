@@ -16,11 +16,13 @@
     import GetData from '../../api/getData'
     export default {
         name: 'song-player',
-        data () {
-            return {
-                info: 'song-player'
-            }
-        },
+        // computed:{
+        //     info(){
+        //         let index = this.$store.state.playingIndex
+        //         let list = this.$store.state.playingList
+        //         return list[index]
+        //     }
+        // },
         components: {
             guide: Guide,
             record: Record,
