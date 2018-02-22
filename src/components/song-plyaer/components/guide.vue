@@ -1,7 +1,7 @@
 <template>
     <div class="guide">
         <div class="left">
-            <i class="el-icon-back arrow"></i>
+            <i class="el-icon-back arrow" @click="goBack()"></i>
             <div class="info">
                 <span class="song">{{song}}</span>
                 <p>
@@ -25,6 +25,11 @@
             return {
                 song: '牵丝戏',
                 singer: ['银临', 'Aki阿杰']
+            }
+        },
+        methods:{
+            goBack(){
+                this.$router.go(-1)
             }
         }
     }

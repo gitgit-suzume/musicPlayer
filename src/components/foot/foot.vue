@@ -1,5 +1,5 @@
 <template>
-    <div class="foot" v-show="songId">
+    <div class="foot" v-show="songId" @click="toSongPlayer()">
         <audio :src="url"
                autoplay
                ref="audio"
@@ -12,7 +12,10 @@
                 {{index < (info.artists.length-1)?'/':''}}
             </span>
         </div>
-        <a href="javascript:;" type="button" class="list" @click="showPlayList()">
+        <a href="javascript:;"
+           type="button"
+           class="list"
+           @click="showPlayList()">
                 <i class="el-icon-more"></i>
             </a>
         <a href="javascript:;"
@@ -37,13 +40,13 @@
        name:'foot',
         data () {
             return {
-                playing: true,
                 img:'pink',
                 song:'Gorgeous',
                 singer:'Taylor Swift',
                 allTime:'03:29',
                 finishTime: '00:00',
-                url: ''
+                url: '',
+                playing: true
             }
         },
         computed:{
@@ -64,11 +67,14 @@
         },
         watch: {
           songId(val) {
-              console.log(val)
               this.getMusic(val)
+              this.playing = true
           }
         },
         methods:{
+           toSongPlayer(){
+               this.$router.push({path: '/song-player'})
+           },
             getMusic(id){
                 GetData.getMusic(id).then(res => {
                     this.url = res.data.data[0].url

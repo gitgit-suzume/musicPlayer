@@ -3,12 +3,13 @@
          @mouseleave.self="setEvent($event)"
          @mouseup="setEvent($event)"
          @mouseover="moveBar($event)">
-        <span class="cur-time">{{curTime.min}}:{{curTime.second}}</span>
-        <div class="bar">
+        <span class="cur-time">
+            {{curTime.min}}:{{curTime.second}}
+        </span>
+        <div class="bar" ref="bar">
             <div class="finish-bar"
                  :style="{width: finishBar + '%'}"></div>
             <div class="ball"
-                 ref="ball"
                  :style="{left: finishBar + '%'}"
                  @mousedown="setEvent($event)"></div>
         </div>
@@ -22,7 +23,9 @@
             return {
                 info: 'progress-bar',
                 moving: false,
-                currentTime: 0
+                currentTime: 0,
+                movingRate: 0,
+                movingTemp: -1,
             }
         },
         computed: {
@@ -44,7 +47,12 @@
             },
             finishBar(){
                 let allSecond = this.duration
-                let curSecond = this.currentTime
+                let curSecond
+                if(this.moving){
+                    curSecond = this.movingTemp
+                }else {
+                    curSecond = this.currentTime
+                }
                 return curSecond / allSecond * 100
             }
         },
@@ -86,33 +94,23 @@
                 if(!this.moving) {
                     return;
                 }
-                //计算滑块位移结果
-                let el = this.$refs.ball
+                // let el = this.$refs.ball
                 //边界
-                let parentNode = el.parentNode
-                let parentInfo = parentNode.getBoundingClientRect()
-                let min = parentInfo.x
-                let max = parentInfo.width + min
+                let bar = this.$refs.bar
+                let barInfo = bar.getBoundingClientRect()
+                let min = barInfo.x
+                let max = barInfo.width + min
                 let clientX = e.clientX
                 let result = clientX - min
                 if(clientX < min){
                     result = 0
                 }
                 if(clientX > max){
-                    result = parentInfo.width
+                    result = barInfo.width
                 }
 
-                el.style.left = result + 'px'
-                this.turnToTime(result, parentInfo.width)
-
-                this.autoPlay()
-            },
-            turnToTime(finishWidth, allWidth){
-                let percent = finishWidth / allWidth
-                let allTime = this.duration
-                let finishTime = allTime * percent
-                this.curTime.min = Math.floor(finishTime / 60)
-                this.curTime.second = finishTime % 60
+                this.movingTemp = this.duration * (result / barInfo.width)
+                // el.style.left = result + 'px'
             },
             setEvent(e){
                 switch (e.type){
@@ -125,6 +123,10 @@
                         break;
                     default:
                         ;
+                }
+                if(!this.moving && this.movingTemp !== -1){
+                    this.songAudio.currentTime = this.movingTemp
+                    this.movingTemp = -1
                 }
             }
         }
