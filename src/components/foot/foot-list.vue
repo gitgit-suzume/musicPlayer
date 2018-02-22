@@ -25,8 +25,8 @@
                 </a>
             </div>
             <ul>
-                <li v-for="(item,index) in list"
-                    @click="changeCurSong(index)">
+                <li v-for="(item, index) in list"
+                    @click="changeCurSong(index, item.id)">
                     <a href="javascript:;">
                         <div>
                             <span class="el-icon-phone-outline bugle"
@@ -75,9 +75,26 @@
             },
             currentSong () {
                 return this.$store.state.playingIndex;
+            },
+        },
+        watch:{
+            list: function (val) {
+                this.setSongId(val[this.currentSong].id)
+            },
+            currentSong: function(val) {
+                this.setSongId(this.list[val].id)
             }
         },
+        mounted(){
+            // this.songAudio.$on('ended', function () {
+            //     console.log('ended', this.currentSong)
+            //     this.$store.commit('changeCurSong', ++ this.currentSong);
+            // })
+        },
         methods:{
+            setSongId(id){
+                this.$store.commit('setSongId', id)
+            },
             clearSong (index) {
                 this.$store.commit('removePlayingListSongs', index);
             },
@@ -86,7 +103,7 @@
                     this.$store.commit('hidePlayList');
                 }
             },
-            changeCurSong (index) {
+            changeCurSong (index, id) {
                 this.$store.commit('changeCurSong', index);
             }
         },

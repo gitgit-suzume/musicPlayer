@@ -59,13 +59,14 @@
             }
         },
         methods:{
-            showDetail:function(item){
+            showDetail(item){
                 this.$store.commit('showFootOrder');
                 this.$store.commit('songSheetFoot',item);
             },
-            playingThis:function (info, id, index) {
+            playingThis (info, id, index) {
                 var data = Array.of(...info);
                 this.$store.commit('setPlayingList',{data:data, id: id, index:index});
+                this.$store.commit('setSongId', id)
             }
         }
     }

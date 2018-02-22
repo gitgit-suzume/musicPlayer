@@ -1,6 +1,9 @@
 <template>
-    <div class="foot" v-if="songId">
-        <audio :src="url" autoplay id="song-audio"></audio>
+    <div class="foot" v-show="songId">
+        <audio :src="url"
+               autoplay
+               ref="audio"
+               id="song-audio"></audio>
         <img class="img" :src="info.album.picUrl" alt="#">
         <div class="song-info">
             <span>{{info.name}}</span>
@@ -16,14 +19,16 @@
                type="button"
                @click="togglePlaying()"
                class="player"
-               v-if="playing"
-               :class="playing?'':'stop'">+</a>
+               v-if="playing">
+            <span>||</span>
+        </a>
         <a href="javascript:;"
                type="button"
                @click="togglePlaying()"
-               class="player"
-               v-else
-               :class="playing?'':'stop'">||</a>
+               class="player stop"
+               v-else>
+            <span class="el-icon-caret-right"></span>
+        </a>
     </div>
 </template>
 <script>
@@ -32,6 +37,7 @@
        name:'foot',
         data () {
             return {
+                playing: true,
                 img:'pink',
                 song:'Gorgeous',
                 singer:'Taylor Swift',
@@ -41,9 +47,6 @@
             }
         },
         computed:{
-            playing () {
-                return this.$store.state.playingTag;
-            },
             info (){
                 var result = this.$store.state.playingList,
                     index = this.$store.state.playingIndex;
@@ -51,30 +54,44 @@
             },
             songId (){
                 return this.$store.state.songId
+            },
+            songAudio(){
+                return this.$store.state.songAudio
             }
         },
         created(){
-           GetData.getMusic(this.songId).then(res => {
-               let id = this.songId
-               GetData.getMusic(id).then(res => {
-                   this.url = res.data.data[0].url
-               }).catch(err => {
-                   console.log(err)
-               })
-           }).catch(err => {
-               console.log(err)
-           })
+           this.getMusic(this.songId)
+        },
+        watch: {
+          songId(val) {
+              console.log(val)
+              this.getMusic(val)
+          }
         },
         methods:{
+            getMusic(id){
+                GetData.getMusic(id).then(res => {
+                    this.url = res.data.data[0].url
+                    this.setSongAudio()
+                }).catch(err => {
+                    console.log(err)
+                })
+            },
             showPlayList () {
                 this.$store.commit('showPlayList');
             },
             togglePlaying () {
-                this.$store.commit('stopPlaying');
+                if(this.songAudio.paused){
+                    this.songAudio.play()
+                } else {
+                    this.songAudio.pause()
+                }
+                this.playing = !this.songAudio.paused
+                // this.$store.commit('stopPlaying');
             },
             setSongAudio(url){
-                let el = document.querySelector('#song-audio')
-                console.log(el)
+                let songAudio = this.$refs.audio
+                this.$store.commit('setSongAudio', songAudio)
             }
         },
     }
@@ -138,6 +155,7 @@
         }
         .stop{
             color: black;
+            border: 1px solid gray;
         }
     }
 </style>

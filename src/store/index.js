@@ -51,6 +51,9 @@ const actions={
     setSongAudio: ({commit}) => {
         commit('setSongAudio')
     },
+    setSongId: ({commit}) => {
+        commit('setSongId')
+    },
 
     showUserList: ({commit}) => {
         commit('showUserList');
@@ -122,14 +125,16 @@ const mutations = {
     setListId: (state, id) => {
         state.listId = id
     },
-    setPlayingList:function (state, {data, index}) {
+    setPlayingList: (state, {data, index}) => {
         state.playingList = data;
         state.playingIndex = index;
-        console.log(state.playingList[state.playingIndex])
         state.playingTag = true;
     },
     setSongAudio: (state, val) => {
         state.songAudio = val
+    },
+    setSongId:(state, id) => {
+        state.songId = id
     },
 
     showUserList: (state) => {

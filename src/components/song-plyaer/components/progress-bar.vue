@@ -3,9 +3,8 @@
          @mouseleave.self="setEvent($event)"
          @mouseup="setEvent($event)"
          @mouseover="moveBar($event)">
-        <span class="cur-time">{{showCurTime.min}}:{{showCurTime.second}}</span>
+        <span class="cur-time">{{curTime.min}}:{{curTime.second}}</span>
         <div class="bar">
-            <p>2333</p>
             <div class="finish-bar"
                  :style="{width: finishBar + '%'}"></div>
             <div class="ball"
@@ -13,79 +12,65 @@
                  :style="{left: finishBar + '%'}"
                  @mousedown="setEvent($event)"></div>
         </div>
-        <span class="all-time">{{showAllTime.min}}:{{showAllTime.second}}</span>
+        <span class="all-time">{{allTime.min}}:{{allTime.second}}</span>
     </div>
 </template>
 <script>
-    import GetData from '../../../api/getData'
     export default {
         name: 'progress-bar',
-        props: {
-            url:{
-                type: String,
-                required: false
-            }
-        },
         data () {
             return {
                 info: 'progress-bar',
-                curTime: {
-                    min: 0,
-                    second: 0
-                },
-                allTime: {
-                    min: 4,
-                    second: 29
-                },
                 moving: false,
-                timer: null
+                currentTime: 0
             }
         },
         computed: {
-            showCurTime(){
-                return this.timeFormat(this.curTime)
+            songAudio(){
+                return this.$store.state.songAudio
             },
-            showAllTime(){
-                return this.timeFormat(this.allTime)
+            duration(){
+                return Math.floor(this.songAudio.duration)
+            },
+            curTime(){
+                let result = this.secondToFormat(this.currentTime)
+                result = this.timeFormat(result)
+                return result
+            },
+            allTime(){
+                let result = this.secondToFormat(this.duration)
+                result = this.timeFormat(result)
+                return result
             },
             finishBar(){
-                let allSecond = this.countSecond(this.allTime)
-                let curSecond = this.countSecond(this.curTime)
+                let allSecond = this.duration
+                let curSecond = this.currentTime
                 return curSecond / allSecond * 100
             }
         },
         mounted(){
-            clearTimeout(this.timer)
-            this.autoPlay()
+            this.updateTime()
         },
         methods:{
-            autoPlay(){
-                let interval = 1000
-                this.timer = setTimeout((cur) => {
-                    let curTime = this.countSecond(this.curTime)
-                    let allTime = this.countSecond(this.allTime)
-                    // let now = new Date()
-                    // console.log(now - cur)
-                    if(curTime >= allTime) {
-                        return
-                    }
-                    if(!this.moving) {
-                        this.curTime.second++
-                        clearTimeout(this.timer)
-                    }
-                    setTimeout(this.autoPlay(), interval)
+            updateTime(){
+                let interval = 250
+                setTimeout(() => {
+                    this.currentTime = this.songAudio.currentTime
+                    this.updateTime()
                 }, interval)
             },
-            countSecond({min: min = 0, second: second = 0}){
-                return min * 60 + second
+            secondToFormat(val){
+                let min = 0, second = 0
+                min = Math.floor(val / 60)
+                second = Math.floor(val % 60)
+                return {
+                    min: min,
+                    second: second
+                }
             },
             timeFormat(time){
                 let {min: min = 0, second: second = 0} = time
-                if(second >= 60){
-                    time.min += second / 60
-                    time.second = second % 60
-                }
-                ({min: min = 0, second: second = 0} = time)
+
                 if(second < 10){
                     second = '0' + second
                 }
@@ -103,7 +88,6 @@
                 }
                 //计算滑块位移结果
                 let el = this.$refs.ball
-                let curTime = this.$refs.curTime
                 //边界
                 let parentNode = el.parentNode
                 let parentInfo = parentNode.getBoundingClientRect()
@@ -117,14 +101,16 @@
                 if(clientX > max){
                     result = parentInfo.width
                 }
+
                 el.style.left = result + 'px'
                 this.turnToTime(result, parentInfo.width)
+
                 this.autoPlay()
             },
             turnToTime(finishWidth, allWidth){
                 let percent = finishWidth / allWidth
-                let allTime = this.countSecond(this.allTime)
-                let finishTime = Math.floor(allTime * percent)
+                let allTime = this.duration
+                let finishTime = allTime * percent
                 this.curTime.min = Math.floor(finishTime / 60)
                 this.curTime.second = finishTime % 60
             },
