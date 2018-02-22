@@ -126,6 +126,7 @@
                 }
                 if(!this.moving && this.movingTemp !== -1){
                     this.songAudio.currentTime = this.movingTemp
+                    this.songAudio.play()
                     this.movingTemp = -1
                 }
             }

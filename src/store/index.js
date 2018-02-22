@@ -10,12 +10,13 @@ const state = {
     listId: 0,
     songId: 34204084,
     songAudio: null,
+    playingIndex:undefined,
+    playingList:[],
 
     info: [],
     songSheet:[],
     songSheetFoot:{},
     // user:{},
-    playingList:[],
     playingTag:false,
     collect:[],
     manageSheet:{
@@ -24,7 +25,6 @@ const state = {
       editable:false,
       deleteable:false
     },
-    playingIndex:undefined,
     showSongSheet:false,
     showFootOrder:false,
     showFootManage:false,
@@ -54,6 +54,9 @@ const actions={
     setSongId: ({commit}) => {
         commit('setSongId')
     },
+    changeCurSong: function ({commit}) {
+        commit('changeCurSong');
+    },
 
     showUserList: ({commit}) => {
         commit('showUserList');
@@ -65,9 +68,7 @@ const actions={
     removePlayingListSongs:function ({commit}) {
         commit('removePlayingListSongs');
     },
-    changeCurSong: function ({commit}) {
-        commit('changeCurSong');
-    },
+
     stopPlaying:function ({commit}) {
         commit('stopPlaying');
     },
@@ -136,6 +137,13 @@ const mutations = {
     setSongId:(state, id) => {
         state.songId = id
     },
+    changeCurSong: (state, index) => {
+        state.playingIndex = index;
+        state.playingTag = true;
+    },
+    removePlayingListSongs: (state, index) => {
+        state.playingList.splice(index, 1);
+    },
 
     showUserList: (state) => {
         state.showUserList = !state.showUserList
@@ -143,17 +151,12 @@ const mutations = {
     initInfo:function (state, info) {
         state.info = info;
     },
-    removePlayingListSongs: function (state, index) {
-        state.playingList.splice(index, 1);
-    },
+
     stopPlaying:function (state) {
         state.playingTag = !state.playingTag;
     },
 
-    changeCurSong: function (state, index) {
-        state.playingIndex = index;
-        state.playingTag = true;
-    },
+
     songSheetFoot: function (state, data) {
       state.songSheetFoot = data;
     },

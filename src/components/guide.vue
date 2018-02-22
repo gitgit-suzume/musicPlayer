@@ -60,7 +60,7 @@
         overflow: hidden;
         li{
             display: inline-block;
-            height: 7.04vw;
+            overflow: hidden;
             i{
                 display: inline-block;
                 width: 7.04vw;
@@ -74,11 +74,11 @@
                 .active-i;
             }
             a{
-                width: 50px;
+                overflow: hidden;
                 height: 100%;
                 display: inline-block;
                 font:30px normal;
-                line-height: 50px;
+                line-height: 100%;
                 text-align: center;
                 color: white;
             }

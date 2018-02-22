@@ -21,10 +21,26 @@
 <script>
     export default {
         name: 'guide',
-        data:function (){
-            return {
-                song: '牵丝戏',
-                singer: ['银临', 'Aki阿杰']
+        computed: {
+            song(){
+                return this.info.name
+            },
+            singer(){
+                let result = []
+                let artists = this.info.artists
+                for(let i = 0, l = artists.length; i < l; i ++){
+                    result.push(artists[i].name)
+                }
+                return result
+            },
+            info(){
+                let list = this.$store.state.playingList
+                let index = this.$store.state.playingIndex
+                let {name: name = '歌曲名字', artists: artists = '歌手名字'} = list[index]
+                return {
+                    name: name,
+                    artists: artists
+                }
             }
         },
         methods:{

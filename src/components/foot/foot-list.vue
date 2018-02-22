@@ -96,6 +96,13 @@
                 this.$store.commit('setSongId', id)
             },
             clearSong (index) {
+                let newLen = this.list.length - 1;
+                if(newLen === 0){
+                    this.$store.commit('changeCurSong', -1)
+                }
+                if(newLen <= index){
+                    this.$store.commit('changeCurSong', newLen - 1)
+                }
                 this.$store.commit('removePlayingListSongs', index);
             },
             hide (event) {
