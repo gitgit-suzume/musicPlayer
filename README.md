@@ -13,7 +13,7 @@
 * webpack：自动化构建工具，初始配置由vue-cli提供
 * less: css预处理语言
 
-##效果图（v1.0）
+## 项目预览图（v1.0）
 
 > 首页(/home/music)
 
