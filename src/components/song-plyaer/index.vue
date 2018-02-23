@@ -16,6 +16,11 @@
     import GetData from '../../api/getData'
     export default {
         name: 'song-player',
+        data(){
+            return {
+                enter: true
+            }
+        },
         // computed:{
         //     info(){
         //         let index = this.$store.state.playingIndex
@@ -23,6 +28,15 @@
         //         return list[index]
         //     }
         // },
+        beforeRouteEnter (to, from, next) {
+            next(vm => {
+                vm.enter = true
+            })
+        },
+        beforeRouteLeave(to, from, next) {
+            this.enter = false
+            next()
+        },
         components: {
             guide: Guide,
             record: Record,

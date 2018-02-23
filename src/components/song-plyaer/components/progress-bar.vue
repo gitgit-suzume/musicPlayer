@@ -154,7 +154,6 @@
                     default:
                         ;
                 }
-                console.log(e.type, this.moving)
             }
         }
     }

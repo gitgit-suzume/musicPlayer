@@ -47,7 +47,6 @@
         },
         mounted(){
             this.playing = !this.songAudio.paused
-            console.log(this.playing)
         },
         methods:{
             switchSong(type){

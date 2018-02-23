@@ -35,7 +35,7 @@
                                 <span :class="['song',currentSong===index?'active':'']">{{item.name}}</span>
                                 <span :class="['singer',currentSong===index?'active':'']">-</span>
                                 <span :class="['singer',currentSong===index?'active':'']"
-                                      v-for="singer in item.artists">{{singer.name}}</span>
+                                      v-for="(singer, index) in item.artists">{{singer.name}}{{(index< (item.artists.length - 1)) ? '/' : ''}}</span>
                             </div>
                         </div>
                         <span class="remove el-icon-close" @click="clearSong(index)"></span>
