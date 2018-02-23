@@ -14,9 +14,18 @@
 * less: css预处理语言
 
 ##效果图（v1.0）
+
 > 首页(/home/music)
+
 ![Alt text](/readmeImg/home.gif "首页效果图")
 
+> 个人歌单页(/list) && 歌单详情页
+
+![Alt text](/readmeImg/list.gif "个人歌单页面 && 歌单详情页")
+
+> 歌曲播放页(/song-player) && 用户信息侧边栏
+
+![Alt text](/readmeImg/song-player.gif "歌曲播放页 && 用户信息侧边栏")
 
 ## 项目运行
 
