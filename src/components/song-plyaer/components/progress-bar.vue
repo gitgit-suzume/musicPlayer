@@ -13,7 +13,7 @@
                  :style="{width: finishBar + '%'}"></div>
             <div class="ball"
                  :style="{left: finishBar + '%'}"
-                 @touchstart="setEvent($event)"
+                 @touchstart="setEvent($event);moveBar($event)"
                  @mousedown="setEvent($event)"></div>
         </div>
         <span class="all-time">{{allTime.min}}:{{allTime.second}}</span>
@@ -74,7 +74,11 @@
             updateTime(){
                 let interval = 250
                 setTimeout(() => {
-                    this.currentTime = this.songAudio.currentTime
+                    if(this.moving) {
+                        this.currentTime = this.movingTemp
+                    } else {
+                        this.currentTime = this.songAudio.currentTime
+                    }
                     this.updateTime()
                 }, interval)
             },
@@ -119,7 +123,6 @@
                     case 'touchmove':
                         x = e.touches[0].pageX
                 }
-                console.log(e.type, x)
                 let result = x - min
                 if(x < min){
                     result = 0
@@ -132,7 +135,6 @@
                 // el.style.left = result + 'px'
             },
             setEvent(e){
-                console.log(e.type)
                 switch (e.type){
                     case 'touchstart':
                     case 'mousedown':
@@ -143,12 +145,16 @@
                     case 'mouseleave':
                     case 'mouseup':
                         this.moving = false;
-                        this.songAudio.currentTime = this.movingTemp
-                        this.songAudio.play()
+                        if(this.movingTemp != -1) {
+                            this.songAudio.currentTime = this.movingTemp
+                            this.movingTemp = -1
+                            this.songAudio.play()
+                        }
                         break;
                     default:
                         ;
                 }
+                console.log(e.type, this.moving)
             }
         }
     }
@@ -157,7 +163,7 @@
     @import (less) "../../../style/mixin";
     @margin-between: 5.81vw;
     .progress-bar {
-        padding: 7.75vw 0 6.16vw 0;
+        height: 6.64vh;
         display: flex;
         justify-content: space-between;
         align-items: center;

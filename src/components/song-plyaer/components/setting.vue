@@ -71,7 +71,6 @@
                 console.log(this.playing)
             },
             showList(){
-                console.log('showList')
                 this.$store.commit('showPlayList');
             }
         }
@@ -81,6 +80,8 @@
     @import (less) "../../../style/mixin";
     @margin-between: 4.75vw;
     .setting{
+        height: 14.71vh;
+        button: 0;
         clear: both;
         display: flex;
         justify-content: space-between;

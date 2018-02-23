@@ -22,10 +22,13 @@
 <style lang="less" scoped>
     @import (less) "../../../style/mixin";
     .info{
+        height: 7.73vh;
         display: flex;
         justify-content: center;
+        align-items: center;
         color: white;
         font-size: 5.28vw;
+        /*font-size: 3.5vh;*/
         .had-star{
             color: @red;
         }

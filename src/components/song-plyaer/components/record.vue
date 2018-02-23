@@ -34,7 +34,7 @@
         animation:spin 20s linear infinite;
     }
     .record{
-        height: 98.24vw;
+        height: 61.77vh;
         width: 100%;
         display: flex;
         justify-content: center;

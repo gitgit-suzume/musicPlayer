@@ -1,5 +1,5 @@
 <template>
-    <div class="foot" v-show="songId" @click="toSongPlayer()">
+    <div class="foot" v-show="songId" @click.self="toSongPlayer()">
         <audio :src="url"
                autoplay
                ref="audio"
@@ -66,12 +66,18 @@
             songId (){
                 return this.$store.state.songId
             },
+            songIndex(){
+                return this.$store.state.playingIndex
+            },
             songAudio(){
                 return this.$store.state.songAudio
             }
         },
         created(){
            this.getMusic(this.songId)
+           this.songAudio.addEventListener('ended', function(){
+               console.log('音频播放完成')
+           })
         },
         watch: {
           songId(val) {
@@ -80,6 +86,10 @@
           }
         },
         methods:{
+           nextSong(){
+               console.log('音频播放完成', this.songIndex++, this.songIndex)
+               this.$store.commit('changeCurSong', this.songIndex)
+           },
            toSongPlayer(){
                this.$router.push({path: '/song-player'})
            },

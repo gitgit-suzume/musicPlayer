@@ -54,7 +54,8 @@
     @import (less) "../../../style/mixin.less";
     .guide{
         width: 100vw;
-        height: @header-height;
+        /*height: @header-height;*/
+        height: 9.15vh;
         color: white;
         display: flex;
         justify-content: space-between;

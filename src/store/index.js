@@ -8,7 +8,7 @@ const state = {
     createList: [],
     collectList: [],
     listId: 0,
-    songId: 34204084,
+    songId: undefined,
     songAudio: null,
     playingIndex:undefined,
     playingList:[],
