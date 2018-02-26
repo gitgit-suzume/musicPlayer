@@ -35,10 +35,12 @@
                                 <span :class="['song',currentSong===index?'active':'']">{{item.name}}</span>
                                 <span :class="['singer',currentSong===index?'active':'']">-</span>
                                 <span :class="['singer',currentSong===index?'active':'']"
-                                      v-for="(singer, index) in item.artists">{{singer.name}}{{(index< (item.artists.length - 1)) ? '/' : ''}}</span>
+                                      v-for="(singer, itemIndex) in item.artists">
+                                    {{singer.name}}{{(itemIndex< (item.artists.length - 1)) ? '/' : ''}}
+                                </span>
                             </div>
                         </div>
-                        <span class="remove el-icon-close" @click="clearSong(index)"></span>
+                        <span class="remove el-icon-close" @click.stop="clearSong(index)"></span>
                     </a>
                 </li>
             </ul>
@@ -98,9 +100,10 @@
             clearSong (index) {
                 let newLen = this.list.length - 1;
                 if(newLen === 0){
-                    this.$store.commit('changeCurSong', -1)
-                }
-                if(newLen <= index){
+                    console.log('newLen === 0')
+                    this.$store.commit('changeCurSong', undefined)
+                } else if(newLen <= index){
+                    console.log('newLen <= index')
                     this.$store.commit('changeCurSong', newLen - 1)
                 }
                 this.$store.commit('removePlayingListSongs', index);

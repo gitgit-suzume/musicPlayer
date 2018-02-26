@@ -83,8 +83,13 @@
         // },
         watch: {
            songId(val) {
-               this.getMusic(val)
-               this.playing = true
+               if(val !== undefined) {
+                   this.getMusic(val)
+                   this.playing = true
+               } else {
+                   this.songAudio.pause()
+                   this.$store.commit('setSongAudio', null)
+               }
            },
             songAudio(){
                 this.songAudio.addEventListener('ended', this.nextSong)
@@ -92,7 +97,6 @@
         },
         methods:{
            nextSong(){
-               console.log('ended')
                this.$store.commit('changeCurSong', this.songIndex + 1)
            },
            toSongPlayer(){

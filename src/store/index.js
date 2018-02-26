@@ -138,15 +138,25 @@ const mutations = {
         state.songId = id
     },
     changeCurSong: (state, index) => {
+        console.log(arguments)
         let len = state.playingList.length
-        if(index < 0 || index >= len){
+        if(index >= len){
             return ;
         }
-        state.playingIndex = index;
-        state.playingTag = true;
+        if(len === 1 && index === undefined){
+            state.songId = undefined
+            state.playingList = []
+            state.playingIndex = undefined
+        } else {
+            state.playingIndex = index;
+            state.playingTag = true;
+        }
     },
     removePlayingListSongs: (state, index) => {
         state.playingList.splice(index, 1);
+        if(index < state.playingIndex){
+            state.playingIndex --
+        }
     },
 
     showUserList: (state) => {
