@@ -1,7 +1,9 @@
 <template>
     <div class="create-list">
-        <a class="list-header" href="javascript:;">
-            <a @click="showing=!showing" href="javascript:;">
+        <a class="list-header"
+           href="javascript:;"
+           @click="showing=!showing">
+            <a href="javascript:;">
                 <i class="flex-button el-icon-arrow-down"
                    :class="showing?'':'close'"></i>
                 <div class="info">
@@ -40,7 +42,7 @@
             list: {
                 type:[Object, Array],
                 default: []
-            }
+            },
         },
         computed:{
             // list:function () {
@@ -57,7 +59,7 @@
             }
         },
         methods:{
-            showFootManage:function (data, index) {
+            showFootManage (data, index) {
                 var deleteable = index === 0 ? false : true;
                 this.$store.commit('showFootManage');
                 this.$store.commit('setManageSheet',{

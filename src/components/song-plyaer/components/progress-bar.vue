@@ -28,7 +28,7 @@
                 moving: false,
                 currentTime: 0,
                 movingRate: 0,
-                movingTemp: -1,
+                movingTemp: 0,
                 duration: 0,
             }
         },
@@ -140,14 +140,15 @@
                     case 'mousedown':
                         this.moving = true;
                         this.movingTemp = this.currentTime
+                        this.moveBar(e)
                         break;
                     case 'touchend':
                     case 'mouseleave':
                     case 'mouseup':
                         this.moving = false;
-                        if(this.movingTemp != -1) {
+                        if(this.movingTemp != 0) {
                             this.songAudio.currentTime = this.movingTemp
-                            this.movingTemp = -1
+                            this.movingTemp = 0
                             this.songAudio.play()
                         }
                         break;

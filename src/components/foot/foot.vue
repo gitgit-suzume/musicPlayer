@@ -75,20 +75,25 @@
         },
         created(){
            this.getMusic(this.songId)
-           this.songAudio.addEventListener('ended', function(){
-               console.log('音频播放完成')
-           })
         },
+        // mounted(){
+        //     this.songAudio.addEventListener('ended', function(){
+        //         console.log('音频播放完成')
+        //     })
+        // },
         watch: {
-          songId(val) {
-              this.getMusic(val)
-              this.playing = true
-          }
+           songId(val) {
+               this.getMusic(val)
+               this.playing = true
+           },
+            songAudio(){
+                this.songAudio.addEventListener('ended', this.nextSong)
+            }
         },
         methods:{
            nextSong(){
-               console.log('音频播放完成', this.songIndex++, this.songIndex)
-               this.$store.commit('changeCurSong', this.songIndex)
+               console.log('ended')
+               this.$store.commit('changeCurSong', this.songIndex + 1)
            },
            toSongPlayer(){
                this.$router.push({path: '/song-player'})

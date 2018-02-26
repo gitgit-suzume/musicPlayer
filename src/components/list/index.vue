@@ -21,11 +21,6 @@
                 return this.$store.state.collectList;
             }
         },
-        data: function () {
-            return {
-                info:'list data'
-            }
-        },
         components:{
             'default-list':Default,
             'collect-list':Collect,
