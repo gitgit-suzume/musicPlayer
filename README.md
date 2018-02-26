@@ -94,13 +94,13 @@ npm run dev
 * 但是仍然没开始创建element，所以如果用swiper之类要跟dom元素打交道的组件。这里设置是不生效的。
 ###### beforeMount
 * 函数意思是载入之前，个人理解为已经编译完成HTML并挂载到对应虚拟dom。触发此函数之前是一系列的操作：
-    1.有没有el的选项
+    * 1.有没有el的选项
         * 有 --> 直接进行2
         * 无 --> 用$mount(el)挂载模板
-    2.有没有template的选项？
+    * 2.有没有template的选项？
         * 无论有没有，都会把vue的模板数据编译成浏览器可读的html。
-    3.进入beforeMount。将编译完成的html挂载到对应的虚拟dom上。此时还不能访问$el。
-    4.在父组件beforeMount之后mounted之前，会先进入子组件的生命周期，直到子组件mounted后，才会进行父组件的下一步。
+    * 3.进入beforeMount。将编译完成的html挂载到对应的虚拟dom上。此时还不能访问$el。
+    * 4.在父组件beforeMount之后mounted之前，会先进入子组件的生命周期，直到子组件mounted后，才会进行父组件的下一步。
 ###### mounted
 编译好的html已经挂在到页面上，此时可以访问$el这些dom元素了。
 数据获取也可以在此函数中进行，此时可以初始化有dom操作的组件，比如swiper。
