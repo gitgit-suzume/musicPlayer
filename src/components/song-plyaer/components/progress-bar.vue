@@ -130,6 +130,7 @@
                 if(x > max){
                     result = barInfo.width
                 }
+                console.log(e, e.touches[0].pageX)
 
                 this.movingTemp = this.duration * (result / barInfo.width)
                 // el.style.left = result + 'px'
@@ -140,7 +141,7 @@
                     case 'mousedown':
                         this.moving = true;
                         this.movingTemp = this.currentTime
-                        this.moveBar(e)
+                        // this.moveBar(e)
                         break;
                     case 'touchend':
                     case 'mouseleave':
