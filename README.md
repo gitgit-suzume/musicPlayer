@@ -138,6 +138,7 @@ npm run dev
 # diff算法
 参考[answershuto](https://github.com/answershuto "answershuto")的[learnVue](https://github.com/answershuto/learnVue/blob/master/docs/VirtualDOM%E4%B8%8Ediff(Vue%E5%AE%9E%E7%8E%B0).MarkDown "learnVue")
 ###### 概述：
+```bash
 A. virtual dom就是将dom树上的属性，用对象的形式记录下来，上面的节点叫vnode <br>
 B. 更新流程就是在这里触发的、如果节点已经加载过，则触发更新流程 <br>
 
@@ -149,6 +150,7 @@ E. 如果新老节点有子节点，则对子节点进行diff操作，用一定�
     * updateChildren<br>
     1. 要对比的新老节点数组我们姑且称为oldVnodes、newVnodes。建立四个索引，分别指向新老节点数组的首尾，我们称为oldStartVnode、oldEndVnode、newStartVnode、newEndVnode。    从要对比的两个数组两端夹逼比较。<br>
     2. 具体做法就是对比(oldStartIdx,newStartIdx)、(oldEndIdx,newEndIdx)、(oldStartIdx,newEndIdx)、(oldEndIdx,newStartIdx)。如果相同，则进行一定的操作（下方伪代码中abcde）。如果不同，通过key找可能会相同的节点，随后进行D、E比较<br>
+```
 ```bash
         a. if(sameVnode(oldStartIdx,newStartIdx)){
                 进行上述D、E
@@ -169,5 +171,6 @@ E. 如果新老节点有子节点，则对子节点进行diff操作，用一定�
                 //将oldEndIdx移到oldStartIdx前
             }
 ```
+```bash
     3. 当oldStartIdx > oldEndIdx || newStartIdx > newEndIdx时候结束比较。如果oldStartIdx > oldEndIdx，表示新节点多于老节点，增加新的真身的dom节点；如果newStartIdx > newEndIdx，说明老节点多于新节点，删除多余的老节点。
-
+```
